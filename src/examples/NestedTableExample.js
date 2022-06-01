@@ -9,13 +9,13 @@ import { TableIcons } from '@aeros-ui/icons';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import Typography from '@mui/material/Typography';
-import NestedTableHeader from '../NestedTableHeader';
-import NestedTableRow from '../NestedTableRow';
-import NestedTableCell from '../NestedTableCell';
-import { TableToolbar } from '@aeros-ui/tables'; 
+// import NestedTableHeader from '../NestedTableHeader';
+// import NestedTableRow from '../NestedTableRow';
+// import NestedTableCell from '../NestedTableCell';
+import { TableToolbar, NestedTableHeader, NestedTableRow, NestedTableCell } from '@aeros-ui/tables'; 
 import { ThemeProvider } from '@mui/material/styles';
-import tableTheme from '../TableTheme';
-// import { tableTheme } from '@aeros-ui/themes';
+// import tableTheme from '../TableTheme';
+import { tableTheme } from '@aeros-ui/themes';
 
 class NestedTableExample extends Component {
     state = {
@@ -276,7 +276,7 @@ class NestedTableExample extends Component {
             render: rowData => {
                 return <Typography variant="body2">{rowData.AFFIDAVITNO}</Typography>
             },
-            width: '15%'
+            width: '125px'
         },
         {
             title: "Policy No",
@@ -285,7 +285,7 @@ class NestedTableExample extends Component {
             render: rowData => {
                 return <Typography variant="body2">{rowData.POLICYNO}</Typography>
             },
-            width: '15%'
+            width: '150px'
         },
         {
             title: "Insured Name",
@@ -294,7 +294,7 @@ class NestedTableExample extends Component {
             render: rowData => {
                 return <Typography variant="body2">{rowData.INSUREDNAME}</Typography>
             },
-            width: '40%'
+            width: '200px'
         },
         {
             title: "Type",
@@ -303,7 +303,7 @@ class NestedTableExample extends Component {
             render: rowData => {
                 return <Typography variant="body2">{rowData.TYPE}</Typography>
             },
-            // width: '5%'
+            width: '50px'
         },
         {
             title: "Premium",
@@ -312,7 +312,7 @@ class NestedTableExample extends Component {
             render: rowData => {
                 return <Typography variant="body2">{rowData.PREMIUM}</Typography>
             },
-            width: '15%'
+            width: '125px'
         },
         {
             title: "Inception",
@@ -321,7 +321,7 @@ class NestedTableExample extends Component {
             render: rowData => {
                 return <Typography variant="body2">{rowData.INCEPTION}</Typography>
             },
-            // width: '8%'
+            width: '100px'
         },
         {
             title: "Expiration",
@@ -330,7 +330,7 @@ class NestedTableExample extends Component {
             render: rowData => {
                 return <Typography variant="body2">{rowData.EXPIRATION}</Typography>
             },
-            // width: '8%'
+            width: '100px',
         },
         {
             title: "Batch",
@@ -339,7 +339,7 @@ class NestedTableExample extends Component {
             render: rowData => {
                 return <Typography variant="body2">{rowData.BATCH}</Typography>
             },
-            // width: '8%'
+            width: '100px'
         },
         {
             title: "Item",
@@ -348,7 +348,7 @@ class NestedTableExample extends Component {
             render: rowData => {
                 return <Typography variant="body2">{rowData.ITEMNO}</Typography>
             },
-            width: '5%'
+            width: '50px',
         },
         {
             title: "State",
@@ -357,7 +357,7 @@ class NestedTableExample extends Component {
             render: rowData => {
                 return <Typography variant="body2">{rowData.STATE}</Typography>
             },
-            width: '5%'
+            width: '50px',
         },
     ]
 
@@ -377,7 +377,7 @@ class NestedTableExample extends Component {
     return (
         <ThemeProvider theme={tableTheme}>
         <MaterialTable
-            title={null}
+            title="Affidavit Transactions"
             columns={this.columns}
             data={this.state.data}
             icons={TableIcons}
@@ -385,69 +385,44 @@ class NestedTableExample extends Component {
                 rowData.CHILDTRANSACTIONS.length > 0 ? (
                     <TableContainer>
                         <Table>
-                            {/* <NestedTableHeader
-                                tableSubheaders={this.tableSubheaders}
-                                colSpan={this.columns.length}
-                            /> */}
                             <NestedTableHeader
-                                tableSubheaders={[
-                                    'Related Child Transactions',
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    '',
-                                    ''
-                                ]}
-                                // tableSubheaders={[
-                                //     'Affidavit No',
-                                //     'Policy No',
-                                //     'Insured Name',
-                                //     'Type',
-                                //     'Premium',
-                                //     'Inception',
-                                //     'Expiration',
-                                //     'Batch',
-                                //     'Item',
-                                //     'State'
-                                // ]}
-                                // colSpan={columns.length}
+                                tableSubheaders={['Related Child Transactions']}
+                                colSpan={this.columns.length + 1}
+                                dense={this.state.density}
                             />
                             <TableBody>
                                 {rowData.CHILDTRANSACTIONS.map((c, i) => {
                                     return (
                                         <NestedTableRow key={`child-transaction-${i}`} dense={this.state.density} onClick={() => this.handleSelectChild(c)} selected={c.id === this.state.selectedChildId}>
-                                            <NestedTableCell dense={this.state.density} width='14%'>
+                                            <NestedTableCell dense={this.state.density}></NestedTableCell>
+                                            <NestedTableCell dense={this.state.density} width='125px'>
                                                 {c.AFFIDAVITNO}
                                             </NestedTableCell>
-                                            <NestedTableCell dense={this.state.density} width="10%">
+                                            <NestedTableCell dense={this.state.density} width="150px">
                                                 {c.POLICYNO}
                                             </NestedTableCell>
-                                            <NestedTableCell dense={this.state.density} width="21%">
+                                            <NestedTableCell dense={this.state.density} width="240px">
                                                 {c.INSUREDNAME !== null ? c.INSUREDNAME : '-'}
                                             </NestedTableCell>
-                                            <NestedTableCell dense={this.state.density}>
+                                            <NestedTableCell dense={this.state.density} width="50px">
                                                 {c.TYPE}
                                             </NestedTableCell>
-                                            <NestedTableCell dense={this.state.density} align="right" width="10%">
+                                            <NestedTableCell dense={this.state.density} align="right" width="125px">
                                                 {c.PREMIUM}
                                             </NestedTableCell>
-                                            <NestedTableCell dense={this.state.density} width="9.75%" align="center">
+                                            <NestedTableCell dense={this.state.density} width="100px" align="center">
                                                 {c.INCEPTION}
                                             </NestedTableCell>
-                                            <NestedTableCell dense={this.state.density} width="9.75%" align="center">
+                                            <NestedTableCell dense={this.state.density} width="100px" align="center">
                                                 {c.EXPIRATION !== null ? c.EXPIRATION : '-'}
                                             </NestedTableCell>
-                                            <NestedTableCell dense={this.state.density} width="10%">
+                                            <NestedTableCell dense={this.state.density} width="100px" align="right">
                                                 {c.BATCH}
                                             </NestedTableCell>
-                                            <NestedTableCell dense={this.state.density}>
+                                            <NestedTableCell dense={this.state.density} width="75px" align="right">
                                                 {c.ITEMNO}
                                             </NestedTableCell>
-                                            <NestedTableCell dense={this.state.density}>
+                                            <NestedTableCell dense={this.state.density} width="70px">
                                                 {c.STATE}
                                             </NestedTableCell>
                                         </NestedTableRow>
@@ -473,17 +448,18 @@ class NestedTableExample extends Component {
                     backgroundColor: this.state.selectedRowId === rowData.tableData.id ? 'rgba(217, 239, 205, 0.7)' : undefined
                 }),
                 padding: this.state.density,
+                search: false,
             }}
             components={{
-                Toolbar: props => (
-                    <TableToolbar
-                        {...props}
-                        // tableTitle="Affidavit Transactions"
-                        showFilters={this.state.showFilters}
-                        onFilterClick={() => this.setFiltering()}
-                        onDensityClick={this.handleDensityClick}
-                    />
-                )
+                // Toolbar: props => (
+                //     <TableToolbar
+                //         {...props}
+                //         tableTitle="Affidavit Transactions"
+                //         showFilters={this.state.showFilters}
+                //         onFilterClick={() => this.setFiltering()}
+                //         onDensityClick={this.handleDensityClick}
+                //     />
+                // )
             }}
         />
         </ThemeProvider>

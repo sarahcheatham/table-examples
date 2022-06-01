@@ -5,8 +5,8 @@
   "dependencies": {
     "@aeros-ui/components": "^0.1.19",
     "@aeros-ui/icons": "^0.1.3",
-    "@aeros-ui/tables": "^0.1.4",
-    "@aeros-ui/themes": "^0.1.7",
+    "@aeros-ui/tables": "^0.1.5",
+    "@aeros-ui/themes": "^0.1.8",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@material-table/core": "^0.2.34",

@@ -11,6 +11,19 @@ const tableTheme = createTheme({
             main: '#004A8F',
             light: 'BCD4EF',
             dark: '#002746'
+        },
+        grid: {
+            main: {
+                active: '#EF4FDC', 
+                default: '#FFFFFF',
+                header: '#2A333E',
+            },
+            nested: {
+                active: '#8CAECF',
+                default: '#EBF1F6',
+                header: '#757B82',
+                headerText: '#F5F5F5'
+            }
         }
     },
     typography: {
@@ -41,22 +54,6 @@ const tableTheme = createTheme({
                 }
             }
         },
-        // MuiToolbar: {
-        //     styleOverrides: {
-        //         root: {
-        //             paddingRight: '0px !important',
-        //             paddingLeft: '0px !important',
-        //             // paddingRight: 0,
-        //             // [`@media (min-width: 600px)`]:{
-        //             //     padding: 0
-        //             // }
-        //         },
-        //         // gutters: {
-        //         //     paddingRight: 0,
-        //         //     paddingLeft: 0
-        //         // }
-        //     }
-        // },
         MuiTablePagination: {
             styleOverrides: {
                 selectLabel: {
@@ -92,11 +89,11 @@ const tableTheme = createTheme({
                 },
                 head: {
                     fontFamily: 'Roboto',
-                    fontSize: '15px',
+                    fontSize: '14px',
                     textTransform: 'none',
                     paddingLeft: '0.5em',
                     [`@media screen and (max-width: 1200px)`]:{
-                        fontSize: '14px'
+                        fontSize: '13px'
                     }
                 },
             }

@@ -21,19 +21,19 @@
     "@babel/polyfill" "^7.12.1"
     react-scripts "5.0.0"
 
-"@aeros-ui/tables@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@aeros-ui/tables/-/tables-0.1.4.tgz#bba7119febd763fcd51e67e261704727eba23fd0"
-  integrity sha512-ozr30dLHhXsi3Cbxr0SnOpfpPOJKd+5M1iW0vntEpq0d5Y+sQBNDd6nT1r2ZBZ/JVfY8AHSauvLA4A6VsNOQDg==
+"@aeros-ui/tables@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@aeros-ui/tables/-/tables-0.1.5.tgz#c5ac7ac927ba3b06e5b507cf13c8af75a0c36ca4"
+  integrity sha512-0y/v7H9n+07egshk9h/MeCxGn0OTQ3HHdd6Y464yVNmykQBJ06LTuMneP3RrVCgqKhDHT0dGvg4nOWhwYE1GMA==
   dependencies:
     "@babel/polyfill" "^7.12.1"
     prop-types "^15.8.1"
     react-scripts "5.0.0"
 
-"@aeros-ui/themes@^0.1.7":
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/@aeros-ui/themes/-/themes-0.1.7.tgz#6dc2a886e53f2a84f6f827bd6ac7377585d41fba"
-  integrity sha512-Kjv09/iuN2LzKcY67xfwjv66kSitoJNtgc4obwJfn/alzbfnH0z+puindRKtSTFdAPr6OCNJgA+CO/RezL+L+Q==
+"@aeros-ui/themes@^0.1.8":
+  version "0.1.8"
+  resolved "https://registry.yarnpkg.com/@aeros-ui/themes/-/themes-0.1.8.tgz#d15c3adf3f3118e07dab11cd1db6f92602fe7932"
+  integrity sha512-hfIXNrsUcEz/GDrHWsdBsDsv2KgwFb0xeo/Wi7xdGZbbFK//DoDUS23j0TvmcT8m+T+lcO6KCP+lCMkglXTrRg==
   dependencies:
     "@babel/polyfill" "^7.12.1"
     react-scripts "5.0.0"

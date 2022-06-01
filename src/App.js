@@ -14,30 +14,38 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Grid container columnSpacing={2}>
-        <Grid item xs={12}>
+        <Grid item xs={11}>
           <NestedTableExample/>
           {/* <TableToolbarExample/> */}
           {/* <TableWithInputsExample/> */}
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={1}>
           <Stack direction="column" spacing={3}>
             <CustomLoadingButton
-              loading={true}
-              name="reset"
+              loading={false}
+              name="details"
               startIcon={null}
-              width="50%"
+              // width="50%"
               size="small"
               onClick={() => console.log('clicked')}
             />
             <CustomLoadingButton
               loading={false}
-              name="refresh"
+              name="instructions"
               startIcon={null}
-              width="50%"
+              // width="50%"
               color="primary"
               size="small"
             />
-            <SearchButton
+            <CustomLoadingButton
+              loading={false}
+              name="dms/ocr"
+              startIcon={null}
+              // width="50%"
+              color="primary"
+              size="small"
+            />
+            {/* <SearchButton
                 loading={true}
                 width="50%"
                 size="small"
@@ -51,7 +59,7 @@ function App() {
             />
             <AddBatchButton
               onClick={() => console.log("clicked")}
-            />
+            /> */}
           </Stack>
         </Grid>
       </Grid>
