@@ -16,26 +16,20 @@ import Examples from './Examples';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <TableToolbarExample/>
-      {/* <Routes>
-        HERE
-        <Route path="/guides" element={<Guides/>}>
-          <Route path="/examples" element={<Examples/>}>
-            <Route
-              path="/table-toolbar"
-              element={<TableToolbarExample/>}
-            />
-            <Route
-              path="/nested-table"
-              element={<NestedTableExample/>}
-            />
-            <Route
-              path="/editable-table"
-              element={<TableWithInputsExample/>}
-            />
-          </Route>
-        </Route>
-      </Routes> */}
+      <Routes>
+          <Route
+            path="/table-toolbar"
+            element={<TableToolbarExample/>}
+          />
+          <Route
+            path="/nested-table"
+            element={<NestedTableExample/>}
+          />
+          <Route
+            path="/editable-table"
+            element={<TableWithInputsExample/>}
+          />
+      </Routes>
       {/* <Grid container spacing={2}>
       <Grid item container columnSpacing={2}>
         <Grid item xs={11}>
