@@ -16,10 +16,11 @@ import Examples from './Examples';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Routes>
+      <TableToolbarExample/>
+      {/* <Routes>
         HERE
-        {/* <Route path="/guides" element={<Guides/>}> */}
-          {/* <Route path="/examples" element={<Examples/>}> */}
+        <Route path="/guides" element={<Guides/>}>
+          <Route path="/examples" element={<Examples/>}>
             <Route
               path="/table-toolbar"
               element={<TableToolbarExample/>}
@@ -32,9 +33,9 @@ function App() {
               path="/editable-table"
               element={<TableWithInputsExample/>}
             />
-          {/* </Route> */}
-        {/* </Route> */}
-      </Routes>
+          </Route>
+        </Route>
+      </Routes> */}
       {/* <Grid container spacing={2}>
       <Grid item container columnSpacing={2}>
         <Grid item xs={11}>
