@@ -155,7 +155,6 @@ const TableToolbarExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            <div style={{ width: "75%"}}>
             <MaterialTable
                 title={null}
                 columns={columns}
@@ -197,7 +196,6 @@ const TableToolbarExample = () => {
                     )
                 }}
             />
-            </div>
         </ThemeProvider>
     )
 }

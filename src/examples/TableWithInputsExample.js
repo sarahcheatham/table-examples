@@ -133,7 +133,7 @@ const TableWithInputsExample = () => {
                     />
                 )
             },
-            type: "currency",
+            // type: "currency",
             editComponent: props => {
                 return (
                     <CurrencyInput
