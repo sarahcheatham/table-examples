@@ -9,18 +9,39 @@ import Grid from '@mui/material/Grid';
 import { ThemeProvider } from '@mui/material/styles';
 // import theme from './Theme';
 import { theme } from '@aeros-ui/themes';
+import { Routes, Route } from 'react-router-dom';
+import Guides from './Guides';
+import Examples from './Examples';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Grid container spacing={2}>
+      <Routes>
+        {/* <Route path="/guides" element={<Guides/>}> */}
+          <Route path="/examples" element={<Examples/>}>
+            <Route
+              path="table-toolbar"
+              element={<TableToolbarExample/>}
+            />
+            <Route
+              path="nested-table"
+              element={<NestedTableExample/>}
+            />
+            <Route
+              path="editable-table"
+              element={<TableWithInputsExample/>}
+            />
+          </Route>
+        {/* </Route> */}
+      </Routes>
+      {/* <Grid container spacing={2}>
       <Grid item container columnSpacing={2}>
         <Grid item xs={11}>
-          <NestedTableExample/>
+          <NestedTableExample/> */}
           {/* <TableToolbarExample/> */}
           {/* <TableWithInputsExample/> */}
-        </Grid>
-        <Grid item xs={1}>
+        {/* </Grid> */}
+        {/* <Grid item xs={1}>
           <Stack direction="column" spacing={3}>
             <CustomLoadingButton
               loading={false}
@@ -45,7 +66,7 @@ function App() {
               // width="50%"
               color="primary"
               size="small"
-            />
+            /> */}
             {/* <SearchButton
                 loading={true}
                 width="50%"
@@ -61,13 +82,13 @@ function App() {
             <AddBatchButton
               onClick={() => console.log("clicked")}
             /> */}
-          </Stack>
+          {/* </Stack>
         </Grid>
-      </Grid>
-      <Grid item container>
+      </Grid> */}
+      {/* <Grid item container>
         <TableToolbarExample/>
       </Grid>
-      </Grid>
+      </Grid> */}
     </ThemeProvider>
   );
 }
