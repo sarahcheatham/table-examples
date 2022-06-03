@@ -1,4 +1,4 @@
-// import TableToolbarExample from "./examples/TableToolbarExample";
+import TableToolbarExample from "./examples/TableToolbarExample";
 import NestedTableExample from './examples/NestedTableExample';
 import TableWithInputsExample from './examples/TableWithInputsExample';
 // import PercentageInput from './PercentageInput';
@@ -13,7 +13,8 @@ import { theme } from '@aeros-ui/themes';
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Grid container columnSpacing={2}>
+      <Grid container spacing={2}>
+      <Grid item container columnSpacing={2}>
         <Grid item xs={11}>
           <NestedTableExample/>
           {/* <TableToolbarExample/> */}
@@ -62,6 +63,10 @@ function App() {
             /> */}
           </Stack>
         </Grid>
+      </Grid>
+      <Grid item container>
+        <TableToolbarExample/>
+      </Grid>
       </Grid>
     </ThemeProvider>
   );

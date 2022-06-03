@@ -5,7 +5,7 @@ import { useTheme } from '@mui/material/styles';
 const NestedTableRow = props => {
     const theme = useTheme();
     return (
-        <TableRow sx={{ height: props.dense === 'dense' ? '32px' : '48px', backgroundColor: props.selected ? theme.palette.grid.nested.active : theme.palette.grid.nested.default }} onClick={props.onClick}>
+        <TableRow sx={{ height: props.dense === 'dense' ? '32px' : '48px', backgroundColor: props.selected ? theme.palette.grid.nested.active : theme.palette.grid.nested.default, cursor: props.onClick ? 'pointer' : undefined }} onClick={props.onClick}>
             {props.children}
         </TableRow>
     )

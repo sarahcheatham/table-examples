@@ -1,16 +1,13 @@
 import { useState } from 'react';
 import MaterialTable from '@material-table/core';  
-// import TableToolbar from './TableToolbar';
 import { 
     TableToolbar, 
-    TableFilterInput 
+    TableFilterInput,
+    MainTableCell
 } from '@aeros-ui/tables';
 import { ThemeProvider } from '@mui/material/styles';
-import tableTheme from '../TableTheme';
-import { Typography } from '@mui/material';
-// import { tableTheme } from '@aeros-ui/themes'; 
+import { tableTheme } from '@aeros-ui/themes'; 
 import { ExportCsv, ExportPdf } from '@material-table/exporters';  
-import '../index.css'
 
 const TableToolbarExample = () => {
     const [density, setDensity] = useState('dense');
@@ -18,15 +15,32 @@ const TableToolbarExample = () => {
     const [data, setData] = useState(
         [
             {
-                firstName: "Patrick",
-                lastName: "Langenbach",
-                birthYear: 1987,
+                id: 0,
+                USERID: "ADM519833",
+                USERNAME: "ADMINSITRATOR",
+                SECURITYPROFILE: "PETER M. FEENEY",
+                EMAIL: "ADMIN@FEENEY.COM",
+                PHONE: "800-222-5500",
+                STATE: "ENABLED"
             },
             {
-                firstName: "Sarah",
-                lastName: "Cheatham",
-                birthYear: 2017,
-            }
+                id: 1,
+                USERID: "519833A",
+                USERNAME: "JANE DOE",
+                SECURITYPROFILE: "PETER M. FEENEY",
+                EMAIL: "J.DOE@FEENEY.COM",
+                PHONE: "800-222-5151",
+                STATE: "ENABLED"
+            },
+            {
+                id: 2,
+                USERID: "519833B",
+                USERNAME: "JOHN SMITH",
+                SECURITYPROFILE: "PETER M. FEENEY",
+                EMAIL: "ADMIN@FEENEY.COM",
+                PHONE: "800-222-5152",
+                STATE: "ENABLED"
+            },
         ]
     )
 
@@ -36,11 +50,11 @@ const TableToolbarExample = () => {
 
     const columns = [
         {
-            title: "First Name",
-            field: "firstName",
+            title: "User Id",
+            field: "USERID",
             type: "string",
             render: rowData => {
-                return <Typography variant="body2">{rowData.firstName}</Typography>
+                return <MainTableCell>{rowData.USERID}</MainTableCell>
             },
             filterComponent: ({ columnDef, onFilterChanged }) => {
                 return (
@@ -50,14 +64,14 @@ const TableToolbarExample = () => {
                     }
                   />
                 );
-              }
+            },
         },
         {
-            title: "Last Name",
-            field: "lastName",
+            title: "User Name",
+            field: "USERNAME",
             type: "string",
             render: rowData => {
-                return <Typography variant="body2">{rowData.lastName}</Typography>
+                return <MainTableCell>{rowData.USERNAME}</MainTableCell>
             },
             filterComponent: ({ columnDef, onFilterChanged }) => {
                 return (
@@ -67,14 +81,48 @@ const TableToolbarExample = () => {
                     }
                   />
                 );
-              }
+            },
         },
         {
-            title: "Birth Year",
-            field: "birthYear",
+            title: "Security Profile",
+            field: "SECURITYPROFILE",
+            type: "string",
+            render: rowData => {
+                return <MainTableCell>{rowData.SECURITYPROFILE}</MainTableCell>
+            },
+            filterComponent: ({ columnDef, onFilterChanged }) => {
+                return (
+                  <TableFilterInput
+                    onChange={(e) =>
+                      onFilterChanged(columnDef.tableData.id, e.target.value)
+                    }
+                  />
+                );
+            },
+        },
+        {
+            title: "Email",
+            field: "EMAIL",
+            type: "string",
+            render: rowData => {
+                return <MainTableCell>{rowData.EMAIL}</MainTableCell>
+            },
+            filterComponent: ({ columnDef, onFilterChanged }) => {
+                return (
+                  <TableFilterInput
+                    onChange={(e) =>
+                      onFilterChanged(columnDef.tableData.id, e.target.value)
+                    }
+                  />
+                );
+            },
+        },
+        {
+            title: "Telephone",
+            field: "PHONE",
             type: "numeric",
             render: rowData => {
-                return <Typography variant="body2">{rowData.birthYear}</Typography>
+                return <MainTableCell>{rowData.PHONE}</MainTableCell>
             },
             filterComponent: ({ columnDef, onFilterChanged }) => {
                 return (
@@ -84,13 +132,30 @@ const TableToolbarExample = () => {
                     }
                   />
                 );
-              }
+            },
+        },
+        {
+            title: "State",
+            field: "STATE",
+            type: "string",
+            render: rowData => {
+                return <MainTableCell>{rowData.STATE}</MainTableCell>
+            },
+            filterComponent: ({ columnDef, onFilterChanged }) => {
+                return (
+                  <TableFilterInput
+                    onChange={(e) =>
+                      onFilterChanged(columnDef.tableData.id, e.target.value)
+                    }
+                  />
+                );
+            },
         }
     ]
 
     return (
         <ThemeProvider theme={tableTheme}>
-            <div>
+            <div style={{ width: "75%"}}>
             <MaterialTable
                 title={null}
                 columns={columns}
@@ -98,7 +163,6 @@ const TableToolbarExample = () => {
                 options={{
                     headerStyle: {
                         backgroundColor: 'rgba(42, 51, 62, .87)',
-                        // fontSize: '16px',
                         '&:hover': {
                             color: 'rgba(255, 255, 255, 0.7)'
                         },
@@ -125,14 +189,14 @@ const TableToolbarExample = () => {
                     Toolbar: props => (
                         <TableToolbar
                             {...props}
-                            tableTitle="Affidavit Transactions"
+                            tableTitle="User Profiles"
                             showFilters={showFilters}
                             onFilterClick={() => setFiltering(!showFilters)}
                             onDensityClick={handleDensityClick}
                         />
                     )
                 }}
-            /> 
+            />
             </div>
         </ThemeProvider>
     )
