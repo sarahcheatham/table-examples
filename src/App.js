@@ -20,15 +20,15 @@ function App() {
         {/* <Route path="/guides" element={<Guides/>}> */}
           {/* <Route path="/examples" element={<Examples/>}> */}
             <Route
-              path="table-toolbar"
+              path="/table-toolbar"
               element={<TableToolbarExample/>}
             />
             <Route
-              path="nested-table"
+              path="/nested-table"
               element={<NestedTableExample/>}
             />
             <Route
-              path="editable-table"
+              path="/editable-table"
               element={<TableWithInputsExample/>}
             />
           {/* </Route> */}
