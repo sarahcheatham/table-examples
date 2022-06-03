@@ -18,7 +18,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Routes>
         {/* <Route path="/guides" element={<Guides/>}> */}
-          <Route path="/examples" element={<Examples/>}>
+          {/* <Route path="/examples" element={<Examples/>}> */}
             <Route
               path="table-toolbar"
               element={<TableToolbarExample/>}
@@ -31,7 +31,7 @@ function App() {
               path="editable-table"
               element={<TableWithInputsExample/>}
             />
-          </Route>
+          {/* </Route> */}
         {/* </Route> */}
       </Routes>
       {/* <Grid container spacing={2}>
