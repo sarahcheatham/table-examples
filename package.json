@@ -27,6 +27,8 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "start": "FAST_REFRESH=true PORT=3008 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -50,5 +52,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://sarahcheatham.github.io/table-examples/"
+  "homepage": "https://sarahcheatham.github.io/table-examples",
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
+  }
 }
