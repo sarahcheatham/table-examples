@@ -5,19 +5,20 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '@aeros-ui/themes';
 import { Routes, Route } from 'react-router-dom';
 import Examples from './Examples';
+import Home from './pages/Home';
 
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <Routes>
-        {/* <Route path="/table-examples" element={<Examples/>}> */}
+          <Route path="/" element={<Home/>}/>
           <Route
-            path="/table-toolbar"
+            path="table-toolbar"
             element={<TableToolbarExample/>}
           />
           <Route
-            path="/nested-table"
+            path="nested-table"
             element={<NestedTableExample/>}
           />
           {/* <Route

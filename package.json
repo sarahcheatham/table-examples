@@ -52,7 +52,7 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://sarahcheatham.github.io/table-examples",
+  "homepage": "https://sarahcheatham.github.io/table-examples/",
   "devDependencies": {
     "gh-pages": "^4.0.0"
   }
