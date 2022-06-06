@@ -2,6 +2,7 @@ import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListSubheader from '@mui/material/ListSubheader';
 import ListItemText from '@mui/material/ListItemText';
+import { Outlet, Link } from 'react-router-dom';
 
 function Home() {
   return (
@@ -17,8 +18,9 @@ function Home() {
         subheader={<ListSubheader component="div">Table Examples</ListSubheader>}
       >
         <ListItemButton
-            component={'a'}
-            href="actions"
+            component={Link}
+            to="actions"
+            // href="actions"
         >
             <ListItemText primary="Actions"/>
         </ListItemButton>
@@ -30,49 +32,55 @@ function Home() {
         </ListItemButton>
         <ListItemButton
             component={'a'}
-            href="/edit"
+            href="edit"
         >
             <ListItemText primary="Edit"/>
         </ListItemButton>
         <ListItemButton
             component={'a'}
-            href="/export"
+            href="export"
         >
             <ListItemText primary="Export"/>
         </ListItemButton>
         <ListItemButton
             component={'a'}
-            href="/filter"
+            href="filter"
         >
             <ListItemText primary="Filter"/>
         </ListItemButton>
         <ListItemButton
             component={'a'}
-            href="/nested-table"
+            href="nested-table"
         >
             <ListItemText primary="Nested Table"/>
         </ListItemButton>
         <ListItemButton
             component={'a'}
-            href="/search"
+            href="search"
         >
             <ListItemText primary="Search"/>
         </ListItemButton>
         <ListItemButton
             component={'a'}
-            href="/single-selection"
+            href="single-selection"
         >
-            <ListItemText primary="Selection"/>
+            <ListItemText primary="Single Selection"/>
         </ListItemButton>
         <ListItemButton
             component={'a'}
-            href="/multiple-selection"
+            href="single-selection2"
+        >
+            <ListItemText primary="Single Selection 2"/>
+        </ListItemButton>
+        <ListItemButton
+            component={'a'}
+            href="multiple-selection"
         >
             <ListItemText primary="Multiple Selection"/>
         </ListItemButton>
         <ListItemButton
             component={'a'}
-            href="/sort"
+            href="sort"
         >
             <ListItemText primary="Sort"/>
         </ListItemButton>
@@ -83,6 +91,7 @@ function Home() {
             <ListItemText primary="Toolbar"/>
         </ListItemButton>
       </List>
+      <Outlet/>
     </div>
   );
 }

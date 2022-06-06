@@ -7,12 +7,13 @@ import NestedTableExample from "./pages/TableExamples/NestedTableExample";
 import SearchExample from "./pages/TableExamples/SearchExample";
 import MultipleSelectionExample from "./pages/TableExamples/MultipleSelectionExample";
 import SingleSelectionExample from "./pages/TableExamples/SingleSelectionExample";
+import SingleSelectionExample2 from "./pages/TableExamples/SingleSelectionExample2";
 import SortExample from './pages/TableExamples/SortExample';
 import ToolbarExample from "./pages/TableExamples/ToolbarExample";
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '@aeros-ui/themes';
 import { Routes, Route } from 'react-router-dom';
-// import Examples from './Examples';
+import Examples from './Examples';
 import Home from './pages/Home/Home';
 
 
@@ -20,7 +21,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Routes>
-          <Route path="/" element={<Home/>}/>
+        <Route path="/table-examples" element={<Examples/>}>
+          <Route path="" element={<Home/>}/>
           <Route
             path="toolbar"
             element={<ToolbarExample/>}
@@ -62,9 +64,14 @@ function App() {
             element={<SingleSelectionExample/>}
           />
           <Route
+            path="single-selection2"
+            element={<SingleSelectionExample2/>}
+          />
+          <Route
             path="sort"
             element={<SortExample/>}
           />
+          </Route>
       </Routes>
     </ThemeProvider>
   );

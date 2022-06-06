@@ -11,7 +11,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes'; 
 import { ExportCsv, ExportPdf } from '@material-table/exporters';  
 
-const SingleSelectionExample = () => {
+const SingleSelectionExample2 = () => {
     const [density, setDensity] = useState('dense');
     const [showFilters, setFiltering] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null);
@@ -260,4 +260,4 @@ const SingleSelectionExample = () => {
     )
 }
 
-export default SingleSelectionExample;
+export default SingleSelectionExample2;
