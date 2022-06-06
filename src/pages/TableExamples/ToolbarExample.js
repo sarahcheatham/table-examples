@@ -9,7 +9,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes'; 
 import { ExportCsv, ExportPdf } from '@material-table/exporters';  
 
-const TableToolbarExample = () => {
+const ToolbarExample = () => {
     const [density, setDensity] = useState('dense');
     const [showFilters, setFiltering] = useState(false);
     const [data, setData] = useState(
@@ -151,10 +151,11 @@ const TableToolbarExample = () => {
                 );
             },
         }
-    ]
+    ];
 
     return (
         <ThemeProvider theme={tableTheme}>
+            <div style={{margin: '1em' }}>
             <MaterialTable
                 title={null}
                 columns={columns}
@@ -177,9 +178,6 @@ const TableToolbarExample = () => {
                     }],
                     filtering: showFilters,
                     filterCellStyle: { padding: '0.5em' },
-                    headerStyle: {
-                        backgroundColor: 'rgba(42, 51, 62, .87)',
-                    },
                     padding: density,
                     search: true,
                     searchFieldStyle: { marginRight: '1em' }
@@ -196,8 +194,9 @@ const TableToolbarExample = () => {
                     )
                 }}
             />
+            </div>
         </ThemeProvider>
     )
 }
 
-export default TableToolbarExample;
+export default ToolbarExample;

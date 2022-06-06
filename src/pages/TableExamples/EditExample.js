@@ -5,23 +5,23 @@ import {
     PercentageInput
 } from '@aeros-ui/components';
 // import PercentageInput from '../PercentageInput';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+// import FormGroup from '@mui/material/FormGroup';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import Checkbox from '@mui/material/Checkbox';
 import MaterialTable from '@material-table/core';  
 // import TableToolbar from './TableToolbar';
-import { 
-    TableToolbar, 
-    TableFilterInput 
-} from '@aeros-ui/tables';
+// import { 
+//     TableToolbar, 
+//     TableFilterInput 
+// } from '@aeros-ui/tables';
 import { ThemeProvider } from '@mui/material/styles';
-import tableTheme from '../TableTheme';
-import { Typography } from '@mui/material';
-// import { tableTheme } from '@aeros-ui/themes'; 
-import { ExportCsv, ExportPdf } from '@material-table/exporters';  
+// import tableTheme from '../TableTheme';
+// import { Typography } from '@mui/material';
+import { tableTheme } from '@aeros-ui/themes'; 
+// import { ExportCsv, ExportPdf } from '@material-table/exporters';  
 // import '../index.css'
 
-const TableWithInputsExample = () => {
+const EditExample = () => {
     const [checked, setChecked] = useState(false)
     const [data, setData] = useState([
         {
@@ -243,4 +243,4 @@ const TableWithInputsExample = () => {
     )
 }
 
-export default TableWithInputsExample;
+export default EditExample;

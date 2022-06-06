@@ -13,10 +13,10 @@
     prop-types "^15.8.1"
     react-scripts "5.0.0"
 
-"@aeros-ui/icons@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@aeros-ui/icons/-/icons-0.1.3.tgz#dd31f435f12a3063885e8be9b55a3adf39e54dd5"
-  integrity sha512-aOi4Waf4Tg8AEpGevGe6dfVGGnYuvCwqSzLgG4BovF7tXjzKSD+4QY2gWZhHG4gUOAMMBpDzeTzL1guufirhDw==
+"@aeros-ui/icons@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@aeros-ui/icons/-/icons-0.1.4.tgz#a5735e3894596c58dffe4cdb5be8aea909d549f1"
+  integrity sha512-oacMy6qb+nJ0H6PUkgiI9pjRxurCkOimIQ6LJLDKbK2ERCYF4yaHjo+b1loSj+bPXxcPAF6w4mSKx2t7c1EV5Q==
   dependencies:
     "@babel/polyfill" "^7.12.1"
     react-scripts "5.0.0"
@@ -30,10 +30,10 @@
     prop-types "^15.8.1"
     react-scripts "5.0.0"
 
-"@aeros-ui/themes@^0.1.13":
-  version "0.1.13"
-  resolved "https://registry.yarnpkg.com/@aeros-ui/themes/-/themes-0.1.13.tgz#90faf58c025ca2998d694fad01d1da925f7845c5"
-  integrity sha512-KYYJ63c5oI/WFyVQHrCjVqUgXa3q5P/CYU/Q7Ap3FXB747KWCVSkUbw3CzognmO6VftL3a0BmSsL07kl6XVt4g==
+"@aeros-ui/themes@^0.1.14":
+  version "0.1.14"
+  resolved "https://registry.yarnpkg.com/@aeros-ui/themes/-/themes-0.1.14.tgz#e01ec5a1a605b11e14292d28609d8c3ccddbc68f"
+  integrity sha512-zzscgD/jCCxBbO2wr35bY62GAo3f5VjHKkAE+AJFk/Fddu/kac+ZrIIs1utRIZEb3B6qKT7XXOQbO6G1CPxXTA==
   dependencies:
     "@babel/polyfill" "^7.12.1"
     react-scripts "5.0.0"
