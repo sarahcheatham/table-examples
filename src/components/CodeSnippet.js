@@ -8,7 +8,13 @@ SyntaxHighlighter.registerLanguage('jsx', jsx);
 
 const CodeSnippet = props => {
   return (
-        <SyntaxHighlighter style={coy} language="jsx">
+        <SyntaxHighlighter 
+          style={coy} 
+          language="jsx"
+          customStyle={{
+            fontSize: "0.75rem"
+          }}
+        >
             {props.codeString}
         </SyntaxHighlighter>
   );
