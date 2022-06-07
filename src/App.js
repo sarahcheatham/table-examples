@@ -9,7 +9,7 @@ import MultipleSelectionExample from "./pages/TableExamples/MultipleSelectionExa
 import SingleSelectionExample from "./pages/TableExamples/SingleSelectionExample";
 import SingleSelectionExample2 from "./pages/TableExamples/SingleSelectionExample2";
 import SortExample from './pages/TableExamples/SortExample';
-import ToolbarExample from "./pages/TableExamples/ToolbarExample";
+import ToolbarExample from "./pages/TableExamples/Toolbar/ToolbarExample";
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '@aeros-ui/themes';
 import { Routes, Route } from 'react-router-dom';
