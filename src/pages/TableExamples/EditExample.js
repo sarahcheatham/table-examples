@@ -4,6 +4,9 @@ import {
     TextInput,
     PercentageInput
 } from '@aeros-ui/components';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 // import PercentageInput from '../PercentageInput';
 // import FormGroup from '@mui/material/FormGroup';
 // import FormControlLabel from '@mui/material/FormControlLabel';
@@ -165,7 +168,14 @@ const EditExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            <div>
+             {process.env.NODE_ENV !== 'production' ? (
+                <Grid container sx={{ m: '1em' }}>
+                    <Grid item>
+                        <Button component={Link} to="/table-examples">Back to Home</Button>
+                    </Grid>
+                </Grid>
+            ): null}
+            <div style={{ margin: '1em' }}>
             <MaterialTable
                 title="Unauthorized Companies providing Coverage"
                 columns={columns}

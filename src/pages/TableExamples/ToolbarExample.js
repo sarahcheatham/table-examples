@@ -8,6 +8,9 @@ import {
 import { ThemeProvider } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes'; 
 import { ExportCsv, ExportPdf } from '@material-table/exporters';  
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 const ToolbarExample = () => {
     const [density, setDensity] = useState('dense');
@@ -155,45 +158,52 @@ const ToolbarExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
+             {process.env.NODE_ENV !== 'production' ? (
+                <Grid container sx={{ m: '1em' }}>
+                    <Grid item>
+                        <Button component={Link} to="/table-examples">Back to Home</Button>
+                    </Grid>
+                </Grid>
+            ): null}
             <div style={{margin: '1em' }}>
-            <MaterialTable
-                title={null}
-                columns={columns}
-                data={data}
-                options={{
-                    headerStyle: {
-                        backgroundColor: 'rgba(42, 51, 62, .87)',
-                        '&:hover': {
-                            color: 'rgba(255, 255, 255, 0.7)'
+                <MaterialTable
+                    title={null}
+                    columns={columns}
+                    data={data}
+                    options={{
+                        headerStyle: {
+                            backgroundColor: 'rgba(42, 51, 62, .87)',
+                            '&:hover': {
+                                color: 'rgba(255, 255, 255, 0.7)'
+                            },
                         },
-                    },
-                    columnsButton: true,
-                    exportAllData: true,
-                    exportMenu: [{
-                        label: 'Export PDF',
-                        exportFunc: (cols, datas) => ExportPdf(cols, datas, 'Dataset Name')
-                    }, {
-                        label: 'Export CSV',
-                        exportFunc: (cols, datas) => ExportCsv(cols, datas, 'Dataset Name')
-                    }],
-                    filtering: showFilters,
-                    filterCellStyle: { padding: '0.5em' },
-                    padding: density,
-                    search: true,
-                    searchFieldStyle: { marginRight: '1em' }
-                }}
-                components={{
-                    Toolbar: props => (
-                        <TableToolbar
-                            {...props}
-                            tableTitle="User Profiles"
-                            showFilters={showFilters}
-                            onFilterClick={() => setFiltering(!showFilters)}
-                            onDensityClick={handleDensityClick}
-                        />
-                    )
-                }}
-            />
+                        columnsButton: true,
+                        exportAllData: true,
+                        exportMenu: [{
+                            label: 'Export PDF',
+                            exportFunc: (cols, datas) => ExportPdf(cols, datas, 'Dataset Name')
+                        }, {
+                            label: 'Export CSV',
+                            exportFunc: (cols, datas) => ExportCsv(cols, datas, 'Dataset Name')
+                        }],
+                        filtering: showFilters,
+                        filterCellStyle: { padding: '0.5em' },
+                        padding: density,
+                        search: true,
+                        searchFieldStyle: { marginRight: '1em' }
+                    }}
+                    components={{
+                        Toolbar: props => (
+                            <TableToolbar
+                                {...props}
+                                tableTitle="User Profiles"
+                                showFilters={showFilters}
+                                onFilterClick={() => setFiltering(!showFilters)}
+                                onDensityClick={handleDensityClick}
+                            />
+                        )
+                    }}
+                />
             </div>
         </ThemeProvider>
     )

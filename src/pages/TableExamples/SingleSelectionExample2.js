@@ -1,4 +1,7 @@
 import Typography from "@mui/material/Typography";
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
 import { useState } from 'react';
 import MaterialTable, { MTableHeader, MTableActions } from '@material-table/core';  
@@ -197,7 +200,14 @@ const SingleSelectionExample2 = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            <div style={{margin: '1em' }}>
+            {process.env.NODE_ENV !== 'production' ? (
+                <Grid container sx={{ m: '1em' }}>
+                    <Grid item>
+                        <Button component={Link} to="/table-examples">Back to Home</Button>
+                    </Grid>
+                </Grid>
+            ): null}
+            <div style={{ margin: '1em' }}>
             <MaterialTable
                 title={null}
                 columns={columns}

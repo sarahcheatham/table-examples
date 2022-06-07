@@ -1,4 +1,7 @@
 import Typography from "@mui/material/Typography";
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
 import { useState } from 'react';
 import MaterialTable, { MTableHeader, MTableActions } from '@material-table/core';  
@@ -197,64 +200,71 @@ const SingleSelectionExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
+            {process.env.NODE_ENV !== 'production' ? (
+                <Grid container sx={{ m: '1em' }}>
+                    <Grid item>
+                        <Button component={Link} to="/table-examples">Back to Home</Button>
+                    </Grid>
+                </Grid>
+            ): null}
             <div style={{margin: '1em' }}>
-            <MaterialTable
-                title={null}
-                columns={columns}
-                data={data}
-                options={{
-                    headerStyle: {
-                        backgroundColor: 'rgba(42, 51, 62, .87)',
-                        '&:hover': {
-                            color: 'rgba(255, 255, 255, 0.7)'
+                <MaterialTable
+                    title={null}
+                    columns={columns}
+                    data={data}
+                    options={{
+                        headerStyle: {
+                            backgroundColor: 'rgba(42, 51, 62, .87)',
+                            '&:hover': {
+                                color: 'rgba(255, 255, 255, 0.7)'
+                            },
                         },
-                    },
-                    columnsButton: true,
-                    exportAllData: true,
-                    exportMenu: [{
-                        label: 'Export PDF',
-                        exportFunc: (cols, datas) => ExportPdf(cols, datas, 'Dataset Name')
-                    }, {
-                        label: 'Export CSV',
-                        exportFunc: (cols, datas) => ExportCsv(cols, datas, 'Dataset Name')
-                    }],
-                    filtering: showFilters,
-                    filterCellStyle: { padding: '0.5em' },
-                    padding: density,
-                    search: true,
-                    searchFieldStyle: { marginRight: '1em' },
-                }}
-                actions={[ 
-                    {
-                        icon: 'check',
-                        onClick: (e, rowData) => handleRowSelect(e, rowData)
-                    }
-                ]}
-                components={{
-                    Toolbar: props => (
-                        <TableToolbar
-                            {...props}
-                            showFilters={showFilters}
-                            onFilterClick={() => setFiltering(!showFilters)}
-                            onDensityClick={handleDensityClick}
-                        />
-                    ),
-                    Action: props => (
-                        <Checkbox
-                            onChange={(e) => props.action.onClick(e, props.data)}
-                            checked={selectedRow !== null && selectedRow.tableData.id === props.data.tableData.id}
-                            size="small"
-                            required
-                        />
-                    ),
-                    Header: props => {
-                        console.log("PROPS:", props)
-                        return (
-                            <MTableHeader {...props}/>
-                        )
-                    }
-                }}
-            />
+                        columnsButton: true,
+                        exportAllData: true,
+                        exportMenu: [{
+                            label: 'Export PDF',
+                            exportFunc: (cols, datas) => ExportPdf(cols, datas, 'Dataset Name')
+                        }, {
+                            label: 'Export CSV',
+                            exportFunc: (cols, datas) => ExportCsv(cols, datas, 'Dataset Name')
+                        }],
+                        filtering: showFilters,
+                        filterCellStyle: { padding: '0.5em' },
+                        padding: density,
+                        search: true,
+                        searchFieldStyle: { marginRight: '1em' },
+                    }}
+                    actions={[ 
+                        {
+                            icon: 'check',
+                            onClick: (e, rowData) => handleRowSelect(e, rowData)
+                        }
+                    ]}
+                    components={{
+                        Toolbar: props => (
+                            <TableToolbar
+                                {...props}
+                                showFilters={showFilters}
+                                onFilterClick={() => setFiltering(!showFilters)}
+                                onDensityClick={handleDensityClick}
+                            />
+                        ),
+                        Action: props => (
+                            <Checkbox
+                                onChange={(e) => props.action.onClick(e, props.data)}
+                                checked={selectedRow !== null && selectedRow.tableData.id === props.data.tableData.id}
+                                size="small"
+                                required
+                            />
+                        ),
+                        Header: props => {
+                            console.log("PROPS:", props)
+                            return (
+                                <MTableHeader {...props}/>
+                            )
+                        }
+                    }}
+                />
             </div>
         </ThemeProvider>
     )

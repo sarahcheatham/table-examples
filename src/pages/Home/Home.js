@@ -25,68 +25,68 @@ function Home() {
             <ListItemText primary="Actions"/>
         </ListItemButton>
         <ListItemButton
-            component={'a'}
-            href="details-panel"
+            component={Link}
+            to="details-panel"
         >
             <ListItemText primary="Details Panel"/>
         </ListItemButton>
         <ListItemButton
-            component={'a'}
-            href="edit"
+            component={Link}
+            to="edit"
         >
             <ListItemText primary="Edit"/>
         </ListItemButton>
         <ListItemButton
-            component={'a'}
-            href="export"
+            component={Link}
+            to="export"
         >
             <ListItemText primary="Export"/>
         </ListItemButton>
         <ListItemButton
-            component={'a'}
-            href="filter"
+            component={Link}
+            to="filter"
         >
             <ListItemText primary="Filter"/>
         </ListItemButton>
         <ListItemButton
-            component={'a'}
-            href="nested-table"
+            component={Link}
+            to="nested-table"
         >
             <ListItemText primary="Nested Table"/>
         </ListItemButton>
         <ListItemButton
-            component={'a'}
-            href="search"
+            component={Link}
+            to="search"
         >
             <ListItemText primary="Search"/>
         </ListItemButton>
         <ListItemButton
-            component={'a'}
-            href="single-selection"
+            component={Link}
+            to="single-selection"
         >
             <ListItemText primary="Single Selection"/>
         </ListItemButton>
         <ListItemButton
-            component={'a'}
-            href="single-selection2"
+            component={Link}
+            to="single-selection2"
         >
             <ListItemText primary="Single Selection 2"/>
         </ListItemButton>
         <ListItemButton
-            component={'a'}
-            href="multiple-selection"
+            component={Link}
+            to="multiple-selection"
         >
             <ListItemText primary="Multiple Selection"/>
         </ListItemButton>
         <ListItemButton
-            component={'a'}
-            href="sort"
+            component={Link}
+            to="sort"
         >
             <ListItemText primary="Sort"/>
         </ListItemButton>
         <ListItemButton
-            component={'a'}
-            href="toolbar"
+            component={Link}
+            to="toolbar"
         >
             <ListItemText primary="Toolbar"/>
         </ListItemButton>
