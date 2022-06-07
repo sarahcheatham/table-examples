@@ -30,10 +30,10 @@
     prop-types "^15.8.1"
     react-scripts "5.0.0"
 
-"@aeros-ui/themes@^0.1.14":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@aeros-ui/themes/-/themes-0.1.14.tgz#e01ec5a1a605b11e14292d28609d8c3ccddbc68f"
-  integrity sha512-zzscgD/jCCxBbO2wr35bY62GAo3f5VjHKkAE+AJFk/Fddu/kac+ZrIIs1utRIZEb3B6qKT7XXOQbO6G1CPxXTA==
+"@aeros-ui/themes@^0.1.16":
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/@aeros-ui/themes/-/themes-0.1.16.tgz#c460cee66e7df1d24ddd2ab54d78de5cba986a3f"
+  integrity sha512-haxwwZ8opnUur2aCiJsOMhriB5wsTlw0610MPMQz4dWQ1aSnj0EYx9VjTNknj0N3cPml9Nyi7NIG0rkukziDcg==
   dependencies:
     "@babel/polyfill" "^7.12.1"
     react-scripts "5.0.0"

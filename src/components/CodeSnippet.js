@@ -11,6 +11,7 @@ const CodeSnippet = props => {
         <SyntaxHighlighter 
           style={coy} 
           language="jsx"
+          wrapLongLines
           customStyle={{
             fontSize: "0.75rem"
           }}

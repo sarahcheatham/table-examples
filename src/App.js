@@ -1,4 +1,4 @@
-import ActionsExample from "./pages/TableExamples/ActionsExample";
+import ActionsExample from "./pages/TableExamples/Actions/ActionsExample";
 import DetailsPanelExample from './pages/TableExamples/DetailsPanelExample';
 import EditExample from "./pages/TableExamples/EditExample";
 import ExportExample from "./pages/TableExamples/ExportExample";
