@@ -1,13 +1,9 @@
 const Markdown = `
 import { useState } from "react";
 import MaterialTable from "@material-table/core";  
-import { 
-    TableToolbar, 
-    TableFilterInput,
-    MainTableCell
-} from "@aeros-ui/tables";
-import { ThemeProvider } from "@mui/material/styles";
+import { TableToolbar, TableFilterInput, MainTableCell } from "@aeros-ui/tables";
 import { tableTheme } from "@aeros-ui/themes"; 
+import { ThemeProvider } from "@mui/material/styles";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";  
 
 const ToolbarExample = () => {
@@ -44,9 +40,11 @@ const ToolbarExample = () => {
             },
         ]
     )
+
     const handleDensityClick = () => {
         density === "normal" ? setDensity("dense") : setDensity("normal")
     };
+
     const columns = [
         {
             title: "User Id",
@@ -103,6 +101,7 @@ const ToolbarExample = () => {
             ),
         }
     ];
+    
     return (
         <ThemeProvider theme={tableTheme}>
             <div style={{margin: "1em" }}>

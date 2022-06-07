@@ -1,8 +1,7 @@
-import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
+// import { Link } from 'react-router-dom';
+// import Button from '@mui/material/Button';
 import { useState } from 'react';
 import MaterialTable from '@material-table/core';  
-import { BatchStatusDescription } from "@aeros-ui/components";
 import { MainTableCell } from '@aeros-ui/tables';
 import { ThemeProvider } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes';  
@@ -41,6 +40,7 @@ const popoverList = [
 
 const ActionsExample = () => {
     const theme = useTheme()
+    const [showCode, setShowCode] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
     const popoverOpen = Boolean(anchorEl);
     const id = popoverOpen ? 'menu-popover' : undefined;
@@ -186,36 +186,44 @@ const ActionsExample = () => {
         setSelectedRow(null)
     }
 
+    const handleToggleCode = () => {
+        setShowCode(!showCode)
+    };
+
     return (
         <ThemeProvider theme={tableTheme}>
-            {process.env.NODE_ENV !== 'production' ? (
+            {/* {process.env.NODE_ENV !== 'production' ? (
                 <Grid container sx={{ m: '1em' }}>
                     <Grid item>
                         <Button component={Link} to="/table-examples">Back to Home</Button>
                     </Grid>
                 </Grid>
-            ): null}
+            ): null} */}
             <CodeContainer
                 title="ActionsExample.js"
                 codeString={Markdown}
+                showCode={showCode}
+                handleToggleCode={() => handleToggleCode()}
             />
-            <div style={{margin: '1em' }}>
-                <MaterialTable
-                    title={null}
-                    columns={columns}
-                    data={data}
-                    options={{
-                        headerStyle: { backgroundColor: 'rgba(42, 51, 62, .87)' },
-                        padding: 'dense',
-                        tableLayout: 'fixed',
-                        search: false,
-                        toolbar: false,
-                        rowStyle: rowData => ({
-                            backgroundColor: selectedRow !== null && selectedRow.tableData.id === rowData.tableData.id ? theme.palette.grid.main.active : undefined
-                        }),
-                    }}
-                />
-            </div>
+            {!showCode && (
+                <div style={{margin: '1em' }}>
+                    <MaterialTable
+                        title={null}
+                        columns={columns}
+                        data={data}
+                        options={{
+                            headerStyle: { backgroundColor: 'rgba(42, 51, 62, .87)' },
+                            padding: 'dense',
+                            tableLayout: 'fixed',
+                            search: false,
+                            toolbar: false,
+                            rowStyle: rowData => ({
+                                backgroundColor: selectedRow !== null && selectedRow.tableData.id === rowData.tableData.id ? theme.palette.grid.main.active : undefined
+                            }),
+                        }}
+                    />
+                </div>
+            )}
         </ThemeProvider>
     )
 }

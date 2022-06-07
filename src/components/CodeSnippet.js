@@ -13,7 +13,7 @@ const CodeSnippet = props => {
           language="jsx"
           wrapLongLines
           customStyle={{
-            fontSize: "0.75rem"
+            fontSize: "0.9rem"
           }}
         >
             {props.codeString}

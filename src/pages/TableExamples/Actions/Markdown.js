@@ -2,18 +2,9 @@ const Markdown = `
 import { useState } from 'react';
 import MaterialTable from '@material-table/core';  
 import { MainTableCell } from '@aeros-ui/tables';
-import { ThemeProvider } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes';  
-import { useTheme } from '@mui/material/styles';  
-import Typography from "@mui/material/Typography";
-import Grid from '@mui/material/Grid';
-import Popover from '@mui/material/Popover';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import IconButton from '@mui/material/IconButton';
-import Chip from '@mui/material/Chip';
+import { useTheme, ThemeProvider } from '@mui/material/styles';  
+import { Typography, Grid, Popover, List, ListItem, ListItemText, ListItemIcon, IconButton, Chip } from "@mui/material";
 import { Edit, AttachFile, Print, DeleteForever, Info, MoreVert } from "@mui/icons-material";
 
 const popoverList = [

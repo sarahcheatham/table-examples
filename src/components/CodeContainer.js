@@ -10,12 +10,12 @@ import Collapse from '@mui/material/Collapse';
 import CodeSnippet from './CodeSnippet';
 
 const CodeContainer = props => {
-  const [showCode, setShowCode] = useState(false);
+  // const [showCode, setShowCode] = useState(false);
   const [copySuccess, setCopy] = useState(false);
 
-  const handleToggleCode = () => {
-    setShowCode(!showCode)
-  };
+  // const handleToggleCode = () => {
+  //   setShowCode(!showCode)
+  // };
 
   const copyToClipboard = str => {
     const el = document.createElement("textarea") // Create a <textarea> element
@@ -42,16 +42,16 @@ const CodeContainer = props => {
     return (
         <Grid container sx={{ px: '1em' }}>
           <Grid item container justifyContent="flex-end">
-              <Tooltip placement="bottom" title={showCode ? "hide source code" : "show source code"}>
+              <Tooltip placement="bottom" title={props.showCode ? "hide source code" : "show source code"}>
                 <IconButton 
-                  onClick={() => handleToggleCode()}
+                  onClick={props.handleToggleCode}
                 >
                   <CodeIcon/>
                 </IconButton>
               </Tooltip>
             </Grid>
             <Grid item container component={Paper} sx={{ px: '1em'}}>
-                <Collapse in={showCode}>
+                <Collapse in={props.showCode}>
                   <Grid item container columnGap={3} sx={{ pt: '1em' }} alignItems="center">
                     <Grid item>
                       <Typography variant="subtitle2">{props.title}</Typography>
