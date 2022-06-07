@@ -1,5 +1,10 @@
+import Typography from "@mui/material/Typography";
+import Checkbox from '@mui/material/Checkbox';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import MaterialTable from '@material-table/core';  
+import MaterialTable, { MTableHeader, MTableActions } from '@material-table/core';  
 import { 
     TableToolbar, 
     TableFilterInput,
@@ -8,38 +13,53 @@ import {
 import { ThemeProvider } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes'; 
 import { ExportCsv, ExportPdf } from '@material-table/exporters';  
+import { TableIcons } from '@aeros-ui/icons';
 
-const TableToolbarExample = () => {
+const MultipleSelectionExample = () => {
     const [density, setDensity] = useState('dense');
     const [showFilters, setFiltering] = useState(false);
+    const [selectedRows, setSelectedRows] = useState([]);
     const [data, setData] = useState(
         [
             {
                 id: 0,
-                USERID: "ADM519833",
-                USERNAME: "ADMINSITRATOR",
-                SECURITYPROFILE: "PETER M. FEENEY",
-                EMAIL: "ADMIN@FEENEY.COM",
-                PHONE: "800-222-5500",
-                STATE: "ENABLED"
+                TYPE: "DECLARATION",
+                AFFIDAVITNO: "1510269",
+                POLICYNO: "CPL31094570",
+                INSUREDNAME: "GLENN GUBNER",
+                PREMIUM: "712",
+                INCEPTION: "10/20/2021",
+                EXPIRATION: "10/20/2022"
             },
             {
                 id: 1,
-                USERID: "519833A",
-                USERNAME: "JANE DOE",
-                SECURITYPROFILE: "PETER M. FEENEY",
-                EMAIL: "J.DOE@FEENEY.COM",
-                PHONE: "800-222-5151",
-                STATE: "ENABLED"
+                TYPE: "DECLARATION",
+                AFFIDAVITNO: "1522073",
+                POLICYNO: "CCP1021941",
+                INSUREDNAME: "SHOE BOX CITY, INC",
+                PREMIUM: "15000",
+                INCEPTION: "10/18/2021",
+                EXPIRATION: "10/18/2022"
             },
             {
                 id: 2,
-                USERID: "519833B",
-                USERNAME: "JOHN SMITH",
-                SECURITYPROFILE: "PETER M. FEENEY",
-                EMAIL: "ADMIN@FEENEY.COM",
-                PHONE: "800-222-5152",
-                STATE: "ENABLED"
+                TYPE: "DECLARATION",
+                AFFIDAVITNO: "15311259",
+                POLICYNO: "WH01569",
+                INSUREDNAME: "175-57, LLC R & A INTERNATIONAL TRADING",
+                PREMIUM: "26986",
+                INCEPTION: "10/20/2021",
+                EXPIRATION: "10/20/2022"
+            },
+            {
+                id: 3,
+                TYPE: "DECLARATION",
+                AFFIDAVITNO: "153197",
+                POLICYNO: "MP0031007000319",
+                INSUREDNAME: "175-57, LLC R & A INTERNATIONAL TRADING",
+                PREMIUM: "26986",
+                INCEPTION: "10/20/2021",
+                EXPIRATION: "10/20/2022"
             },
         ]
     )
@@ -50,11 +70,11 @@ const TableToolbarExample = () => {
 
     const columns = [
         {
-            title: "User Id",
-            field: "USERID",
+            title: "Type",
+            field: "TYPE",
             type: "string",
             render: rowData => {
-                return <MainTableCell>{rowData.USERID}</MainTableCell>
+                return <MainTableCell>{rowData.TYPE}</MainTableCell>
             },
             filterComponent: ({ columnDef, onFilterChanged }) => {
                 return (
@@ -67,11 +87,11 @@ const TableToolbarExample = () => {
             },
         },
         {
-            title: "User Name",
-            field: "USERNAME",
+            title: "Affidavit No",
+            field: "AFFIDAVITNO",
             type: "string",
             render: rowData => {
-                return <MainTableCell>{rowData.USERNAME}</MainTableCell>
+                return <MainTableCell>{rowData.AFFIDAVITNO}</MainTableCell>
             },
             filterComponent: ({ columnDef, onFilterChanged }) => {
                 return (
@@ -84,11 +104,11 @@ const TableToolbarExample = () => {
             },
         },
         {
-            title: "Security Profile",
-            field: "SECURITYPROFILE",
+            title: "Policy No",
+            field: "POLICYNO",
             type: "string",
             render: rowData => {
-                return <MainTableCell>{rowData.SECURITYPROFILE}</MainTableCell>
+                return <MainTableCell>{rowData.POLICYNO}</MainTableCell>
             },
             filterComponent: ({ columnDef, onFilterChanged }) => {
                 return (
@@ -101,11 +121,11 @@ const TableToolbarExample = () => {
             },
         },
         {
-            title: "Email",
-            field: "EMAIL",
+            title: "Insured Name",
+            field: "INSUREDNAME",
             type: "string",
             render: rowData => {
-                return <MainTableCell>{rowData.EMAIL}</MainTableCell>
+                return <MainTableCell>{rowData.INSUREDNAME}</MainTableCell>
             },
             filterComponent: ({ columnDef, onFilterChanged }) => {
                 return (
@@ -118,11 +138,11 @@ const TableToolbarExample = () => {
             },
         },
         {
-            title: "Telephone",
-            field: "PHONE",
+            title: "Premium",
+            field: "PREMIUM",
             type: "numeric",
             render: rowData => {
-                return <MainTableCell>{rowData.PHONE}</MainTableCell>
+                return <MainTableCell>{rowData.PREMIUM}</MainTableCell>
             },
             filterComponent: ({ columnDef, onFilterChanged }) => {
                 return (
@@ -135,11 +155,28 @@ const TableToolbarExample = () => {
             },
         },
         {
-            title: "State",
-            field: "STATE",
+            title: "Inception",
+            field: "INCEPTION",
             type: "string",
             render: rowData => {
-                return <MainTableCell>{rowData.STATE}</MainTableCell>
+                return <MainTableCell>{rowData.INCEPTION}</MainTableCell>
+            },
+            filterComponent: ({ columnDef, onFilterChanged }) => {
+                return (
+                  <TableFilterInput
+                    onChange={(e) =>
+                      onFilterChanged(columnDef.tableData.id, e.target.value)
+                    }
+                  />
+                );
+            },
+        },
+        {
+            title: "Expiration",
+            field: "EXPIRATION",
+            type: "string",
+            render: rowData => {
+                return <MainTableCell>{rowData.EXPIRATION}</MainTableCell>
             },
             filterComponent: ({ columnDef, onFilterChanged }) => {
                 return (
@@ -151,13 +188,25 @@ const TableToolbarExample = () => {
                 );
             },
         }
-    ]
+    ];
+
+    const handleSelectedRows = (rows) => {
+        setSelectedRows(rows)
+    }
 
     return (
         <ThemeProvider theme={tableTheme}>
-            <div style={{ width: "75%"}}>
+             {process.env.NODE_ENV !== 'production' ? (
+                <Grid container sx={{ m: '1em' }}>
+                    <Grid item>
+                        <Button component={Link} to="/table-examples">Back to Home</Button>
+                    </Grid>
+                </Grid>
+            ): null}
+            <div style={{margin: '1em' }}>
             <MaterialTable
                 title={null}
+                icons={TableIcons}
                 columns={columns}
                 data={data}
                 options={{
@@ -178,23 +227,22 @@ const TableToolbarExample = () => {
                     }],
                     filtering: showFilters,
                     filterCellStyle: { padding: '0.5em' },
-                    headerStyle: {
-                        backgroundColor: 'rgba(42, 51, 62, .87)',
-                    },
                     padding: density,
                     search: true,
-                    searchFieldStyle: { marginRight: '1em' }
+                    searchFieldStyle: { marginRight: '1em' },
+                    selection: true,
+                    showTextRowsSelected: false
                 }}
+                onSelectionChange={(rows) => handleSelectedRows(rows)}
                 components={{
                     Toolbar: props => (
                         <TableToolbar
                             {...props}
-                            tableTitle="User Profiles"
                             showFilters={showFilters}
                             onFilterClick={() => setFiltering(!showFilters)}
                             onDensityClick={handleDensityClick}
                         />
-                    )
+                    ),
                 }}
             />
             </div>
@@ -202,4 +250,4 @@ const TableToolbarExample = () => {
     )
 }
 
-export default TableToolbarExample;
+export default MultipleSelectionExample;

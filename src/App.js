@@ -1,73 +1,78 @@
-import TableToolbarExample from "./examples/TableToolbarExample";
-import NestedTableExample from './examples/NestedTableExample';
-import TableWithInputsExample from './examples/TableWithInputsExample';
-// import PercentageInput from './PercentageInput';
-import { CustomLoadingButton, SearchButton, AddBatchButton } from '@aeros-ui/components';
-// import SearchButton2 from "./SearchButton2";
-import Stack from '@mui/material/Stack';
-import Grid from '@mui/material/Grid';
+import ActionsExample from "./pages/TableExamples/ActionsExample";
+import DetailsPanelExample from './pages/TableExamples/DetailsPanelExample';
+import EditExample from "./pages/TableExamples/EditExample";
+import ExportExample from "./pages/TableExamples/ExportExample";
+import FilterExample from "./pages/TableExamples/FilterExample";
+import NestedTableExample from "./pages/TableExamples/NestedTableExample";
+import SearchExample from "./pages/TableExamples/SearchExample";
+import MultipleSelectionExample from "./pages/TableExamples/MultipleSelectionExample";
+import SingleSelectionExample from "./pages/TableExamples/SingleSelectionExample";
+import SingleSelectionExample2 from "./pages/TableExamples/SingleSelectionExample2";
+import SortExample from './pages/TableExamples/SortExample';
+import ToolbarExample from "./pages/TableExamples/ToolbarExample";
 import { ThemeProvider } from '@mui/material/styles';
-// import theme from './Theme';
 import { theme } from '@aeros-ui/themes';
+import { Routes, Route } from 'react-router-dom';
+import Examples from './Examples';
+import Home from './pages/Home/Home';
+
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <Grid container spacing={2}>
-      <Grid item container columnSpacing={2}>
-        <Grid item xs={11}>
-          <NestedTableExample/>
-          {/* <TableToolbarExample/> */}
-          {/* <TableWithInputsExample/> */}
-        </Grid>
-        <Grid item xs={1}>
-          <Stack direction="column" spacing={3}>
-            <CustomLoadingButton
-              loading={false}
-              name="details"
-              startIcon={null}
-              // width="50%"
-              size="small"
-              onClick={() => console.log('clicked')}
-            />
-            <CustomLoadingButton
-              loading={false}
-              name="instructions"
-              startIcon={null}
-              // width="50%"
-              color="primary"
-              size="small"
-            />
-            <CustomLoadingButton
-              loading={false}
-              name="dms/ocr"
-              startIcon={null}
-              // width="50%"
-              color="primary"
-              size="small"
-            />
-            {/* <SearchButton
-                loading={true}
-                width="50%"
-                size="small"
-                onClick={() => console.log('clicked')}
-            />
-            <SearchButton
-                loading={false}
-                width="50%"
-                size="small"
-                onClick={() => console.log('clicked')}
-            />
-            <AddBatchButton
-              onClick={() => console.log("clicked")}
-            /> */}
-          </Stack>
-        </Grid>
-      </Grid>
-      <Grid item container>
-        <TableToolbarExample/>
-      </Grid>
-      </Grid>
+      <Routes>
+        <Route path="/table-examples" element={<Examples/>}>
+          <Route path="" element={<Home/>}/>
+          <Route
+            path="toolbar"
+            element={<ToolbarExample/>}
+          />
+          <Route
+            path="actions"
+            element={<ActionsExample/>}
+          />
+          <Route
+            path="details-panel"
+            element={<DetailsPanelExample/>}
+          />
+          <Route
+            path="edit"
+            element={<EditExample/>}
+          />
+          <Route
+            path="export"
+            element={<ExportExample/>}
+          />
+          <Route
+            path="filter"
+            element={<FilterExample/>}
+          />
+          <Route
+            path="nested-table"
+            element={<NestedTableExample/>}
+          />
+          <Route
+            path="search"
+            element={<SearchExample/>}
+          />
+          <Route
+            path="multiple-selection"
+            element={<MultipleSelectionExample/>}
+          />
+          <Route
+            path="single-selection"
+            element={<SingleSelectionExample/>}
+          />
+          <Route
+            path="single-selection2"
+            element={<SingleSelectionExample2/>}
+          />
+          <Route
+            path="sort"
+            element={<SortExample/>}
+          />
+          </Route>
+      </Routes>
     </ThemeProvider>
   );
 }

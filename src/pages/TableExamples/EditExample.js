@@ -4,24 +4,27 @@ import {
     TextInput,
     PercentageInput
 } from '@aeros-ui/components';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 // import PercentageInput from '../PercentageInput';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+// import FormGroup from '@mui/material/FormGroup';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import Checkbox from '@mui/material/Checkbox';
 import MaterialTable from '@material-table/core';  
 // import TableToolbar from './TableToolbar';
-import { 
-    TableToolbar, 
-    TableFilterInput 
-} from '@aeros-ui/tables';
+// import { 
+//     TableToolbar, 
+//     TableFilterInput 
+// } from '@aeros-ui/tables';
 import { ThemeProvider } from '@mui/material/styles';
-import tableTheme from '../TableTheme';
-import { Typography } from '@mui/material';
-// import { tableTheme } from '@aeros-ui/themes'; 
-import { ExportCsv, ExportPdf } from '@material-table/exporters';  
+// import tableTheme from '../TableTheme';
+// import { Typography } from '@mui/material';
+import { tableTheme } from '@aeros-ui/themes'; 
+// import { ExportCsv, ExportPdf } from '@material-table/exporters';  
 // import '../index.css'
 
-const TableWithInputsExample = () => {
+const EditExample = () => {
     const [checked, setChecked] = useState(false)
     const [data, setData] = useState([
         {
@@ -133,7 +136,7 @@ const TableWithInputsExample = () => {
                     />
                 )
             },
-            type: "currency",
+            // type: "currency",
             editComponent: props => {
                 return (
                     <CurrencyInput
@@ -165,7 +168,14 @@ const TableWithInputsExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            <div>
+             {process.env.NODE_ENV !== 'production' ? (
+                <Grid container sx={{ m: '1em' }}>
+                    <Grid item>
+                        <Button component={Link} to="/table-examples">Back to Home</Button>
+                    </Grid>
+                </Grid>
+            ): null}
+            <div style={{ margin: '1em' }}>
             <MaterialTable
                 title="Unauthorized Companies providing Coverage"
                 columns={columns}
@@ -243,4 +253,4 @@ const TableWithInputsExample = () => {
     )
 }
 
-export default TableWithInputsExample;
+export default EditExample;
