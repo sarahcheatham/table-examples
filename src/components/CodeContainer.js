@@ -40,8 +40,8 @@ const CodeContainer = props => {
   }
 
     return (
-        <Grid container sx={{ px: '1em' }}>
-          <Grid item container justifyContent="flex-end">
+        <Grid container sx={{ px: '1em', mb: props.showCode ? '2em' : 0 }}>
+          <Grid item container justifyContent="flex-end" sx={{ mb: 0 }}>
               <Tooltip placement="bottom" title={props.showCode ? "hide source code" : "show source code"}>
                 <IconButton 
                   onClick={props.handleToggleCode}
