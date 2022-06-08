@@ -3,7 +3,7 @@ import DetailsPanelExample from './pages/TableExamples/DetailsPanel/DetailsPanel
 import EditExample from "./pages/TableExamples/Edit/EditExample";
 import ExportExample from "./pages/TableExamples/ExportExample";
 import FilterExample from "./pages/TableExamples/FilterExample";
-import NestedTableExample from "./pages/TableExamples/NestedTableExample";
+import NestedTableExample from "./pages/TableExamples/NestedTable/NestedTableExample";
 import SearchExample from "./pages/TableExamples/SearchExample";
 import MultipleSelectionExample from "./pages/TableExamples/MultipleSelectionExample";
 import SingleSelectionExample from "./pages/TableExamples/SingleSelectionExample";

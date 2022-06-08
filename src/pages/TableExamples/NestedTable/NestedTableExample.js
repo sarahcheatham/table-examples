@@ -3,20 +3,21 @@ import { useTheme } from '@mui/material/styles';
 import MaterialTable from '@material-table/core';  
 import TableContainer from '@mui/material/TableContainer'; 
 import Table from '@mui/material/Table';   
-import TableBody from '@mui/material/TableBody';  
+import TableBody from '@mui/material/TableBody';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';  
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import { TableIcons } from '@aeros-ui/icons';
-import { TableToolbar, NestedTableHeader, NestedTableRow, MainTableCell, NestedTableCell } from '@aeros-ui/tables'; 
+import { NestedTableHeader, NestedTableRow, MainTableCell, NestedTableCell } from '@aeros-ui/tables'; 
 import { ThemeProvider } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes';
 
 const NestedTableExample = () => {
     const theme = useTheme()
     const [density, setDensity] = useState('dense');
-    const [showFilters, setFiltering] = useState(false);
-    const [selectedRowId, setSelectedRowId] = useState(null);
     const [selectedRow, setSelectedRow] = useState(null);
     const [selectedChildId, setSelectedChildId] = useState(null);
     const [data, setData] = useState([
@@ -127,14 +128,9 @@ const NestedTableExample = () => {
         const rowCopy = {...row};
         const dataCopy = [...data]
         dataCopy[rowCopy.tableData.id] = rowCopy;
-        setSelectedRowId(rowId)
         setSelectedRow(rowCopy)
         setData(dataCopy)
     }
-
-    const handleDensityClick = () => {
-        density === 'normal' ? setDensity('dense') : setDensity('normal')
-    };
 
     const closeRow = () => {
         const dataCopy = [...data];
@@ -147,7 +143,6 @@ const NestedTableExample = () => {
         }
 
         setData(dataCopy)
-        setSelectedRowId(null)
         setSelectedRow(null)
         setSelectedChildId(null)
     }
@@ -176,9 +171,10 @@ const NestedTableExample = () => {
             field: "INSUREDNAME",
             type: "string",
             render: rowData => {
-                return <MainTableCell>{rowData.INSUREDNAME}</MainTableCell>
+                return <MainTableCell noWrap>{rowData.INSUREDNAME}</MainTableCell>
             },
-            width: '200px'
+            width: '200px',
+            cellStyle: { maxWidth: '200px' }
         },
         {
             title: "Type",
@@ -187,7 +183,7 @@ const NestedTableExample = () => {
             render: rowData => {
                 return <MainTableCell>{rowData.TYPE}</MainTableCell>
             },
-            width: '50px'
+            width: '50px',
         },
         {
             title: "Premium",
@@ -245,7 +241,18 @@ const NestedTableExample = () => {
         },
     ]
 
-    const tableSubheaders = ["Related Child Transactions"]
+    const tableSubheaders = [
+        "Affidavit No",
+        "Policy No",
+        "Insured Name",
+        "Type",
+        "Premium",
+        "Inception",
+        "Expiration",
+        "Batch",
+        "Item",
+        "State"
+    ]
 
     const handleSelectChild = rowData => {
         setSelectedChildId(rowData.id)
@@ -262,7 +269,7 @@ const NestedTableExample = () => {
             ): null}
             <div style={{ margin: '1em'}}>
                 <MaterialTable
-                    title={null}
+                    title="Affidavit Transactions"
                     columns={columns}
                     data={data}
                     icons={TableIcons}
@@ -270,9 +277,20 @@ const NestedTableExample = () => {
                         rowData.CHILDTRANSACTIONS.length > 0 ? (
                             <TableContainer>
                                 <Table>
+                                    <TableHead>
+                                        <TableRow style={{ backgroundColor: theme.palette.grid.main.header, opacity: 0.5 }}>
+                                                <TableCell 
+                                                    variant="head" 
+                                                    padding={density === 'dense' ? "none" : "normal"} 
+                                                    sx={{ color: theme.palette.grid.nested.headerText }} 
+                                                    colSpan={columns.length + 1}
+                                                >
+                                                    Related Child Transactions
+                                                </TableCell>
+                                        </TableRow>
+                                    </TableHead>
                                     <NestedTableHeader
                                         tableSubheaders={tableSubheaders}
-                                        colSpan={columns.length + 1}
                                         dense={density}
                                     />
                                     <TableBody>
@@ -284,35 +302,34 @@ const NestedTableExample = () => {
                                                     onClick={() => handleSelectChild(c)} 
                                                     selected={c.id === selectedChildId}
                                                 >
-                                                    <NestedTableCell dense={density}></NestedTableCell>
-                                                    <NestedTableCell dense={density} width='125px'>
+                                                    <NestedTableCell dense={density}>
                                                         {c.AFFIDAVITNO}
                                                     </NestedTableCell>
-                                                    <NestedTableCell dense={density} width="150px">
+                                                    <NestedTableCell dense={density} align="left">
                                                         {c.POLICYNO}
                                                     </NestedTableCell>
-                                                    <NestedTableCell dense={density} width="240px">
+                                                    <NestedTableCell dense={density} width="200px">
                                                         {c.INSUREDNAME !== null ? c.INSUREDNAME : '-'}
                                                     </NestedTableCell>
-                                                    <NestedTableCell dense={density} width="50px">
+                                                    <NestedTableCell dense={density}>
                                                         {c.TYPE}
                                                     </NestedTableCell>
-                                                    <NestedTableCell dense={density} align="right" width="125px">
+                                                    <NestedTableCell dense={density}>
                                                         {c.PREMIUM}
                                                     </NestedTableCell>
-                                                    <NestedTableCell dense={density} width="100px" align="center">
+                                                    <NestedTableCell dense={density} align="left">
                                                         {c.INCEPTION}
                                                     </NestedTableCell>
-                                                    <NestedTableCell dense={density} width="100px" align="center">
+                                                    <NestedTableCell dense={density} align="left">
                                                         {c.EXPIRATION !== null ? c.EXPIRATION : '-'}
                                                     </NestedTableCell>
-                                                    <NestedTableCell dense={density} width="100px" align="right">
+                                                    <NestedTableCell dense={density}>
                                                         {c.BATCH}
                                                     </NestedTableCell>
-                                                    <NestedTableCell dense={density} width="75px" align="right">
+                                                    <NestedTableCell dense={density}>
                                                         {c.ITEMNO}
                                                     </NestedTableCell>
-                                                    <NestedTableCell dense={density} width="70px">
+                                                    <NestedTableCell dense={density}>
                                                         {c.STATE}
                                                     </NestedTableCell>
                                                 </NestedTableRow>
@@ -334,21 +351,10 @@ const NestedTableExample = () => {
                         detailsPanelType: 'single',
                         showDetailPanelIcon: true,
                         rowStyle: rowData => ({
-                            backgroundColor: selectedRowId === rowData.tableData.id ? theme.palette.grid.main.active : undefined
+                            backgroundColor: selectedRow !== null && selectedRow.tableData.id === rowData.tableData.id ? theme.palette.grid.main.active : undefined
                         }),
                         padding: density,
                         search: false,
-                    }}
-                    components={{
-                        Toolbar: props => (
-                            <TableToolbar
-                                {...props}
-                                tableTitle="Affidavit Transactions"
-                                showFilters={showFilters}
-                                onFilterClick={() => setFiltering(!showFilters)}
-                                onDensityClick={handleDensityClick}
-                            />
-                        )
                     }}
                 />
             </div>
