@@ -1,6 +1,6 @@
 import ActionsExample from "./pages/TableExamples/Actions/ActionsExample";
 import DetailsPanelExample from './pages/TableExamples/DetailsPanel/DetailsPanelExample';
-import EditExample from "./pages/TableExamples/EditExample";
+import EditExample from "./pages/TableExamples/Edit/EditExample";
 import ExportExample from "./pages/TableExamples/ExportExample";
 import FilterExample from "./pages/TableExamples/FilterExample";
 import NestedTableExample from "./pages/TableExamples/NestedTableExample";

@@ -22,7 +22,9 @@ import { ThemeProvider } from '@mui/material/styles';
 // import { Typography } from '@mui/material';
 import { tableTheme } from '@aeros-ui/themes'; 
 // import { ExportCsv, ExportPdf } from '@material-table/exporters';  
-// import '../index.css'
+// import '../index.css';
+import numberWithoutCommas from '../../../functions/numberWithoutCommas';
+import numberWithCommas from '../../../functions/numberWithCommas';
 
 const EditExample = () => {
     const [checked, setChecked] = useState(false)
@@ -31,15 +33,15 @@ const EditExample = () => {
             id: 0,
             NAMEOFCOMPANY: "",
             COMPANYCODE: "",
-            TOTALACCEPTED: 0,
-            TOTALPREMIUM: 0
+            TOTALACCEPTED: '0.00',
+            TOTALPREMIUM: '0.00'
         },
         {
             id: 1,
             NAMEOFCOMPANY: "Admitted Companies (if applicable)",
             COMPANYCODE: "",
-            TOTALACCEPTED: 0,
-            TOTALPREMIUM: 0
+            TOTALACCEPTED: '0.00',
+            TOTALPREMIUM: '0.00'
         },
     ])
 
@@ -138,6 +140,7 @@ const EditExample = () => {
             },
             // type: "currency",
             editComponent: props => {
+                console.log("PROPS:", props)
                 return (
                     <CurrencyInput
                         value={props.value}
@@ -215,22 +218,34 @@ const EditExample = () => {
                 //     )
                 // }}
                 renderSummaryRow={({ column, data }) => {
-                    const sum = data.reduce((agg, row) => {
-                        console.log("AGG", agg)
-                        console.log("ROW:", row)
-                        return Number(agg) + Number(row.TOTALPREMIUM), 0
-                    })
-                    console.log("SUM:", sum)
+                    // const sum = data.reduce((agg, row) => {
+                    //     console.log("AGG", agg)
+                    //     console.log("ROW:", row)
+                    //     const str = withoutCommas(row.TOTALPREMIUM)
+                    //     return Number(agg) + Number(str), 0
+                    // })
+                    // console.log("SUM:", sum)
                     return (
                         column.field === "TOTALACCEPTED"
                         ? {
-                            value: <div style={{ display: 'flex', justifyContent: 'space-between'}}><span>Total: </span><span>{data.reduce((agg, row) => Number(agg) + Number(row.TOTALACCEPTED), 0)}%</span></div>,
+                            value: <div style={{ display: 'flex', justifyContent: 'space-between'}}>
+                                <span>Total: </span>
+                                <span>{data.reduce((agg, row) => Number(agg) + Number(row.TOTALACCEPTED), 0)}%</span>
+                            </div>,
                             style: { textAlign: 'right', fontSize: '1rem'}
                             }
                         : column.field === "TOTALPREMIUM"
                         ? {
-                            // value: data.reduce((agg, row) => agg + row.TOTALPREMIUM, 0),
-                            value: <span>${data.reduce((agg, row) => Number(agg) + Number(row.TOTALPREMIUM), 0)}</span>,
+                            value: <span>${numberWithCommas(data.reduce((agg, row) => agg + Number(numberWithoutCommas(row.TOTALPREMIUM)), 0))}</span>,
+                            // value: <span>${data.reduce((agg, row) => {
+                            //     // const totalPremium = withoutCommas(row.TOTALPREMIUM);
+                            //     // console.log(Number(totalPremium))
+                            //     // console.log(agg)
+                            //     // console.log("total:", Number(agg) + Number(totalPremium), 0)
+                            //     return (
+                            //         Number(agg) + Number(row.TOTALPREMIUM), 0
+                            //     )
+                            // })}</span>,
                             style: { textAlign: 'right', fontSize: '1rem'}
                             }
                         : undefined
