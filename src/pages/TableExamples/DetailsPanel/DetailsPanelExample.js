@@ -32,7 +32,7 @@ const DetailsPanelExample = () => {
             {
                 id: 1,
                 SEQUENCENO: 2,
-                ITEMS: [1],
+                ITEMS: [1, 2],
                 INSTRUCTIONS: "PLEASE UPDATE THE COVERAGE CODE FROM 2301 TO 5501",
                 DETAILS: 'PLEASE UPDATE THE COVERAGE CODE FROM 2301 TO 5501<BR/><BR/> THANKS,<BR/> BETH<BR/><BR/><div style="color:red;">YOU WILL BE ABLE TO "RE-OPEN" THIS PREVIOUSLY SUBMITTED BATCH TO MAKE NECESSARY CHANGES AND CORRECTIONS REQUESTED BY ELANY.</div><BR/>Please review the notes below and take the appropriate actions to successfully make the necessary changes to the item(s) in the batch via the Affidavit site [https://eefs.elany.org/eefs]',
                 RECIPIENT: "JS@BROKER.COM",
@@ -48,20 +48,23 @@ const DetailsPanelExample = () => {
             field: "SEQUENCENO",
             type: 'numeric',
             render: rowData => (<MainTableCell>{rowData.SEQUENCENO}</MainTableCell>),
-            width: '125px',
+            width: '100px',
+            cellStyle: {
+                minWidth: '100px'
+            }
         },
         {
             title: "Items",
             field: "ITEMS",
             type: "numeric",
-            render: rowData => rowData.ITEMS.map((item, index) => (<Typography variant='body2' key={`item-${index}`}>{item}</Typography>)),
+            render: rowData => rowData.ITEMS.map((item, index) => (<MainTableCell key={`item-${index}`} component="span">{item}{index === rowData.ITEMS.length -1 ? null : ', '}</MainTableCell>)),
             width: '75px',
         },
         {
             title: "Instructions",
             field: "INSTRUCTIONS",
             type: "string",
-            render: rowData => (<Typography variant="body2" noWrap>{rowData.INSTRUCTIONS}</Typography>),
+            render: rowData => (<MainTableCell noWrap>{rowData.INSTRUCTIONS}</MainTableCell>),
             width: '350px',
             cellStyle: {
                 maxWidth: '350px'

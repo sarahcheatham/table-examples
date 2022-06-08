@@ -157,7 +157,7 @@ const ActionsExample = () => {
                     </Popover>
                 </Grid>
             ),
-            width: '150px',
+            width: '200px',
             sorting: false
         }
     ];

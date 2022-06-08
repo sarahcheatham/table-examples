@@ -171,7 +171,7 @@ const ActionsExample = () => {
                     </Popover>
                 </Grid>
             ),
-            width: '150px',
+            width: '200px',
             sorting: false
         }
     ];
@@ -214,7 +214,6 @@ const ActionsExample = () => {
                         options={{
                             headerStyle: { backgroundColor: 'rgba(42, 51, 62, .87)' },
                             padding: 'dense',
-                            tableLayout: 'fixed',
                             search: false,
                             toolbar: false,
                             rowStyle: rowData => ({

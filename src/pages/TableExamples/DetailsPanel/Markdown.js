@@ -43,24 +43,25 @@ const DetailsPanelExample = () => {
             field: "SEQUENCENO",
             type: "numeric",
             render: rowData => (<MainTableCell>{rowData.SEQUENCENO}</MainTableCell>),
-            width: "125px",
+            width: '100px',
+            cellStyle: {
+                minWidth: '100px'
+            }
         },
         {
             title: "Items",
             field: "ITEMS",
             type: "numeric",
-            render: rowData => rowData.ITEMS.map((item, index) => (<Typography variant="body2" key={\`item-\${index}\`}>{item}</Typography>)),
+            render: rowData => rowData.ITEMS.map((item, index) => (<MainTableCell key={\`item-\${index}\`} component="span">{item}{index === rowData.ITEMS.length -1 ? null : ', '}</MainTableCell>)),
             width: "75px",
         },
         {
             title: "Instructions",
             field: "INSTRUCTIONS",
             type: "string",
-            render: rowData => (<Typography variant="body2" noWrap>{rowData.INSTRUCTIONS}</Typography>),
+            render: rowData => (<MainTableCell noWrap>{rowData.INSTRUCTIONS}</MainTableCell>),
             width: "350px",
-            cellStyle: {
-                maxWidth: "350px"
-            }
+            cellStyle: { maxWidth: "350px" }
         },
         {
             title: "Recipient",
