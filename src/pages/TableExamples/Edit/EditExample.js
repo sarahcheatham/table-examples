@@ -5,6 +5,7 @@ import {
     PercentageInput
 } from '@aeros-ui/components';
 import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 // import PercentageInput from '../PercentageInput';
@@ -23,8 +24,9 @@ import { ThemeProvider } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes'; 
 // import { ExportCsv, ExportPdf } from '@material-table/exporters';  
 // import '../index.css';
-import numberWithoutCommas from '../../../functions/numberWithoutCommas';
-import numberWithCommas from '../../../functions/numberWithCommas';
+// import numberWithoutCommas from '../../../functions/numberWithoutCommas';
+// import numberWithCommas from '../../../functions/numberWithCommas';
+// import CurrencyInputExample from '../../../CurrencyInputExample';
 
 const EditExample = () => {
     const [checked, setChecked] = useState(false)
@@ -33,15 +35,15 @@ const EditExample = () => {
             id: 0,
             NAMEOFCOMPANY: "",
             COMPANYCODE: "",
-            TOTALACCEPTED: '0.00',
-            TOTALPREMIUM: '0.00'
+            TOTALACCEPTED: '0',
+            TOTALPREMIUM: undefined
         },
         {
             id: 1,
             NAMEOFCOMPANY: "Admitted Companies (if applicable)",
             COMPANYCODE: "",
-            TOTALACCEPTED: '0.00',
-            TOTALPREMIUM: '0.00'
+            TOTALACCEPTED: '0',
+            TOTALPREMIUM: undefined
         },
     ])
 
@@ -144,7 +146,11 @@ const EditExample = () => {
                 return (
                     <CurrencyInput
                         value={props.value}
-                        onChange={(e)=> props.onChange(e.target.value)}
+                        onChange={(e, value)=> {
+                            console.log("E TARGET VALUE:", e.target.value)
+                            console.log("VALUE:", value)
+                            props.onChange(value)
+                        }}
                     />
                 )
             },
@@ -218,36 +224,33 @@ const EditExample = () => {
                 //     )
                 // }}
                 renderSummaryRow={({ column, data }) => {
-                    // const sum = data.reduce((agg, row) => {
-                    //     console.log("AGG", agg)
-                    //     console.log("ROW:", row)
-                    //     const str = withoutCommas(row.TOTALPREMIUM)
-                    //     return Number(agg) + Number(str), 0
-                    // })
-                    // console.log("SUM:", sum)
                     return (
-                        column.field === "TOTALACCEPTED"
+                        column.field === 'COMPANYCODE' ? {
+                            value: <Typography variant="subtitle2" align="right">Total:</Typography>,
+                        }
+                        : column.field === "TOTALACCEPTED"
                         ? {
                             value: <div style={{ display: 'flex', justifyContent: 'space-between'}}>
-                                <span>Total: </span>
-                                <span>{data.reduce((agg, row) => Number(agg) + Number(row.TOTALACCEPTED), 0)}%</span>
+                                <span> 
+                                    <PercentageInput
+                                        value={data.reduce((agg, row) => agg + Number(row.TOTALACCEPTED), 0)}
+                                        disabled
+                                        width="100%"
+                                    />
+                                </span>
                             </div>,
                             style: { textAlign: 'right', fontSize: '1rem'}
-                            }
+                        }
                         : column.field === "TOTALPREMIUM"
                         ? {
-                            value: <span>${numberWithCommas(data.reduce((agg, row) => agg + Number(numberWithoutCommas(row.TOTALPREMIUM)), 0))}</span>,
-                            // value: <span>${data.reduce((agg, row) => {
-                            //     // const totalPremium = withoutCommas(row.TOTALPREMIUM);
-                            //     // console.log(Number(totalPremium))
-                            //     // console.log(agg)
-                            //     // console.log("total:", Number(agg) + Number(totalPremium), 0)
-                            //     return (
-                            //         Number(agg) + Number(row.TOTALPREMIUM), 0
-                            //     )
-                            // })}</span>,
+                            value: <span>
+                                <CurrencyInput
+                                    disabled
+                                    value={data.reduce((agg, row) => row.TOTALPREMIUM === undefined ? agg + 0 : agg + row.TOTALPREMIUM, 0).toFixed(2)}
+                                />
+                            </span>,
                             style: { textAlign: 'right', fontSize: '1rem'}
-                            }
+                        }
                         : undefined
                     )
                 }}
