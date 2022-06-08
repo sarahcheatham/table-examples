@@ -13,10 +13,10 @@
     prop-types "^15.8.1"
     react-scripts "5.0.0"
 
-"@aeros-ui/icons@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@aeros-ui/icons/-/icons-0.1.4.tgz#a5735e3894596c58dffe4cdb5be8aea909d549f1"
-  integrity sha512-oacMy6qb+nJ0H6PUkgiI9pjRxurCkOimIQ6LJLDKbK2ERCYF4yaHjo+b1loSj+bPXxcPAF6w4mSKx2t7c1EV5Q==
+"@aeros-ui/icons@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@aeros-ui/icons/-/icons-0.1.5.tgz#eed6380d8e5a6752b2c797409f327232cd14fa06"
+  integrity sha512-RXnGr46DkO1LuNHzgoOMlAtihsGsT7HsGh4W3Jf0GWz+ed/7a9RWcFWyrzE676R9aHmcytxwGGZm7fLbDzOpxA==
   dependencies:
     "@babel/polyfill" "^7.12.1"
     react-scripts "5.0.0"

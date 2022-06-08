@@ -1,17 +1,12 @@
-import { useState } from 'react';
+const Markdown = `import { useState } from 'react';
 import MaterialTable from '@material-table/core';  
 import { tableTheme } from '@aeros-ui/themes'; 
 import { TableIcons } from '@aeros-ui/icons';
 import { CurrencyInput, TextInput, PercentageInput } from '@aeros-ui/components';
-import { Grid, Paper, Typography} from '@mui/material';
+import { Grid, Paper, Typography } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
-// import Button from '@mui/material/Button';
-// import { Link } from 'react-router-dom';
-import CodeContainer from "../../../components/CodeContainer";
-import Markdown from './Markdown';
 
 const EditExample = () => {
-    const [showCode, setShowCode] = useState(false);
     const [data, setData] = useState([
         {
             id: 0,
@@ -80,27 +75,9 @@ const EditExample = () => {
         setData([...dataUpdate]);
     }
 
-    const handleToggleCode = () => {
-        setShowCode(!showCode)
-    };
-
     return (
         <ThemeProvider theme={tableTheme}>
-             {/* {process.env.NODE_ENV !== 'production' ? (
-                <Grid container sx={{ m: '1em' }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null} */}
-            <CodeContainer
-                title="EditExample.js"
-                codeString={Markdown}
-                showCode={showCode}
-                handleToggleCode={() => handleToggleCode()}
-            />
-            {!showCode && (
-                <Paper sx={{ margin: '1em' }} elevation={4}>
+            <Paper sx={{ margin: '1em' }} elevation={4}>
                 <MaterialTable
                     title="Unauthorized Companies providing Coverage"
                     columns={columns}
@@ -205,10 +182,11 @@ const EditExample = () => {
                         />
                     </Grid>
                 </Grid>
-                </Paper>
-            )}
+            </Paper>
         </ThemeProvider>
     )
 }
 
-export default EditExample;
+export default EditExample;`
+
+export default Markdown;

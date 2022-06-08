@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@aeros-ui/components": "^0.1.19",
-    "@aeros-ui/icons": "^0.1.4",
+    "@aeros-ui/icons": "^0.1.5",
     "@aeros-ui/tables": "^0.1.6",
     "@aeros-ui/themes": "^0.1.16",
     "@emotion/react": "^11.9.0",
