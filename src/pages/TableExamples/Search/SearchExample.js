@@ -3,9 +3,9 @@ import MaterialTable from '@material-table/core';
 import { ThemeProvider, useTheme } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes'; 
 import { MainTableCell } from "@aeros-ui/tables";
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
+// import Grid from '@mui/material/Grid';
+// import Button from '@mui/material/Button';
+// import { Link } from 'react-router-dom';
 import CodeContainer from "../../../components/CodeContainer";
 import Markdown from './Markdown';
 
@@ -65,12 +65,13 @@ const SearchExample = () => {
             title: "Batch",
             field: "BATCH",
             type: "numeric",
-            align: "left",
-            headerStyle: { textAlign: "left" },
             render: rowData => (<MainTableCell>{rowData.BATCH.BATCHNO}</MainTableCell>),
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.BATCHNO.toString().includes(term)
             },
+            align: "left",
+            headerStyle: { textAlign: "left" },
+            width: '125px'
         },
         {
             title: "Create Date",
@@ -80,6 +81,8 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.HISTORY.CREATEDATE.includes(term)
             },
+            headerStyle: { textAlign: 'center'},
+            width: '125px',
         },
         {
             title: "Items",
@@ -89,6 +92,7 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.ITEMCOUNT.toString().includes(term)
             },
+            width: '90px'
         },
         {
             title: "Premium",
@@ -98,6 +102,7 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.PREMIUM.includes(term)
             },
+            width: '150px'
         },
         {
             title: "Contact",
@@ -107,6 +112,7 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.CONTACT.includes(term)
             },
+            width: '215px',
         },
         {
             title: "Reference",
@@ -116,6 +122,7 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.REFERENCE.includes(term)
             },
+            width: '150px'
         },
         {
             title: "Submit Date",
@@ -125,6 +132,8 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.HISTORY.SUBMITDATE !== null && rowData.HISTORY.SUBMITDATE.includes(term)
             },
+            headerStyle: { textAlign: 'center'},
+            width: '125px'
         },
         {
             title: "Return Date",
@@ -134,6 +143,8 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.HISTORY.RETURNDATE !== null && rowData.HISTORY.RETURNDATE.includes(term)
             },
+            headerStyle: { textAlign: 'center'},
+            width: '125px'
         },
         {
             title: "Status",
@@ -143,6 +154,7 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.STATUS.includes(term)
             },
+            width: '200px'
         },
     ]);
 
@@ -152,13 +164,13 @@ const SearchExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            {process.env.NODE_ENV !== 'production' ? (
+            {/* {process.env.NODE_ENV !== 'production' ? (
                 <Grid container sx={{ m: '1em' }}>
                     <Grid item>
                         <Button component={Link} to="/table-examples">Back to Home</Button>
                     </Grid>
                 </Grid>
-            ): null}
+            ): null} */}
             <CodeContainer
                 title="SearchExample.js"
                 codeString={Markdown}
