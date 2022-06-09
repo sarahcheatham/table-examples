@@ -5,9 +5,9 @@ import ExportExample from "./pages/TableExamples/ExportExample";
 import FilterExample from "./pages/TableExamples/FilterExample";
 import NestedTableExample from "./pages/TableExamples/NestedTable/NestedTableExample";
 import SearchExample from "./pages/TableExamples/SearchExample";
-import MultipleSelectionExample from "./pages/TableExamples/MultipleSelectionExample";
+import MultipleSelectionExample from "./pages/TableExamples/MultipleSelection/MultipleSelectionExample";
 import SingleSelectionExample from "./pages/TableExamples/SingleSelection/SingleSelectionExample";
-import SingleSelectionExample2 from "./pages/TableExamples/SingleSelectionExample2";
+// import SingleSelectionExample2 from "./pages/TableExamples/SingleSelectionExample2";
 import SortExample from './pages/TableExamples/SortExample';
 import ToolbarExample from "./pages/TableExamples/Toolbar/ToolbarExample";
 import { ThemeProvider } from '@mui/material/styles';
@@ -63,10 +63,10 @@ function App() {
             path="single-selection"
             element={<SingleSelectionExample/>}
           />
-          <Route
+          {/* <Route
             path="single-selection2"
             element={<SingleSelectionExample2/>}
-          />
+          /> */}
           <Route
             path="sort"
             element={<SortExample/>}

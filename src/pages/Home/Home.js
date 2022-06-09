@@ -66,12 +66,12 @@ function Home() {
         >
             <ListItemText primary="Single Selection"/>
         </ListItemButton>
-        <ListItemButton
+        {/* <ListItemButton
             component={Link}
             to="single-selection2"
         >
             <ListItemText primary="Single Selection 2"/>
-        </ListItemButton>
+        </ListItemButton> */}
         <ListItemButton
             component={Link}
             to="multiple-selection"
