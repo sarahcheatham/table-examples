@@ -4,7 +4,7 @@ import EditExample from "./pages/TableExamples/Edit/EditExample";
 import ExportExample from "./pages/TableExamples/ExportExample";
 import FilterExample from "./pages/TableExamples/FilterExample";
 import NestedTableExample from "./pages/TableExamples/NestedTable/NestedTableExample";
-import SearchExample from "./pages/TableExamples/SearchExample";
+import SearchExample from "./pages/TableExamples/Search/SearchExample";
 import MultipleSelectionExample from "./pages/TableExamples/MultipleSelection/MultipleSelectionExample";
 import SingleSelectionExample from "./pages/TableExamples/SingleSelection/SingleSelectionExample";
 // import SingleSelectionExample2 from "./pages/TableExamples/SingleSelectionExample2";
