@@ -1,18 +1,18 @@
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
-import Checkbox from '@mui/material/Checkbox';
+// import Grid from '@mui/material/Grid';
+// import Button from '@mui/material/Button';
+// import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import Checkbox from '@mui/material/Checkbox';
 import MaterialTable from '@material-table/core';  
-import { 
-    TableFilterInput,
-    MainTableCell
-} from '@aeros-ui/tables';
+import { MainTableCell } from '@aeros-ui/tables';
 import { ThemeProvider, useTheme } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes'; 
+import CodeContainer from "../../../components/CodeContainer";
+import Markdown from './Markdown';
 
 const SingleSelectionExample = () => {
     const theme = useTheme();
+    const [showCode, setShowCode] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null);
     const [data, setData] = useState(
         [
@@ -109,50 +109,61 @@ const SingleSelectionExample = () => {
         } else {
             setSelectedRow(rowData)
         }
-    }
+    };
+
+    const handleToggleCode = () => {
+        setShowCode(!showCode)
+    };
 
     return (
         <ThemeProvider theme={tableTheme}>
-            {process.env.NODE_ENV !== 'production' ? (
+            {/* {process.env.NODE_ENV !== 'production' ? (
                 <Grid container sx={{ m: '1em' }}>
                     <Grid item>
                         <Button component={Link} to="/table-examples">Back to Home</Button>
                     </Grid>
                 </Grid>
-            ): null}
-            <div style={{margin: '1em' }}>
-                <MaterialTable
-                    title={null}
-                    columns={columns}
-                    data={data}
-                    options={{
-                        headerStyle: { backgroundColor: theme.palette.grid.main.header },
-                        toolbar: false,
-                        padding: "dense",
-                        search: false,
-                        rowStyle: rowData => ({
-                            backgroundColor: selectedRow !== null && selectedRow.tableData.id === rowData.tableData.id ? theme.palette.grid.main.active : undefined
-                        }),
-                    }}
-                    onRowClick={(e, selectedRow) => handleRowSelect(e, selectedRow)}
-                    actions={[ 
-                        {
-                            icon: 'check',
-                            onClick: (e, rowData) => handleRowSelect(e, rowData)
-                        }
-                    ]}
-                    components={{
-                        Action: props => (
-                            <Checkbox
-                                onChange={(e) => props.action.onClick(e, props.data)}
-                                checked={selectedRow !== null && selectedRow.tableData.id === props.data.tableData.id}
-                                size="small"
-                                required
-                            />
-                        ),
-                    }}
-                />
-            </div>
+            ): null} */}
+            <CodeContainer
+                title="SingleSelectionExample.js"
+                codeString={Markdown}
+                showCode={showCode}
+                handleToggleCode={() => handleToggleCode()}
+            />
+            {!showCode && (
+                <div style={{margin: '1em' }}>
+                    <MaterialTable
+                        title={null}
+                        columns={columns}
+                        data={data}
+                        options={{
+                            headerStyle: { backgroundColor: theme.palette.grid.main.header, paddingRight: '0.25em' },
+                            toolbar: false,
+                            padding: "dense",
+                            search: false,
+                            rowStyle: rowData => ({
+                                backgroundColor: selectedRow !== null && selectedRow.tableData.id === rowData.tableData.id ? theme.palette.grid.main.active : undefined
+                            }),
+                        }}
+                        onRowClick={(e, selectedRow) => handleRowSelect(e, selectedRow)}
+                        actions={[ 
+                            {
+                                icon: 'check',
+                                onClick: (e, rowData) => handleRowSelect(e, rowData)
+                            }
+                        ]}
+                        components={{
+                            Action: props => (
+                                <Checkbox
+                                    onChange={(e) => props.action.onClick(e, props.data)}
+                                    checked={selectedRow !== null && selectedRow.tableData.id === props.data.tableData.id}
+                                    size="small"
+                                />
+                            ),
+                        }}
+                    />
+                </div>
+            )}
         </ThemeProvider>
     )
 }
