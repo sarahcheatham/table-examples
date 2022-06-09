@@ -1,15 +1,15 @@
-import ActionsExample from "./pages/TableExamples/ActionsExample";
-import DetailsPanelExample from './pages/TableExamples/DetailsPanelExample';
-import EditExample from "./pages/TableExamples/EditExample";
+import ActionsExample from "./pages/TableExamples/Actions/ActionsExample";
+import DetailsPanelExample from './pages/TableExamples/DetailsPanel/DetailsPanelExample';
+import EditExample from "./pages/TableExamples/Edit/EditExample";
 import ExportExample from "./pages/TableExamples/ExportExample";
-import FilterExample from "./pages/TableExamples/FilterExample";
-import NestedTableExample from "./pages/TableExamples/NestedTableExample";
-import SearchExample from "./pages/TableExamples/SearchExample";
-import MultipleSelectionExample from "./pages/TableExamples/MultipleSelectionExample";
-import SingleSelectionExample from "./pages/TableExamples/SingleSelectionExample";
-import SingleSelectionExample2 from "./pages/TableExamples/SingleSelectionExample2";
+import FilterExample from "./pages/TableExamples/Filter/FilterExample";
+import NestedTableExample from "./pages/TableExamples/NestedTable/NestedTableExample";
+import SearchExample from "./pages/TableExamples/Search/SearchExample";
+import MultipleSelectionExample from "./pages/TableExamples/MultipleSelection/MultipleSelectionExample";
+import SingleSelectionExample from "./pages/TableExamples/SingleSelection/SingleSelectionExample";
+// import SingleSelectionExample2 from "./pages/TableExamples/SingleSelectionExample2";
 import SortExample from './pages/TableExamples/SortExample';
-import ToolbarExample from "./pages/TableExamples/ToolbarExample";
+import ToolbarExample from "./pages/TableExamples/Toolbar/ToolbarExample";
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '@aeros-ui/themes';
 import { Routes, Route } from 'react-router-dom';
@@ -63,10 +63,10 @@ function App() {
             path="single-selection"
             element={<SingleSelectionExample/>}
           />
-          <Route
+          {/* <Route
             path="single-selection2"
             element={<SingleSelectionExample2/>}
-          />
+          /> */}
           <Route
             path="sort"
             element={<SortExample/>}

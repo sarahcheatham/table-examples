@@ -4,9 +4,9 @@
   "private": true,
   "dependencies": {
     "@aeros-ui/components": "^0.1.19",
-    "@aeros-ui/icons": "^0.1.4",
-    "@aeros-ui/tables": "^0.1.6",
-    "@aeros-ui/themes": "^0.1.14",
+    "@aeros-ui/icons": "^0.1.5",
+    "@aeros-ui/tables": "^0.1.12",
+    "@aeros-ui/themes": "^0.1.16",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@material-table/core": "^0.2.34",
@@ -21,9 +21,11 @@
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-markdown": "^8.0.3",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "react-syntax-highlighter": "^15.5.0",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

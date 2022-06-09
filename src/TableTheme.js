@@ -9,12 +9,39 @@ const tableTheme = createTheme({
         },
         secondary: {
             main: '#004A8F',
-            light: 'BCD4EF',
+            light: '#BCD4EF',
             dark: '#002746'
+        },
+        error: {
+            main: '#EA0004',
+            light: '#FF8670',
+            dark: '#640006'
+        },
+        warning: {
+            main: '#E16200',
+            light: '#FFD58C',
+            dark: '#842200'
+        },
+        info: {
+            main: '#0097FB',
+            light: '#B8E3FF',
+            dark: '#004B6E',
+        },
+        success: {
+            main: '#00B200',
+            light: '#DDFFCB',
+            dark: '#006B00',
+        },
+        background: {
+            default: '#FAFAFA',
+            paper: '#FFFFFF'
+        },
+        common: {
+            appBar: 'rgba(42, 51, 62, 0.87)',
         },
         grid: {
             main: {
-                active: '#EF4FDC', 
+                active: 'rgba(217, 239, 205, 0.7)', 
                 default: '#FFFFFF',
                 header: '#2A333E',
             },
@@ -75,22 +102,20 @@ const tableTheme = createTheme({
                 }
             }
         },
-        MuiTableRow: {
-            styleOverrides: {
-                head: {
-                    backgroundColor: 'rgba(42, 51, 62, .65)',
-                },
-            }
-        },
+        // MuiTableRow: {
+        //     styleOverrides: {
+        //         head: {
+        //             backgroundColor: 'rgba(42, 51, 62, .65)',
+        //         },
+        //     }
+        // },
         MuiTableCell: {
             styleOverrides: {
-                root: {
-                    fontFamily: "Roboto",
-                },
                 head: {
                     fontFamily: 'Roboto',
                     fontSize: '14px',
                     textTransform: 'none',
+                    // color: '#F5F5F5',
                     paddingLeft: '0.5em',
                     [`@media screen and (max-width: 1200px)`]:{
                         fontSize: '13px'
@@ -133,20 +158,15 @@ const tableTheme = createTheme({
                         }
                     }
                 },
-                icon: {
-                    color: grey[50]
+            }
+        },
+        MuiListItemIcon: {
+            styleOverrides: {
+                root: {
+                    minWidth: 40,
                 }
             }
         },
-        MuiButtonBase: {
-            styleOverrides: {
-                root: {
-                    '& .MuiTableSortLabel-root': {
-                        color: grey[50],
-                    }
-                }
-            }
-        }
     }
 })
 
