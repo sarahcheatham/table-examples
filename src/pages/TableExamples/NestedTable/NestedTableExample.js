@@ -1,23 +1,22 @@
-import { useState } from 'react';  
-import { useTheme } from '@mui/material/styles';  
-import MaterialTable from '@material-table/core';  
-import TableContainer from '@mui/material/TableContainer'; 
-import Table from '@mui/material/Table';   
-import TableBody from '@mui/material/TableBody';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import TableCell from '@mui/material/TableCell';  
-import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
-import { TableIcons } from '@aeros-ui/icons';
-import { NestedTableHeader, NestedTableRow, MainTableCell, NestedTableCell } from '@aeros-ui/tables'; 
-import { ThemeProvider } from '@mui/material/styles';
-import { tableTheme } from '@aeros-ui/themes';
+import { useState } from "react";  
+import { useTheme } from "@mui/material/styles";  
+import MaterialTable from "@material-table/core";  
+import TableContainer from "@mui/material/TableContainer"; 
+import Table from "@mui/material/Table";   
+import TableBody from "@mui/material/TableBody"; 
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
+import { TableIcons } from "@aeros-ui/icons";
+import { NestedTableHeader, NestedColumnHeaders, NestedTableRow, MainTableCell, NestedTableCell } from "@aeros-ui/tables"; 
+import { ThemeProvider } from "@mui/material/styles";
+import { tableTheme } from "@aeros-ui/themes";
+import CodeContainer from "../../../components/CodeContainer";
+import Markdown from './Markdown';
 
 const NestedTableExample = () => {
     const theme = useTheme()
-    const [density, setDensity] = useState('dense');
+    const [showCode, setShowCode] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null);
     const [selectedChildId, setSelectedChildId] = useState(null);
     const [data, setData] = useState([
@@ -26,10 +25,10 @@ const NestedTableExample = () => {
             AFFIDAVITNO: "2022-0077",
             POLICYNO: "PAC7226538",
             INSUREDNAME: "BUHRE AVE. REALTY INC.",
-            TYPE: 'D',
-            PREMIUM: '22,730',
-            INCEPTION: '01/16/2022',
-            EXPIRATION: '01/16/2023',
+            TYPE: "D",
+            PREMIUM: "22,730",
+            INCEPTION: "01/16/2022",
+            EXPIRATION: "01/16/2023",
             BATCH: 4201111,
             ITEMNO: 1,
             STATE: "P",
@@ -40,8 +39,8 @@ const NestedTableExample = () => {
                     POLICYNO: "PAC7226538",
                     INSUREDNAME: null,
                     TYPE: "E",
-                    PREMIUM: '100',
-                    INCEPTION: '02/20/2022',
+                    PREMIUM: "100",
+                    INCEPTION: "02/20/2022",
                     EXPIRATION: null,
                     BATCH: 4201023,
                     ITEMNO: 2,
@@ -54,8 +53,8 @@ const NestedTableExample = () => {
                     POLICYNO: "PAC7226538",
                     INSUREDNAME: null,
                     TYPE: "E",
-                    PREMIUM: '200',
-                    INCEPTION: '01/20/2022',
+                    PREMIUM: "200",
+                    INCEPTION: "01/20/2022",
                     EXPIRATION: null,
                     BATCH: 4201080,
                     ITEMNO: 4,
@@ -68,10 +67,10 @@ const NestedTableExample = () => {
             AFFIDAVITNO: "2022-0079",
             POLICYNO: "CX163533",
             INSUREDNAME: "MIRANDA CORDOVA",
-            TYPE: 'D',
-            PREMIUM: '2,708',
-            INCEPTION: '01/20/2022',
-            EXPIRATION: '01/20/2023',
+            TYPE: "D",
+            PREMIUM: "2,708",
+            INCEPTION: "01/20/2022",
+            EXPIRATION: "01/20/2023",
             BATCH: 4201021,
             ITEMNO: 1,
             STATE: "P",
@@ -82,8 +81,8 @@ const NestedTableExample = () => {
                     POLICYNO: "CX163533",
                     INSUREDNAME: null,
                     TYPE: "E",
-                    PREMIUM: '100',
-                    INCEPTION: '02/20/2022',
+                    PREMIUM: "100",
+                    INCEPTION: "02/20/2022",
                     EXPIRATION: null,
                     BATCH: 4200778,
                     ITEMNO: 2,
@@ -97,10 +96,10 @@ const NestedTableExample = () => {
             AFFIDAVITNO: "2022-0080",
             POLICYNO: "CX13536",
             INSUREDNAME: "LOURDES P AGUILERA",
-            TYPE: 'D',
-            PREMIUM: '2,430',
-            INCEPTION: '04/20/2022',
-            EXPIRATION: '04/20/2023',
+            TYPE: "D",
+            PREMIUM: "2,430",
+            INCEPTION: "04/20/2022",
+            EXPIRATION: "04/20/2023",
             BATCH: 42015011,
             ITEMNO: 1,
             STATE: null,
@@ -111,8 +110,8 @@ const NestedTableExample = () => {
                     POLICYNO: "CX13536",
                     INSUREDNAME: null,
                     TYPE: "E",
-                    PREMIUM: '100',
-                    INCEPTION: '05/20/2022',
+                    PREMIUM: "100",
+                    INCEPTION: "05/20/2022",
                     EXPIRATION: null,
                     BATCH: 4201525,
                     ITEMNO: 2,
@@ -120,17 +119,16 @@ const NestedTableExample = () => {
                 },
             ] 
         }
-    ])
+    ]);
     
-    
-    const handleRowClick = (row, rowId) => {
+    const handleRowClick = row => {
         closeRow();
         const rowCopy = {...row};
         const dataCopy = [...data]
         dataCopy[rowCopy.tableData.id] = rowCopy;
         setSelectedRow(rowCopy)
         setData(dataCopy)
-    }
+    };
 
     const closeRow = () => {
         const dataCopy = [...data];
@@ -141,107 +139,86 @@ const NestedTableExample = () => {
             }
             dataCopy[rowCopy.tableData.id] = rowCopy;
         }
-
         setData(dataCopy)
         setSelectedRow(null)
         setSelectedChildId(null)
-    }
+    };
 
     const columns = [
         {
             title: "Affidavit No",
             field: "AFFIDAVITNO",
             type: "string",
-            render: rowData => {
-                return <MainTableCell>{rowData.AFFIDAVITNO}</MainTableCell>
-            },
-            width: '125px'
+            render: rowData => (<MainTableCell>{rowData.AFFIDAVITNO}</MainTableCell>),
+            width: "125px"
         },
         {
             title: "Policy No",
             field: "POLICY NO",
             type: "string",
-            render: rowData => {
-                return <MainTableCell>{rowData.POLICYNO}</MainTableCell>
-            },
-            width: '150px'
+            render: rowData => (<MainTableCell>{rowData.POLICYNO}</MainTableCell>),
+            width: "150px"
         },
         {
             title: "Insured Name",
             field: "INSUREDNAME",
             type: "string",
-            render: rowData => {
-                return <MainTableCell noWrap>{rowData.INSUREDNAME}</MainTableCell>
-            },
-            width: '200px',
-            cellStyle: { maxWidth: '200px' }
+            render: rowData => (<MainTableCell noWrap>{rowData.INSUREDNAME}</MainTableCell>),
+            width: "200px",
+            cellStyle: { maxWidth: "200px" }
         },
         {
             title: "Type",
             field: "TYPE",
             type: "string",
-            render: rowData => {
-                return <MainTableCell>{rowData.TYPE}</MainTableCell>
-            },
-            width: '50px',
+            render: rowData => (<MainTableCell>{rowData.TYPE}</MainTableCell>),
+            width: "50px",
         },
         {
             title: "Premium",
             field: "PREMIUM",
             type: "currency",
-            render: rowData => {
-                return <MainTableCell>{rowData.PREMIUM}</MainTableCell>
-            },
-            width: '125px'
+            render: rowData => (<MainTableCell>{rowData.PREMIUM}</MainTableCell>),
+            width: "125px"
         },
         {
             title: "Inception",
             field: "INCEPTION",
             type: "date",
-            render: rowData => {
-                return <MainTableCell>{rowData.INCEPTION}</MainTableCell>
-            },
-            width: '100px'
+            render: rowData => (<MainTableCell>{rowData.INCEPTION}</MainTableCell>),
+            width: "100px"
         },
         {
             title: "Expiration",
             field: "EXPIRATION",
             type: "string",
-            render: rowData => {
-                return <MainTableCell>{rowData.EXPIRATION}</MainTableCell>
-            },
-            width: '100px',
+            render: rowData => (<MainTableCell>{rowData.EXPIRATION}</MainTableCell>),
+            width: "100px",
         },
         {
             title: "Batch",
             field: "BATCH",
             type: "numeric",
-            render: rowData => {
-                return <MainTableCell>{rowData.BATCH}</MainTableCell>
-            },
-            width: '100px'
+            render: rowData => (<MainTableCell>{rowData.BATCH}</MainTableCell>),
+            width: "100px"
         },
         {
             title: "Item",
             field: "ITEMNO",
             type: "numeric",
-            render: rowData => {
-                return <MainTableCell>{rowData.ITEMNO}</MainTableCell>
-            },
-            width: '50px',
+            render: rowData => (<MainTableCell>{rowData.ITEMNO}</MainTableCell>),
+            width: "50px",
         },
         {
             title: "State",
             field: "STATE",
             type: "string",
-            render: rowData => {
-                return <MainTableCell>{rowData.STATE}</MainTableCell>
-            },
-            width: '50px',
+            render: rowData => (<MainTableCell>{rowData.STATE}</MainTableCell>),
+            width: "50px",
         },
-    ]
+    ];
 
-    const tableSubheaders = [
+    const columnHeaders = [
         "Affidavit No",
         "Policy No",
         "Insured Name",
@@ -252,112 +229,90 @@ const NestedTableExample = () => {
         "Batch",
         "Item",
         "State"
-    ]
+    ];
 
     const handleSelectChild = rowData => {
         setSelectedChildId(rowData.id)
-    }
+    };
+
+    const handleToggleCode = () => {
+        setShowCode(!showCode)
+    };
 
     return (
         <ThemeProvider theme={tableTheme}>
-            {process.env.NODE_ENV !== 'production' ? (
-                <Grid container sx={{ m: '1em' }}>
+            {/* {process.env.NODE_ENV !== "production" ? (
+                <Grid container sx={{ m: "1em" }}>
                     <Grid item>
                         <Button component={Link} to="/table-examples">Back to Home</Button>
                     </Grid>
                 </Grid>
-            ): null}
-            <div style={{ margin: '1em'}}>
-                <MaterialTable
-                    title="Affidavit Transactions"
-                    columns={columns}
-                    data={data}
-                    icons={TableIcons}
-                    detailPanel={({ rowData }) => (
-                        rowData.CHILDTRANSACTIONS.length > 0 ? (
-                            <TableContainer>
-                                <Table>
-                                    <TableHead>
-                                        <TableRow style={{ backgroundColor: theme.palette.grid.main.header, opacity: 0.5 }}>
-                                                <TableCell 
-                                                    variant="head" 
-                                                    padding={density === 'dense' ? "none" : "normal"} 
-                                                    sx={{ color: theme.palette.grid.nested.headerText }} 
-                                                    colSpan={columns.length + 1}
-                                                >
-                                                    Related Child Transactions
-                                                </TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <NestedTableHeader
-                                        tableSubheaders={tableSubheaders}
-                                        dense={density}
-                                    />
-                                    <TableBody>
-                                        {rowData.CHILDTRANSACTIONS.map((c, i) => {
-                                            return (
+            ): null} */}
+             <CodeContainer
+                title="NestedTableExample.js"
+                codeString={Markdown}
+                showCode={showCode}
+                handleToggleCode={() => handleToggleCode()}
+            />
+            {!showCode && (
+                <div style={{ margin: "1em" }}>
+                    <MaterialTable
+                        title="Affidavit Transactions"
+                        columns={columns}
+                        data={data}
+                        icons={TableIcons}
+                        detailPanel={({ rowData }) => (
+                            rowData.CHILDTRANSACTIONS.length > 0 ? (
+                                <TableContainer>
+                                    <Table>
+                                        <NestedTableHeader
+                                            tableHeader="Related Child Transactions"
+                                            colSpan={columns.length + 1}
+                                            dense="dense"
+                                        />
+                                        <NestedColumnHeaders
+                                            columnHeaders={columnHeaders}
+                                            dense="dense"
+                                        />
+                                        <TableBody>
+                                            {rowData.CHILDTRANSACTIONS.map((c, i) => (
                                                 <NestedTableRow 
-                                                    key={`child-transaction-${i}`} 
-                                                    dense={density} 
-                                                    onClick={() => handleSelectChild(c)} 
-                                                    selected={c.id === selectedChildId}
+                                                key={`child-transaction-${i}`} 
+                                                dense="dense" 
+                                                onClick={() => handleSelectChild(c)} 
+                                                selected={c.id === selectedChildId}
                                                 >
-                                                    <NestedTableCell dense={density}>
-                                                        {c.AFFIDAVITNO}
-                                                    </NestedTableCell>
-                                                    <NestedTableCell dense={density} align="left">
-                                                        {c.POLICYNO}
-                                                    </NestedTableCell>
-                                                    <NestedTableCell dense={density} width="200px">
-                                                        {c.INSUREDNAME !== null ? c.INSUREDNAME : '-'}
-                                                    </NestedTableCell>
-                                                    <NestedTableCell dense={density}>
-                                                        {c.TYPE}
-                                                    </NestedTableCell>
-                                                    <NestedTableCell dense={density}>
-                                                        {c.PREMIUM}
-                                                    </NestedTableCell>
-                                                    <NestedTableCell dense={density} align="left">
-                                                        {c.INCEPTION}
-                                                    </NestedTableCell>
-                                                    <NestedTableCell dense={density} align="left">
-                                                        {c.EXPIRATION !== null ? c.EXPIRATION : '-'}
-                                                    </NestedTableCell>
-                                                    <NestedTableCell dense={density}>
-                                                        {c.BATCH}
-                                                    </NestedTableCell>
-                                                    <NestedTableCell dense={density}>
-                                                        {c.ITEMNO}
-                                                    </NestedTableCell>
-                                                    <NestedTableCell dense={density}>
-                                                        {c.STATE}
-                                                    </NestedTableCell>
+                                                    <NestedTableCell dense="dense">{c.AFFIDAVITNO}</NestedTableCell>
+                                                    <NestedTableCell dense="dense" align="left">{c.POLICYNO}</NestedTableCell>
+                                                    <NestedTableCell dense="dense" width="200px">{c.INSUREDNAME !== null ? c.INSUREDNAME : "-"}</NestedTableCell>
+                                                    <NestedTableCell dense="dense">{c.TYPE}</NestedTableCell>
+                                                    <NestedTableCell dense="dense">{c.PREMIUM}</NestedTableCell>
+                                                    <NestedTableCell dense="dense" align="left">{c.INCEPTION}</NestedTableCell>
+                                                    <NestedTableCell dense="dense" align="left">{c.EXPIRATION !== null ? c.EXPIRATION : "-"}</NestedTableCell>
+                                                    <NestedTableCell dense="dense">{c.BATCH}</NestedTableCell>
+                                                    <NestedTableCell dense="dense">{c.ITEMNO}</NestedTableCell>
+                                                    <NestedTableCell dense="dense">{c.STATE}</NestedTableCell>
                                                 </NestedTableRow>
-                                            )
-                                        })}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        ) : null
-                    )}
-                    onRowClick={(e, selectedRow, togglePanel) => {handleRowClick(selectedRow, selectedRow.tableData.id); togglePanel()}}
-                    options={{
-                        headerStyle: {
-                            backgroundColor: theme.palette.grid.main.header,
-                            '&:hover': {
-                                opacity: 0.5
-                            },
-                        },
-                        detailsPanelType: 'single',
-                        showDetailPanelIcon: true,
-                        rowStyle: rowData => ({
-                            backgroundColor: selectedRow !== null && selectedRow.tableData.id === rowData.tableData.id ? theme.palette.grid.main.active : undefined
-                        }),
-                        padding: density,
-                        search: false,
-                    }}
-                />
-            </div>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            ) : null
+                        )}
+                        onRowClick={(e, selectedRow, togglePanel) => {handleRowClick(selectedRow); togglePanel()}}
+                        options={{
+                            headerStyle: { backgroundColor: theme.palette.grid.main.header },
+                            detailsPanelType: "single",
+                            showDetailPanelIcon: true,
+                            rowStyle: rowData => ({
+                                backgroundColor: selectedRow !== null && selectedRow.tableData.id === rowData.tableData.id ? theme.palette.grid.main.active : undefined
+                            }),
+                            padding: "dense",
+                            search: false,
+                        }}
+                    />
+                </div>
+            )}
         </ThemeProvider>
     )
 }  
