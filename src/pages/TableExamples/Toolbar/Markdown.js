@@ -3,10 +3,11 @@ import { useState } from "react";
 import MaterialTable from "@material-table/core";  
 import { TableToolbar, TableFilterInput, MainTableCell } from "@aeros-ui/tables";
 import { tableTheme } from "@aeros-ui/themes"; 
-import { ThemeProvider } from "@mui/material/styles";
+import { ThemeProvider, useTheme } from "@mui/material/styles";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";  
 
 const ToolbarExample = () => {
+    const theme = useTheme();
     const [density, setDensity] = useState("dense");
     const [showFilters, setFiltering] = useState(false);
     const [data, setData] = useState(
@@ -110,7 +111,7 @@ const ToolbarExample = () => {
                     columns={columns}
                     data={data}
                     options={{
-                        headerStyle: { backgroundColor: "rgba(42, 51, 62, .87)" },
+                        headerStyle: { backgroundColor: theme.palette.grid.main.header },
                         columnsButton: true,
                         exportAllData: true,
                         exportMenu: [{

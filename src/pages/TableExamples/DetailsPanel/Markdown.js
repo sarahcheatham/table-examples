@@ -161,7 +161,7 @@ const DetailsPanelExample = () => {
                         </TableContainer>
                     )}
                     options={{
-                        headerStyle: { backgroundColor: "rgba(42, 51, 62, .87)" },
+                        headerStyle: { backgroundColor: theme.palette.grid.main.header },
                         padding: "dense",
                         search: false,
                         showDetailPanelIcon: true,

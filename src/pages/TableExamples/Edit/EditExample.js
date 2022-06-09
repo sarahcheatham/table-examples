@@ -4,13 +4,14 @@ import { tableTheme } from '@aeros-ui/themes';
 import { TableIcons } from '@aeros-ui/icons';
 import { CurrencyInput, TextInput, PercentageInput } from '@aeros-ui/components';
 import { Grid, Paper, Typography} from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, useTheme } from '@mui/material/styles';
 // import Button from '@mui/material/Button';
 // import { Link } from 'react-router-dom';
 import CodeContainer from "../../../components/CodeContainer";
 import Markdown from './Markdown';
 
 const EditExample = () => {
+    const theme = useTheme();
     const [showCode, setShowCode] = useState(false);
     const [data, setData] = useState([
         {
@@ -169,13 +170,14 @@ const EditExample = () => {
                         )
                     }}
                     options={{
-                        headerStyle: {
-                            backgroundColor: 'rgba(42, 51, 62, .87)',
-                            color: '#F5F5F5',
-                            '&:hover': {
-                                color: 'rgba(255, 255, 255, 0.2)'
-                            },
-                        },
+                        headerStyle: { backgroundColor: theme.palette.grid.main.header },
+                        // headerStyle: {
+                        //     backgroundColor: 'rgba(42, 51, 62, .87)',
+                        //     color: '#F5F5F5',
+                        //     '&:hover': {
+                        //         color: 'rgba(255, 255, 255, 0.2)'
+                        //     },
+                        // },
                         search: false,
                         paging: false,
                         addRowPosition: 'first',

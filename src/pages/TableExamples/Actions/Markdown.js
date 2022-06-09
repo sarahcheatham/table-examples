@@ -180,7 +180,7 @@ const ActionsExample = () => {
                     columns={columns}
                     data={data}
                     options={{
-                        headerStyle: { backgroundColor: 'rgba(42, 51, 62, .87)' },
+                        headerStyle: { backgroundColor: theme.palette.grid.main.header },
                         padding: 'dense',
                         tableLayout: 'fixed',
                         search: false,

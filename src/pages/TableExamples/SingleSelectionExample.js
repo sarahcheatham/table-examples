@@ -1,22 +1,18 @@
-import Typography from "@mui/material/Typography";
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
 import { useState } from 'react';
-import MaterialTable, { MTableHeader, MTableActions } from '@material-table/core';  
+import MaterialTable from '@material-table/core';  
 import { 
-    TableToolbar, 
     TableFilterInput,
     MainTableCell
 } from '@aeros-ui/tables';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, useTheme } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes'; 
-import { ExportCsv, ExportPdf } from '@material-table/exporters';  
 
 const SingleSelectionExample = () => {
-    const [density, setDensity] = useState('dense');
-    const [showFilters, setFiltering] = useState(false);
+    const theme = useTheme();
     const [selectedRow, setSelectedRow] = useState(null);
     const [data, setData] = useState(
         [
@@ -61,136 +57,53 @@ const SingleSelectionExample = () => {
                 EXPIRATION: "10/20/2022"
             },
         ]
-    )
-
-    const handleDensityClick = () => {
-        density === 'normal' ? setDensity('dense') : setDensity('normal')
-    };
-
-    const columns = [
+    );
+    const [columns, setColumns] = useState([
         {
             title: "Type",
             field: "TYPE",
             type: "string",
-            render: rowData => {
-                return <MainTableCell>{rowData.TYPE}</MainTableCell>
-            },
-            filterComponent: ({ columnDef, onFilterChanged }) => {
-                return (
-                  <TableFilterInput
-                    onChange={(e) =>
-                      onFilterChanged(columnDef.tableData.id, e.target.value)
-                    }
-                  />
-                );
-            },
+            render: rowData => (<MainTableCell>{rowData.TYPE}</MainTableCell>)
         },
         {
             title: "Affidavit No",
             field: "AFFIDAVITNO",
             type: "string",
-            render: rowData => {
-                return <MainTableCell>{rowData.AFFIDAVITNO}</MainTableCell>
-            },
-            filterComponent: ({ columnDef, onFilterChanged }) => {
-                return (
-                  <TableFilterInput
-                    onChange={(e) =>
-                      onFilterChanged(columnDef.tableData.id, e.target.value)
-                    }
-                  />
-                );
-            },
+            render: rowData => (<MainTableCell>{rowData.AFFIDAVITNO}</MainTableCell>)
         },
         {
             title: "Policy No",
             field: "POLICYNO",
             type: "string",
-            render: rowData => {
-                return <MainTableCell>{rowData.POLICYNO}</MainTableCell>
-            },
-            filterComponent: ({ columnDef, onFilterChanged }) => {
-                return (
-                  <TableFilterInput
-                    onChange={(e) =>
-                      onFilterChanged(columnDef.tableData.id, e.target.value)
-                    }
-                  />
-                );
-            },
+            render: rowData => (<MainTableCell>{rowData.POLICYNO}</MainTableCell>)
         },
         {
             title: "Insured Name",
             field: "INSUREDNAME",
             type: "string",
-            render: rowData => {
-                return <MainTableCell>{rowData.INSUREDNAME}</MainTableCell>
-            },
-            filterComponent: ({ columnDef, onFilterChanged }) => {
-                return (
-                  <TableFilterInput
-                    onChange={(e) =>
-                      onFilterChanged(columnDef.tableData.id, e.target.value)
-                    }
-                  />
-                );
-            },
+            render: rowData => (<MainTableCell>{rowData.INSUREDNAME}</MainTableCell>)
         },
         {
             title: "Premium",
             field: "PREMIUM",
             type: "numeric",
-            render: rowData => {
-                return <MainTableCell>{rowData.PREMIUM}</MainTableCell>
-            },
-            filterComponent: ({ columnDef, onFilterChanged }) => {
-                return (
-                  <TableFilterInput
-                    onChange={(e) =>
-                      onFilterChanged(columnDef.tableData.id, e.target.value)
-                    }
-                  />
-                );
-            },
+            render: rowData => (<MainTableCell>{rowData.PREMIUM}</MainTableCell>)
         },
         {
             title: "Inception",
             field: "INCEPTION",
             type: "string",
-            render: rowData => {
-                return <MainTableCell>{rowData.INCEPTION}</MainTableCell>
-            },
-            filterComponent: ({ columnDef, onFilterChanged }) => {
-                return (
-                  <TableFilterInput
-                    onChange={(e) =>
-                      onFilterChanged(columnDef.tableData.id, e.target.value)
-                    }
-                  />
-                );
-            },
+            render: rowData => (<MainTableCell>{rowData.INCEPTION}</MainTableCell>)
         },
         {
             title: "Expiration",
             field: "EXPIRATION",
             type: "string",
-            render: rowData => {
-                return <MainTableCell>{rowData.EXPIRATION}</MainTableCell>
-            },
-            filterComponent: ({ columnDef, onFilterChanged }) => {
-                return (
-                  <TableFilterInput
-                    onChange={(e) =>
-                      onFilterChanged(columnDef.tableData.id, e.target.value)
-                    }
-                  />
-                );
-            },
+            render: rowData => (<MainTableCell>{rowData.EXPIRATION}</MainTableCell>)
         }
-    ];
+    ])
 
     const handleRowSelect = (e, rowData) => {
-        console.log("ROW DATA:", rowData)
         if(selectedRow !== null && rowData.tableData.id === selectedRow.tableData.id){
             setSelectedRow(null)
         } else {
@@ -213,27 +126,15 @@ const SingleSelectionExample = () => {
                     columns={columns}
                     data={data}
                     options={{
-                        headerStyle: {
-                            backgroundColor: 'rgba(42, 51, 62, .87)',
-                            '&:hover': {
-                                color: 'rgba(255, 255, 255, 0.7)'
-                            },
-                        },
-                        columnsButton: true,
-                        exportAllData: true,
-                        exportMenu: [{
-                            label: 'Export PDF',
-                            exportFunc: (cols, datas) => ExportPdf(cols, datas, 'Dataset Name')
-                        }, {
-                            label: 'Export CSV',
-                            exportFunc: (cols, datas) => ExportCsv(cols, datas, 'Dataset Name')
-                        }],
-                        filtering: showFilters,
-                        filterCellStyle: { padding: '0.5em' },
-                        padding: density,
-                        search: true,
-                        searchFieldStyle: { marginRight: '1em' },
+                        headerStyle: { backgroundColor: theme.palette.grid.main.header },
+                        toolbar: false,
+                        padding: "dense",
+                        search: false,
+                        rowStyle: rowData => ({
+                            backgroundColor: selectedRow !== null && selectedRow.tableData.id === rowData.tableData.id ? theme.palette.grid.main.active : undefined
+                        }),
                     }}
+                    onRowClick={(e, selectedRow) => handleRowSelect(e, selectedRow)}
                     actions={[ 
                         {
                             icon: 'check',
@@ -241,14 +142,6 @@ const SingleSelectionExample = () => {
                         }
                     ]}
                     components={{
-                        Toolbar: props => (
-                            <TableToolbar
-                                {...props}
-                                showFilters={showFilters}
-                                onFilterClick={() => setFiltering(!showFilters)}
-                                onDensityClick={handleDensityClick}
-                            />
-                        ),
                         Action: props => (
                             <Checkbox
                                 onChange={(e) => props.action.onClick(e, props.data)}
@@ -257,12 +150,6 @@ const SingleSelectionExample = () => {
                                 required
                             />
                         ),
-                        Header: props => {
-                            console.log("PROPS:", props)
-                            return (
-                                <MTableHeader {...props}/>
-                            )
-                        }
                     }}
                 />
             </div>
