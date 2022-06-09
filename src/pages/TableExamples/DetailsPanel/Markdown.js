@@ -37,7 +37,7 @@ const DetailsPanelExample = () => {
         ]
     );
 
-    const columns = [
+    const [columns, setColumns] = useState([
         {
             title: "Seq No",
             field: "SEQUENCENO",
@@ -91,9 +91,7 @@ const DetailsPanelExample = () => {
             render: rowData => (<MainTableCell>{rowData.REMINDER}</MainTableCell>),
             width: "150px"
         },
-    ];
-
-    const tableSubheaders = ["Instruction Details"];
+    ]);
 
     const handleRowClick = (row) => {
         if(selectedRow !== null && selectedRow.tableData.id === row.tableData.id){
@@ -106,7 +104,7 @@ const DetailsPanelExample = () => {
             setSelectedRow(rowCopy)
             setData(dataCopy)
         }
-    }
+    };
 
     const closeRow = () => {
         const dataCopy = [...data];
@@ -131,12 +129,8 @@ const DetailsPanelExample = () => {
                 <MaterialTable
                     title={
                         <>
-                            <Grid item>
-                                <Typography variant="caption">Batch</Typography>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant="h4" sx={{ fontWeight: 500 }}>4215011</Typography>
-                            </Grid>
+                            <Grid item><Typography variant="caption">Batch</Typography></Grid>
+                            <Grid item><Typography variant="h4" sx={{ fontWeight: 500 }}>4215011</Typography></Grid>
                         </>
                     }
                     icons={TableIcons}
@@ -146,9 +140,9 @@ const DetailsPanelExample = () => {
                         <TableContainer>
                             <Table>
                                 <NestedTableHeader
-                                    tableSubheaders={tableSubheaders}
+                                    tableHeader='Instruction Details'
                                     colSpan={columns.length + 1}
-                                    dense="dense"
+                                    dense='dense'
                                 />
                                 <TableBody>
                                     <NestedTableRow dense="dense">
@@ -178,20 +172,12 @@ const DetailsPanelExample = () => {
                                     <MTableToolbar {...props}/>
                                 </Grid>
                                 <Grid item container xs={3} flexDirection="column" alignItems="center">
-                                    <Grid item>
-                                        <Typography variant="caption">Item Count</Typography>
-                                    </Grid>
-                                    <Grid item>
-                                        <Typography variant="h4" sx={{ fontWeight: 500 }}>2</Typography>
-                                    </Grid>
+                                    <Grid item><Typography variant="caption">Item Count</Typography></Grid>
+                                    <Grid item><Typography variant="h4" sx={{ fontWeight: 500 }}>2</Typography></Grid>
                                 </Grid>
                                 <Grid item container xs={3} flexDirection="column" alignItems="center">
-                                    <Grid item>
-                                        <Typography variant="caption">Status</Typography>
-                                    </Grid>
-                                    <Grid item>
-                                        <Typography variant="h4" color="error" sx={{ fontWeight: 500 }}>Action Required</Typography>
-                                    </Grid>
+                                    <Grid item><Typography variant="caption">Status</Typography></Grid>
+                                    <Grid item><Typography variant="h4" color="error" sx={{ fontWeight: 500 }}>Action Required</Typography></Grid>
                                 </Grid>
                             </Grid>
                         )

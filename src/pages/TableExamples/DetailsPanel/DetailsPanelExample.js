@@ -42,7 +42,7 @@ const DetailsPanelExample = () => {
             },
         ]
     )
-    const columns = [
+    const [columns, setColumns] = useState([
         {
             title: 'Seq No',
             field: "SEQUENCENO",
@@ -98,9 +98,7 @@ const DetailsPanelExample = () => {
             render: rowData => (<MainTableCell>{rowData.REMINDER}</MainTableCell>),
             width: '150px'
         },
-    ]
-
-    const tableSubheaders = ["Instruction Details"];
+    ]);
 
     const handleToggleCode = () => {
         setShowCode(!showCode)
@@ -172,7 +170,7 @@ const DetailsPanelExample = () => {
                             <TableContainer>
                                 <Table>
                                     <NestedTableHeader
-                                        tableSubheaders={tableSubheaders}
+                                        tableHeader='Instruction Details'
                                         colSpan={columns.length + 1}
                                         dense='dense'
                                     />

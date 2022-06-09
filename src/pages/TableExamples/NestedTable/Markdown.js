@@ -112,31 +112,8 @@ const NestedTableExample = () => {
             ] 
         }
     ]);
-    
-    const handleRowClick = row => {
-        closeRow();
-        const rowCopy = {...row};
-        const dataCopy = [...data]
-        dataCopy[rowCopy.tableData.id] = rowCopy;
-        setSelectedRow(rowCopy)
-        setData(dataCopy)
-    };
 
-    const closeRow = () => {
-        const dataCopy = [...data];
-        if(selectedRow !== null){
-            const rowCopy = {...selectedRow};
-            if(rowCopy.tableData.showDetailPanel){
-                rowCopy.tableData.showDetailPanel = false;
-            }
-            dataCopy[rowCopy.tableData.id] = rowCopy;
-        }
-        setData(dataCopy)
-        setSelectedRow(null)
-        setSelectedChildId(null)
-    };
-
-    const columns = [
+    const [columns, setColumns] = useState([
         {
             title: "Affidavit No",
             field: "AFFIDAVITNO",
@@ -208,7 +185,30 @@ const NestedTableExample = () => {
             render: rowData => (<MainTableCell>{rowData.STATE}</MainTableCell>),
             width: "50px",
         },
-    ];
+    ]);
+    
+    const handleRowClick = row => {
+        closeRow();
+        const rowCopy = {...row};
+        const dataCopy = [...data]
+        dataCopy[rowCopy.tableData.id] = rowCopy;
+        setSelectedRow(rowCopy)
+        setData(dataCopy)
+    };
+
+    const closeRow = () => {
+        const dataCopy = [...data];
+        if(selectedRow !== null){
+            const rowCopy = {...selectedRow};
+            if(rowCopy.tableData.showDetailPanel){
+                rowCopy.tableData.showDetailPanel = false;
+            }
+            dataCopy[rowCopy.tableData.id] = rowCopy;
+        }
+        setData(dataCopy)
+        setSelectedRow(null)
+        setSelectedChildId(null)
+    };
 
     const columnHeaders = [
         "Affidavit No",

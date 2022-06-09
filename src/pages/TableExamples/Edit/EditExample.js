@@ -38,8 +38,9 @@ const EditExample = () => {
             render: rowData => (<TextInput value={rowData.NAMEOFCOMPANY} placeholder="Company Name" width="100%" disabled/>),
             editComponent: props => (<TextInput value={props.value} placeholder="Company Name" width="100%" onChange={(e) => props.onChange(e.target.value)}/>),
             editable: 'always',
+            width: '40%',
             initialEditValue: '',
-            width: '40%'
+            sorting: false
         },
         {
             title: "Company Code",
@@ -50,6 +51,7 @@ const EditExample = () => {
             editable: 'never',
             width: '15%',
             initialEditValue: '',
+            sorting: false
         },
         {
             title: "Percent of Total Accepted",
@@ -60,6 +62,7 @@ const EditExample = () => {
             editable: 'always',
             width: '15%',
             initialEditValue: '0',
+            sorting: false
         },
         {
             title: "Total Excess Line Premium",
@@ -70,6 +73,7 @@ const EditExample = () => {
             editable: 'always',
             width: '25%',
             initialEditValue: undefined,
+            sorting: false
         }
     ]
 
@@ -170,14 +174,7 @@ const EditExample = () => {
                         )
                     }}
                     options={{
-                        headerStyle: { backgroundColor: theme.palette.grid.main.header },
-                        // headerStyle: {
-                        //     backgroundColor: 'rgba(42, 51, 62, .87)',
-                        //     color: '#F5F5F5',
-                        //     '&:hover': {
-                        //         color: 'rgba(255, 255, 255, 0.2)'
-                        //     },
-                        // },
+                        headerStyle: { backgroundColor: theme.palette.grid.main.header, color: theme.palette.primary.contrastText },
                         search: false,
                         paging: false,
                         addRowPosition: 'first',
