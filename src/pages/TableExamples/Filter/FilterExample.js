@@ -2,8 +2,7 @@ import { useState } from 'react';
 import MaterialTable from '@material-table/core';
 import { ThemeProvider, useTheme } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes'; 
-import { MainTableCell, TableFilterInput } from "@aeros-ui/tables";
-import TableToolbar from '../../../TableToolbar';
+import { MainTableCell, TableFilterInput, TableToolbar } from "@aeros-ui/tables";
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
@@ -195,7 +194,7 @@ const FilterExample = () => {
             ): null}
             <div style={{ margin: '1em' }}>
                 <MaterialTable
-                    title={null}
+                    title="Filtering Example"
                     columns={columns}
                     data={data}
                     options={{
@@ -209,7 +208,6 @@ const FilterExample = () => {
                         Toolbar: props => (
                             <TableToolbar
                                 {...props}
-                                tableTitle="Filtering Example"
                                 showFilters={showFilters}
                                 onFilterClick={() => setFiltering(!showFilters)}
                             />

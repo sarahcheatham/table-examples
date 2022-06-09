@@ -107,7 +107,7 @@ const ToolbarExample = () => {
         <ThemeProvider theme={tableTheme}>
             <div style={{margin: "1em" }}>
                 <MaterialTable
-                    title={null}
+                    title="Toolbar Example"
                     columns={columns}
                     data={data}
                     options={{
@@ -131,7 +131,6 @@ const ToolbarExample = () => {
                         Toolbar: props => (
                             <TableToolbar
                                 {...props}
-                                tableTitle="User Profiles"
                                 showFilters={showFilters}
                                 onFilterClick={() => setFiltering(!showFilters)}
                                 onDensityClick={handleDensityClick}
