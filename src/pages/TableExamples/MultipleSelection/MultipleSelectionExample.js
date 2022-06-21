@@ -1,6 +1,6 @@
-// import Grid from '@mui/material/Grid';
-// import Button from '@mui/material/Button';
-// import { Link } from 'react-router-dom';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import MaterialTable from '@material-table/core';  
 import { MainTableCell } from '@aeros-ui/tables';
@@ -17,8 +17,7 @@ const MultipleSelectionExample = () => {
     const [data, setData] = useState(
         [
             {
-                id: 0,
-                USERID: "ADM519833",
+                id: "ADM519833",
                 USERNAME: "ADMINSITRATOR",
                 SECURITYPROFILE: "PETER M. FEENEY",
                 EMAIL: "ADMIN@FEENEY.COM",
@@ -26,8 +25,7 @@ const MultipleSelectionExample = () => {
                 STATE: "ENABLED"
             },
             {
-                id: 1,
-                USERID: "519833A",
+                id: "519833A",
                 USERNAME: "JANE DOE",
                 SECURITYPROFILE: "PETER M. FEENEY",
                 EMAIL: "J.DOE@FEENEY.COM",
@@ -35,8 +33,7 @@ const MultipleSelectionExample = () => {
                 STATE: "ENABLED"
             },
             {
-                id: 2,
-                USERID: "519833B",
+                id: "519833B",
                 USERNAME: "JOHN SMITH",
                 SECURITYPROFILE: "PETER M. FEENEY",
                 EMAIL: "ADMIN@FEENEY.COM",
@@ -49,9 +46,9 @@ const MultipleSelectionExample = () => {
     const [columns, setColumns] = useState([
         {
             title: "User Id",
-            field: "USERID",
+            field: "id",
             type: "string",
-            render: rowData => (<MainTableCell>{rowData.USERID}</MainTableCell>),
+            render: rowData => (<MainTableCell>{rowData.id}</MainTableCell>),
         },
         {
             title: "User Name",
@@ -95,13 +92,13 @@ const MultipleSelectionExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-             {/* {process.env.NODE_ENV !== 'production' ? (
+             {process.env.NODE_ENV !== 'production' ? (
                 <Grid container sx={{ m: '1em' }}>
                     <Grid item>
                         <Button component={Link} to="/table-examples">Back to Home</Button>
                     </Grid>
                 </Grid>
-            ): null} */}
+            ): null}
             <CodeContainer
                 title="MultipleSelectionExample.js"
                 codeString={Markdown}

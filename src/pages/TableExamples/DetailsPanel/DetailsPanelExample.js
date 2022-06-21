@@ -6,8 +6,8 @@ import { NestedTableHeader, NestedTableRow, MainTableCell, NestedTableCell } fro
 import { TableIcons } from '@aeros-ui/icons';
 import { TableContainer, Table, TableBody, Typography } from '@mui/material'; 
 import Grid from '@mui/material/Grid';
-// import Button from '@mui/material/Button';
-// import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 import CodeContainer from "../../../components/CodeContainer";
 import Markdown from './Markdown';
 
@@ -137,13 +137,13 @@ const DetailsPanelExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            {/* {process.env.NODE_ENV !== 'production' ? (
+            {process.env.NODE_ENV !== 'production' ? (
                 <Grid container sx={{ m: '1em' }}>
                     <Grid item>
                         <Button component={Link} to="/table-examples">Back to Home</Button>
                     </Grid>
                 </Grid>
-            ): null} */}
+            ): null}
            <CodeContainer
                 title="DetailsPanelExample.js"
                 codeString={Markdown}

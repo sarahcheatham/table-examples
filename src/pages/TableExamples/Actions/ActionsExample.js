@@ -1,5 +1,5 @@
-// import { Link } from 'react-router-dom';
-// import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 import { useState } from 'react';
 import MaterialTable from '@material-table/core';  
 import { MainTableCell } from '@aeros-ui/tables';
@@ -192,13 +192,13 @@ const ActionsExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            {/* {process.env.NODE_ENV !== 'production' ? (
+            {process.env.NODE_ENV !== 'production' ? (
                 <Grid container sx={{ m: '1em' }}>
                     <Grid item>
                         <Button component={Link} to="/table-examples">Back to Home</Button>
                     </Grid>
                 </Grid>
-            ): null} */}
+            ): null}
             <CodeContainer
                 title="ActionsExample.js"
                 codeString={Markdown}

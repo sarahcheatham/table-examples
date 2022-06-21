@@ -1,14 +1,14 @@
 import ActionsExample from "./pages/TableExamples/Actions/ActionsExample";
 import DetailsPanelExample from './pages/TableExamples/DetailsPanel/DetailsPanelExample';
 import EditExample from "./pages/TableExamples/Edit/EditExample";
-import ExportExample from "./pages/TableExamples/ExportExample";
+import ExportExample from "./pages/TableExamples/Export/ExportExample";
 import FilterExample from "./pages/TableExamples/Filter/FilterExample";
 import NestedTableExample from "./pages/TableExamples/NestedTable/NestedTableExample";
 import SearchExample from "./pages/TableExamples/Search/SearchExample";
 import MultipleSelectionExample from "./pages/TableExamples/MultipleSelection/MultipleSelectionExample";
 import SingleSelectionExample from "./pages/TableExamples/SingleSelection/SingleSelectionExample";
 // import SingleSelectionExample2 from "./pages/TableExamples/SingleSelectionExample2";
-import SortExample from './pages/TableExamples/SortExample';
+import SortExample from './pages/TableExamples/Sort/SortExample';
 import ToolbarExample from "./pages/TableExamples/Toolbar/ToolbarExample";
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '@aeros-ui/themes';

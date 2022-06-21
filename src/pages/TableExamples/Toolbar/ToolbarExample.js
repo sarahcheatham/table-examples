@@ -1,6 +1,6 @@
-// import Grid from "@mui/material/Grid";
-// import Button from "@mui/material/Button";
-// import { Link } from "react-router-dom";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import MaterialTable from "@material-table/core";  
 import { TableToolbar, TableFilterInput, MainTableCell } from "@aeros-ui/tables";
@@ -114,13 +114,13 @@ const ToolbarExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-             {/* {process.env.NODE_ENV !== "production" ? (
+             {process.env.NODE_ENV !== "production" ? (
                 <Grid container sx={{ m: "1em" }}>
                     <Grid item>
                         <Button component={Link} to="/table-examples">Back to Home</Button>
                     </Grid>
                 </Grid>
-            ): null} */}
+            ): null}
             <CodeContainer
                 title="ToolbarExample.js"
                 codeString={Markdown}

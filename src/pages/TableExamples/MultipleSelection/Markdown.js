@@ -12,8 +12,7 @@ const MultipleSelectionExample = () => {
     const [data, setData] = useState(
         [
             {
-                id: 0,
-                USERID: "ADM519833",
+                id: "ADM519833",
                 USERNAME: "ADMINSITRATOR",
                 SECURITYPROFILE: "PETER M. FEENEY",
                 EMAIL: "ADMIN@FEENEY.COM",
@@ -21,8 +20,7 @@ const MultipleSelectionExample = () => {
                 STATE: "ENABLED"
             },
             {
-                id: 1,
-                USERID: "519833A",
+                id: "519833A",
                 USERNAME: "JANE DOE",
                 SECURITYPROFILE: "PETER M. FEENEY",
                 EMAIL: "J.DOE@FEENEY.COM",
@@ -30,8 +28,7 @@ const MultipleSelectionExample = () => {
                 STATE: "ENABLED"
             },
             {
-                id: 2,
-                USERID: "519833B",
+                id: "519833B",
                 USERNAME: "JOHN SMITH",
                 SECURITYPROFILE: "PETER M. FEENEY",
                 EMAIL: "ADMIN@FEENEY.COM",
@@ -44,9 +41,9 @@ const MultipleSelectionExample = () => {
     const [columns, setColumns] = useState([
         {
             title: "User Id",
-            field: "USERID",
+            field: "id",
             type: "string",
-            render: rowData => (<MainTableCell>{rowData.USERID}</MainTableCell>),
+            render: rowData => (<MainTableCell>{rowData.id}</MainTableCell>),
         },
         {
             title: "User Name",
