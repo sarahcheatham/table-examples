@@ -1,18 +1,13 @@
+const Markdown = `
 import { useState } from "react";
 import MaterialTable from "@material-table/core";
 import { ThemeProvider, useTheme } from "@mui/material/styles";
 import { tableTheme } from "@aeros-ui/themes"; 
 import { MainTableCell, TableToolbar } from "@aeros-ui/tables";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";  
-import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import CodeContainer from "../../../components/CodeContainer";
-import Markdown from "./Markdown";
 
 const ExportExample = () => {
     const theme = useTheme();
-    const [showCode, setShowCode] = useState(false);
     const [data, setData] = useState([
         {
             id: 0,
@@ -167,56 +162,38 @@ const ExportExample = () => {
         },
     ]);
 
-    const handleToggleCode = () => {
-        setShowCode(!showCode)
-    };
-
     return (
         <ThemeProvider theme={tableTheme}>
-            {process.env.NODE_ENV !== "production" ? (
-                <Grid container sx={{ m: "1em" }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null}
-            <CodeContainer
-                title="ExportExample.js"
-                codeString={Markdown}
-                showCode={showCode}
-                handleToggleCode={() => handleToggleCode()}
-            />
-            {!showCode && (
-                <div style={{ margin: "1em" }}>
-                    <MaterialTable
-                        title="Export Example"
-                        columns={columns}
-                        data={data}
-                        options={{
-                            exportAllData: true,
-                            exportMenu: [{
-                                label: "Export PDF",
-                                exportFunc: (cols, datas) => ExportPdf(cols, datas, "Export Example")
-                            }, {
-                                label: "Export CSV",
-                                exportFunc: (cols, datas) => ExportCsv(cols, datas, "Export Example")
-                            }],
-                            headerStyle: { backgroundColor: theme.palette.grid.main.header },
-                            padding: "dense",
-                            search: false,
-                        }}
-                        components={{
-                            Toolbar: props => (
-                                <TableToolbar
-                                    {...props}
-                                />
-                            )
-                        }}
-                    />
-                </div>
-            )}
+            <div style={{ margin: "1em" }}>
+                <MaterialTable
+                    title="Export Example"
+                    columns={columns}
+                    data={data}
+                    options={{
+                        exportAllData: true,
+                        exportMenu: [{
+                            label: "Export PDF",
+                            exportFunc: (cols, datas) => ExportPdf(cols, datas, "Export Example")
+                        }, {
+                            label: "Export CSV",
+                            exportFunc: (cols, datas) => ExportCsv(cols, datas, "Export Example")
+                        }],
+                        headerStyle: { backgroundColor: theme.palette.grid.main.header },
+                        padding: "dense",
+                        search: false,
+                    }}
+                    components={{
+                        Toolbar: props => (
+                            <TableToolbar
+                                {...props}
+                            />
+                        )
+                    }}
+                />
+            </div>
         </ThemeProvider>
     )
 }
 
-export default ExportExample;
+export default ExportExample;`;
+export default Markdown;
