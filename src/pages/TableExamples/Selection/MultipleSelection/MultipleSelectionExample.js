@@ -7,7 +7,7 @@ import { MainTableCell } from '@aeros-ui/tables';
 import { ThemeProvider, useTheme } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes';  
 import { TableIcons } from '@aeros-ui/icons';
-import CodeContainer from "../../../components/CodeContainer";
+import CodeContainer from "../../../../components/CodeContainer";
 import Markdown from './Markdown';
 
 const MultipleSelectionExample = () => {

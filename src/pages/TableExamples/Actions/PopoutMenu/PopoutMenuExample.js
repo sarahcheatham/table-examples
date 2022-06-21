@@ -16,7 +16,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import IconButton from '@mui/material/IconButton';
 import Chip from '@mui/material/Chip';
 import { Edit, AttachFile, Print, DeleteForever, Info, MoreVert } from "@mui/icons-material";
-import CodeContainer from "../../../components/CodeContainer";
+import CodeContainer from "../../../../components/CodeContainer";
 import Markdown from './Markdown';
 
 const popoverList = [
@@ -38,7 +38,7 @@ const popoverList = [
     }
 ]
 
-const ActionsExample = () => {
+const PopoutMenuExample = () => {
     const theme = useTheme()
     const [showCode, setShowCode] = useState(false);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -227,4 +227,4 @@ const ActionsExample = () => {
     )
 }
 
-export default ActionsExample;
+export default PopoutMenuExample;

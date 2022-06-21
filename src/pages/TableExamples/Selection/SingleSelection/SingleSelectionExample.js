@@ -7,7 +7,7 @@ import MaterialTable from '@material-table/core';
 import { MainTableCell } from '@aeros-ui/tables';
 import { ThemeProvider, useTheme } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes'; 
-import CodeContainer from "../../../components/CodeContainer";
+import CodeContainer from "../../../../components/CodeContainer";
 import Markdown from './Markdown';
 
 const SingleSelectionExample = () => {
