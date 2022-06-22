@@ -1,12 +1,12 @@
 const Markdown = `
-import { useState } from 'react';
-import MaterialTable from '@material-table/core';
-import { ThemeProvider, useTheme } from '@mui/material/styles';
-import { tableTheme } from '@aeros-ui/themes'; 
+import { useState } from "react";
+import MaterialTable from "@material-table/core";
+import { ThemeProvider, useTheme } from "@mui/material/styles";
+import { tableTheme } from "@aeros-ui/themes"; 
 import { MainTableCell } from "@aeros-ui/tables";
 
 const SearchExample = () => {
-    const theme = useTheme()
+    const theme = useTheme();
     const [data, setData] = useState([
         {
             BATCH: {
@@ -60,102 +60,102 @@ const SearchExample = () => {
             title: "Batch",
             field: "BATCH",
             type: "numeric",
+            align: "left",
+            headerStyle: { textAlign: "left" },
+            width: "125px",
             render: rowData => (<MainTableCell>{rowData.BATCH.BATCHNO}</MainTableCell>),
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.BATCHNO.toString().includes(term)
             },
-            align: "left",
-            headerStyle: { textAlign: "left" },
-            width: '125px'
         },
         {
             title: "Create Date",
             field: "HISTORY",
             type: "date",
+            headerStyle: { textAlign: "center" },
+            width: "125px",
             render: rowData => (<MainTableCell>{rowData.HISTORY.CREATEDATE}</MainTableCell>),
             customFilterAndSearch: (term, rowData) => {
-                return rowData.HISTORY.CREATEDATE.includes(term)
+                return rowData.HISTORY.CREATEDATE.includes(term.toUpperCase())
             },
-            headerStyle: { textAlign: 'center'},
-            width: '125px',
         },
         {
             title: "Items",
             field: "BATCH",
             type: "numeric",
+            width: "90px",
             render: rowData => (<MainTableCell>{rowData.BATCH.ITEMCOUNT}</MainTableCell>),
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.ITEMCOUNT.toString().includes(term)
             },
-            width: '90px'
         },
         {
             title: "Premium",
             field: "BATCH",
             type: "currency",
+            width: "150px",
             render: rowData => (<MainTableCell>{rowData.BATCH.PREMIUM}</MainTableCell>),
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.PREMIUM.includes(term)
             },
-            width: '150px'
         },
         {
             title: "Contact",
             field: "BATCH",
             type: "string",
+            width: "215px",
             render: rowData => (<MainTableCell>{rowData.BATCH.CONTACT}</MainTableCell>),
             customFilterAndSearch: (term, rowData) => {
-                return rowData.BATCH.CONTACT.includes(term)
+                return rowData.BATCH.CONTACT.includes(term.toUpperCase())
             },
-            width: '215px',
         },
         {
             title: "Reference",
             field: "BATCH",
             type: "string",
+            width: "150px",
             render: rowData => (<MainTableCell>{rowData.BATCH.REFERENCE}</MainTableCell>),
             customFilterAndSearch: (term, rowData) => {
-                return rowData.BATCH.REFERENCE.includes(term)
+                return rowData.BATCH.REFERENCE.includes(term.toUpperCase())
             },
-            width: '150px'
         },
         {
             title: "Submit Date",
             field: "HISTORY",
             type: "date",
+            headerStyle: { textAlign: "center"},
+            width: "125px",
             render: rowData => (<MainTableCell>{rowData.HISTORY.SUBMITDATE}</MainTableCell>),
             customFilterAndSearch: (term, rowData) => {
-                return rowData.HISTORY.SUBMITDATE !== null && rowData.HISTORY.SUBMITDATE.includes(term)
+                return rowData.HISTORY.SUBMITDATE !== null && rowData.HISTORY.SUBMITDATE.includes(term.toUpperCase())
             },
-            headerStyle: { textAlign: 'center'},
-            width: '125px'
         },
         {
             title: "Return Date",
             field: "HISTORY",
             type: "date",
+            headerStyle: { textAlign: "center"},
+            width: "125px",
             render: rowData => (<MainTableCell>{rowData.HISTORY.RETURNDATE}</MainTableCell>),
             customFilterAndSearch: (term, rowData) => {
-                return rowData.HISTORY.RETURNDATE !== null && rowData.HISTORY.RETURNDATE.includes(term)
+                return rowData.HISTORY.RETURNDATE !== null && rowData.HISTORY.RETURNDATE.includes(term.toUpperCase())
             },
-            headerStyle: { textAlign: 'center'},
-            width: '125px'
         },
         {
             title: "Status",
             field: "BATCH",
             type: "string",
+            width: "200px",
             render: rowData => (<MainTableCell>{rowData.BATCH.STATUS}</MainTableCell>),
             customFilterAndSearch: (term, rowData) => {
-                return rowData.BATCH.STATUS.includes(term)
+                return rowData.BATCH.STATUS.includes(term.toUpperCase())
             },
-            width: '200px'
         },
     ]);
 
     return (
         <ThemeProvider theme={tableTheme}>
-            <div style={{ margin: '1em' }}>
+            <div style={{ margin: "1em" }}>
                 <MaterialTable
                     title="Batch Listing"
                     columns={columns}

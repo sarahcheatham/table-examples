@@ -1,19 +1,16 @@
+const Markdown = `
 import { useState } from "react";
 import MaterialTable from "@material-table/core";
 import { ThemeProvider, useTheme } from "@mui/material/styles";
 import { tableTheme } from "@aeros-ui/themes"; 
-import { MainTableCell } from "@aeros-ui/tables";
-import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import CodeContainer from "../../../components/CodeContainer";
-import Markdown from "./Markdown";
+import { MainTableCell, TableToolbar } from "@aeros-ui/tables";
+import { ExportCsv, ExportPdf } from "@material-table/exporters";  
 
-const SearchExample = () => {
+const ExportExample = () => {
     const theme = useTheme();
-    const [showCode, setShowCode] = useState(false);
     const [data, setData] = useState([
         {
+            id: 0,
             BATCH: {
                 BATCHNO: 2252733,
                 CONTACT: "PETER M. FEENEY",
@@ -29,6 +26,7 @@ const SearchExample = () => {
             },
         },
         {
+            id: 1,
             BATCH: {
                 BATCHNO: 2252675,
                 CONTACT: "PETER M. FEENEY",
@@ -44,6 +42,7 @@ const SearchExample = () => {
             },
         },
         {
+            id: 2,
             BATCH: {
                 BATCHNO: 2252364,
                 CONTACT: "CAROL KING",
@@ -62,6 +61,11 @@ const SearchExample = () => {
 
     const [columns, setColumns] = useState([
         {
+            title: "id",
+            field: "id",
+            hidden: true,
+        },
+        {
             title: "Batch",
             field: "BATCH",
             type: "numeric",
@@ -69,9 +73,9 @@ const SearchExample = () => {
             headerStyle: { textAlign: "left" },
             width: "125px",
             render: rowData => (<MainTableCell>{rowData.BATCH.BATCHNO}</MainTableCell>),
-            customFilterAndSearch: (term, rowData) => {
-                return rowData.BATCH.BATCHNO.toString().includes(term)
-            },
+            exportTransformer: rowData => {
+                return rowData.BATCH.BATCHNO
+            }
         },
         {
             title: "Create Date",
@@ -80,19 +84,19 @@ const SearchExample = () => {
             headerStyle: { textAlign: "center" },
             width: "125px",
             render: rowData => (<MainTableCell>{rowData.HISTORY.CREATEDATE}</MainTableCell>),
-            customFilterAndSearch: (term, rowData) => {
-                return rowData.HISTORY.CREATEDATE.includes(term.toUpperCase())
-            },
+            exportTransformer: rowData => {
+                return rowData.HISTORY.CREATEDATE
+            }
         },
         {
             title: "Items",
             field: "BATCH",
             type: "numeric",
-            width: "90px",
+            width: "90px", 
             render: rowData => (<MainTableCell>{rowData.BATCH.ITEMCOUNT}</MainTableCell>),
-            customFilterAndSearch: (term, rowData) => {
-                return rowData.BATCH.ITEMCOUNT.toString().includes(term)
-            },
+            exportTransformer: rowData => {
+                return rowData.BATCH.ITEMCOUNT
+            }
         },
         {
             title: "Premium",
@@ -100,9 +104,9 @@ const SearchExample = () => {
             type: "currency",
             width: "150px",
             render: rowData => (<MainTableCell>{rowData.BATCH.PREMIUM}</MainTableCell>),
-            customFilterAndSearch: (term, rowData) => {
-                return rowData.BATCH.PREMIUM.includes(term)
-            },
+            exportTransformer: rowData => {
+                return rowData.BATCH.PREMIUM
+            }
         },
         {
             title: "Contact",
@@ -110,9 +114,9 @@ const SearchExample = () => {
             type: "string",
             width: "215px",
             render: rowData => (<MainTableCell>{rowData.BATCH.CONTACT}</MainTableCell>),
-            customFilterAndSearch: (term, rowData) => {
-                return rowData.BATCH.CONTACT.includes(term.toUpperCase())
-            },
+            exportTransformer: rowData => {
+                return rowData.BATCH.CONTACT
+            }
         },
         {
             title: "Reference",
@@ -120,31 +124,31 @@ const SearchExample = () => {
             type: "string",
             width: "150px",
             render: rowData => (<MainTableCell>{rowData.BATCH.REFERENCE}</MainTableCell>),
-            customFilterAndSearch: (term, rowData) => {
-                return rowData.BATCH.REFERENCE.includes(term.toUpperCase())
-            },
+            exportTransformer: rowData => {
+                return rowData.BATCH.REFERENCE
+            }
         },
         {
             title: "Submit Date",
             field: "HISTORY",
             type: "date",
-            headerStyle: { textAlign: "center"},
+            headerStyle: { textAlign: "center" },
             width: "125px",
             render: rowData => (<MainTableCell>{rowData.HISTORY.SUBMITDATE}</MainTableCell>),
-            customFilterAndSearch: (term, rowData) => {
-                return rowData.HISTORY.SUBMITDATE !== null && rowData.HISTORY.SUBMITDATE.includes(term.toUpperCase())
-            },
+            exportTransformer: rowData => {
+                return rowData.HISTORY.SUBMITDATE
+            }
         },
         {
             title: "Return Date",
             field: "HISTORY",
             type: "date",
-            headerStyle: { textAlign: "center"},
+            headerStyle: { textAlign: "center" },
             width: "125px",
             render: rowData => (<MainTableCell>{rowData.HISTORY.RETURNDATE}</MainTableCell>),
-            customFilterAndSearch: (term, rowData) => {
-                return rowData.HISTORY.RETURNDATE !== null && rowData.HISTORY.RETURNDATE.includes(term.toUpperCase())
-            },
+            exportTransformer: rowData => {
+                return rowData.HISTORY.RETURNDATE
+            }
         },
         {
             title: "Status",
@@ -152,50 +156,44 @@ const SearchExample = () => {
             type: "string",
             width: "200px",
             render: rowData => (<MainTableCell>{rowData.BATCH.STATUS}</MainTableCell>),
-            customFilterAndSearch: (term, rowData) => {
-                return rowData.BATCH.STATUS.includes(term.toUpperCase())
-            },
+            exportTransformer: rowData => {
+                return rowData.BATCH.STATUS
+            }
         },
     ]);
 
-    const handleToggleCode = () => {
-        setShowCode(!showCode)
-    };
-
     return (
         <ThemeProvider theme={tableTheme}>
-            {process.env.NODE_ENV !== "production" ? (
-                <Grid container sx={{ m: "1em" }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null}
-            <CodeContainer
-                title="SearchExample.js"
-                codeString={Markdown}
-                showCode={showCode}
-                handleToggleCode={() => handleToggleCode()}
-            />
-            {!showCode && (
-                <div style={{ margin: "1em" }}>
-                    <MaterialTable
-                        title="Batch Listing"
-                        columns={columns}
-                        data={data}
-                        options={{
-                            headerStyle: { backgroundColor: theme.palette.grid.main.header },
-                            filtering: false,
-                            filterCellStyle: { padding: "0.5em" },
-                            padding: "dense",
-                            search: true,
-                            searchFieldStyle: { marginRight: "1em" }
-                        }}
-                    />
-                </div>
-            )}
+            <div style={{ margin: "1em" }}>
+                <MaterialTable
+                    title="Export Example"
+                    columns={columns}
+                    data={data}
+                    options={{
+                        exportAllData: true,
+                        exportMenu: [{
+                            label: "Export PDF",
+                            exportFunc: (cols, datas) => ExportPdf(cols, datas, "Export Example")
+                        }, {
+                            label: "Export CSV",
+                            exportFunc: (cols, datas) => ExportCsv(cols, datas, "Export Example")
+                        }],
+                        headerStyle: { backgroundColor: theme.palette.grid.main.header },
+                        padding: "dense",
+                        search: false,
+                    }}
+                    components={{
+                        Toolbar: props => (
+                            <TableToolbar
+                                {...props}
+                            />
+                        )
+                    }}
+                />
+            </div>
         </ThemeProvider>
     )
 }
 
-export default SearchExample;
+export default ExportExample;`;
+export default Markdown;

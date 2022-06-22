@@ -8,17 +8,16 @@ import ViewHeadline from '@mui/icons-material/ViewHeadline';
 import PropTypes from 'prop-types';
 
 const TableToolbar = props => {
-    console.log("PROPS:", props)
     return (
         <Grid container alignItems="center">
-            {props.tableTitle ? (
+            {props.title !== null ? (
                 <Grid item container xs={4} sx={{ pl: '0.5em'}}>
-                    <Typography variant="h6">{props.tableTitle}</Typography>
+                    <Typography variant="h6">{props.title}</Typography>
                 </Grid>
             ) : null}
-            <Grid item container xs={props.tableTitle ? 8 : 12} justifyContent="flex-end" alignItems="center" sx={{ pr: '0.5em' }}>
+            <Grid item container xs={props.title ? 8 : 12} justifyContent="flex-end" alignItems="center" sx={{ pr: '0.5em' }}>
                 <Grid item>
-                    <MTableToolbar {...props} disableGutters style={{ paddingRight: 0, paddingLeft: 0}}/>
+                    <MTableToolbar {...props} disableGutters style={{ paddingRight: 0, paddingLeft: 0}} showTitle={false}/>
                 </Grid>
                 {props.onFilterClick ? (
                      <Grid item>
@@ -51,7 +50,6 @@ TableToolbar.propTypes = {
     onFilterClick: PropTypes.func,
     onDensityClick: PropTypes.func,
     showFilters: PropTypes.bool,
-    tableTitle: PropTypes.string,
 }
 
 export default TableToolbar;

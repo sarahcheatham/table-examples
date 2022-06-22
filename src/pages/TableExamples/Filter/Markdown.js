@@ -1,17 +1,13 @@
+const Markdown = `
 import { useState } from "react";
 import MaterialTable from "@material-table/core";
 import { ThemeProvider, useTheme } from "@mui/material/styles";
 import { tableTheme } from "@aeros-ui/themes"; 
-import { MainTableCell } from "@aeros-ui/tables";
-import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
-import CodeContainer from "../../../components/CodeContainer";
-import Markdown from "./Markdown";
+import { MainTableCell, TableToolbar, TableFilterInput } from "@aeros-ui/tables";
 
-const SearchExample = () => {
+const FilterExample = () => {
     const theme = useTheme();
-    const [showCode, setShowCode] = useState(false);
+    const [showFilters, setFiltering] = useState(false);
     const [data, setData] = useState([
         {
             BATCH: {
@@ -72,6 +68,9 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.BATCHNO.toString().includes(term)
             },
+            filterComponent: ({ columnDef, onFilterChanged }) => (
+                <TableFilterInput onChange={(e) => onFilterChanged(columnDef.tableData.id, e.target.value)}/>
+            ),
         },
         {
             title: "Create Date",
@@ -83,16 +82,22 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.HISTORY.CREATEDATE.includes(term.toUpperCase())
             },
+            filterComponent: ({ columnDef, onFilterChanged }) => (
+                <TableFilterInput onChange={(e) => onFilterChanged(columnDef.tableData.id, e.target.value)}/>
+            ),
         },
         {
             title: "Items",
             field: "BATCH",
             type: "numeric",
-            width: "90px",
+            width: "90px", 
             render: rowData => (<MainTableCell>{rowData.BATCH.ITEMCOUNT}</MainTableCell>),
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.ITEMCOUNT.toString().includes(term)
             },
+            filterComponent: ({ columnDef, onFilterChanged }) => (
+                <TableFilterInput onChange={(e) => onFilterChanged(columnDef.tableData.id, e.target.value)}/>
+            ),
         },
         {
             title: "Premium",
@@ -103,6 +108,9 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.PREMIUM.includes(term)
             },
+            filterComponent: ({ columnDef, onFilterChanged }) => (
+                <TableFilterInput onChange={(e) => onFilterChanged(columnDef.tableData.id, e.target.value)}/>
+            ),
         },
         {
             title: "Contact",
@@ -113,6 +121,9 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.CONTACT.includes(term.toUpperCase())
             },
+            filterComponent: ({ columnDef, onFilterChanged }) => (
+                <TableFilterInput onChange={(e) => onFilterChanged(columnDef.tableData.id, e.target.value)}/>
+            ),
         },
         {
             title: "Reference",
@@ -123,28 +134,37 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.REFERENCE.includes(term.toUpperCase())
             },
+            filterComponent: ({ columnDef, onFilterChanged }) => (
+                <TableFilterInput onChange={(e) => onFilterChanged(columnDef.tableData.id, e.target.value)}/>
+            ),
         },
         {
             title: "Submit Date",
             field: "HISTORY",
             type: "date",
-            headerStyle: { textAlign: "center"},
+            headerStyle: { textAlign: "center" },
             width: "125px",
             render: rowData => (<MainTableCell>{rowData.HISTORY.SUBMITDATE}</MainTableCell>),
             customFilterAndSearch: (term, rowData) => {
                 return rowData.HISTORY.SUBMITDATE !== null && rowData.HISTORY.SUBMITDATE.includes(term.toUpperCase())
             },
+            filterComponent: ({ columnDef, onFilterChanged }) => (
+                <TableFilterInput onChange={(e) => onFilterChanged(columnDef.tableData.id, e.target.value)}/>
+            ),
         },
         {
             title: "Return Date",
             field: "HISTORY",
             type: "date",
-            headerStyle: { textAlign: "center"},
+            headerStyle: { textAlign: "center" },
             width: "125px",
             render: rowData => (<MainTableCell>{rowData.HISTORY.RETURNDATE}</MainTableCell>),
             customFilterAndSearch: (term, rowData) => {
                 return rowData.HISTORY.RETURNDATE !== null && rowData.HISTORY.RETURNDATE.includes(term.toUpperCase())
             },
+            filterComponent: ({ columnDef, onFilterChanged }) => (
+                <TableFilterInput onChange={(e) => onFilterChanged(columnDef.tableData.id, e.target.value)}/>
+            ),
         },
         {
             title: "Status",
@@ -155,47 +175,41 @@ const SearchExample = () => {
             customFilterAndSearch: (term, rowData) => {
                 return rowData.BATCH.STATUS.includes(term.toUpperCase())
             },
+            filterComponent: ({ columnDef, onFilterChanged }) => (
+                <TableFilterInput onChange={(e) => onFilterChanged(columnDef.tableData.id, e.target.value)}/>
+            ),
         },
     ]);
 
-    const handleToggleCode = () => {
-        setShowCode(!showCode)
-    };
-
     return (
         <ThemeProvider theme={tableTheme}>
-            {process.env.NODE_ENV !== "production" ? (
-                <Grid container sx={{ m: "1em" }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null}
-            <CodeContainer
-                title="SearchExample.js"
-                codeString={Markdown}
-                showCode={showCode}
-                handleToggleCode={() => handleToggleCode()}
-            />
-            {!showCode && (
-                <div style={{ margin: "1em" }}>
-                    <MaterialTable
-                        title="Batch Listing"
-                        columns={columns}
-                        data={data}
-                        options={{
-                            headerStyle: { backgroundColor: theme.palette.grid.main.header },
-                            filtering: false,
-                            filterCellStyle: { padding: "0.5em" },
-                            padding: "dense",
-                            search: true,
-                            searchFieldStyle: { marginRight: "1em" }
-                        }}
-                    />
-                </div>
-            )}
+            <div style={{ margin: "1em" }}>
+                <MaterialTable
+                    title="Filtering Example"
+                    columns={columns}
+                    data={data}
+                    options={{
+                        headerStyle: { backgroundColor: theme.palette.grid.main.header },
+                        filtering: showFilters,
+                        filterCellStyle: { padding: "0.5em" },
+                        padding: "dense",
+                        search: false,
+                    }}
+                    components={{
+                        Toolbar: props => (
+                            <TableToolbar
+                                {...props}
+                                showFilters={showFilters}
+                                onFilterClick={() => setFiltering(!showFilters)}
+                            />
+                        )
+                    }}
+                />
+            </div>
         </ThemeProvider>
     )
 }
 
-export default SearchExample;
+export default FilterExample;`
+
+export default Markdown;

@@ -241,13 +241,13 @@ const NestedTableExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            {/* {process.env.NODE_ENV !== "production" ? (
+            {process.env.NODE_ENV !== "production" ? (
                 <Grid container sx={{ m: "1em" }}>
                     <Grid item>
                         <Button component={Link} to="/table-examples">Back to Home</Button>
                     </Grid>
                 </Grid>
-            ): null} */}
+            ): null}
              <CodeContainer
                 title="NestedTableExample.js"
                 codeString={Markdown}
