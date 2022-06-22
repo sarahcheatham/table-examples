@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@aeros-ui/components@^0.1.19":
-  version "0.1.20"
-  resolved "https://registry.yarnpkg.com/@aeros-ui/components/-/components-0.1.20.tgz#48e2badab5c03c0436654206db76c6a77d400180"
-  integrity sha512-/OeHBo9rz3CADmrJ58I/lVOA1fz39c7NlNagqU+Y/Zh2/pCuYMwvA8lR9AfwSkbV++zUN3OdBO9n9OxkM2HUiA==
+"@aeros-ui/components@^0.1.21":
+  version "0.1.21"
+  resolved "https://registry.yarnpkg.com/@aeros-ui/components/-/components-0.1.21.tgz#8d342e28d8e07c3e3476156502a7026ecc07a315"
+  integrity sha512-y0ppSi9Lq5uTqdsYJ3mawDnHejw6K/CZPJ4x24wwKZ9MR1w/555Mm62lA4WQmp42G56sKVLbwuIAAeMYtIDMfA==
   dependencies:
     "@babel/polyfill" "^7.12.1"
     autonumeric "^4.6.0"

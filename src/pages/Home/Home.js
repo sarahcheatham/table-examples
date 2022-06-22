@@ -43,6 +43,13 @@ function Home() {
                         <ListItemButton
                             sx={{ pl: 4 }}
                             component={Link}
+                            to="actions/add-row"
+                        >
+                            <ListItemText primary="Add Row"/>
+                        </ListItemButton>
+                        <ListItemButton
+                            sx={{ pl: 4 }}
+                            component={Link}
                             to="actions/popout-menu"
                         >
                             <ListItemText primary="Popout Menu"/>
