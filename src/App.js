@@ -1,5 +1,6 @@
 import PopoutMenuExample from "./pages/TableExamples/Actions/PopoutMenu/PopoutMenuExample";
 import AddRowExample from "./pages/TableExamples/Actions/AddRow/AddRowExample";
+import DeleteRowExample from "./pages/TableExamples/Actions/DeleteRow/DeleteRowExample";
 import DetailsPanelExample from './pages/TableExamples/DetailsPanel/DetailsPanelExample';
 import EditExample from "./pages/TableExamples/Edit/EditExample";
 import ExportExample from "./pages/TableExamples/Export/ExportExample";
@@ -37,6 +38,10 @@ function App() {
             <Route
               path="add-row"
               element={<AddRowExample/>}
+            />
+            <Route
+              path="delete-row"
+              element={<DeleteRowExample/>}
             />
             <Route
               path="popout-menu"
