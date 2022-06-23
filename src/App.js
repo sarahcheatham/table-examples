@@ -1,6 +1,6 @@
-import PopoutMenuExample from "./pages/TableExamples/Actions/PopoutMenu/PopoutMenuExample";
 import AddRowExample from "./pages/TableExamples/Actions/AddRow/AddRowExample";
 import DeleteRowExample from "./pages/TableExamples/Actions/DeleteRow/DeleteRowExample";
+import PopoutMenuExample from "./pages/TableExamples/Actions/PopoutMenu/PopoutMenuExample";
 import BasicPanelExample from './pages/TableExamples/DetailsPanel/BasicPanel/BasicPanelExample';
 import EditExample from "./pages/TableExamples/Edit/EditExample";
 import ExportExample from "./pages/TableExamples/Export/ExportExample";
@@ -11,15 +11,12 @@ import MultipleSelectionExample from "./pages/TableExamples/Selection/MultipleSe
 import SingleSelectionExample from "./pages/TableExamples/Selection/SingleSelection/SingleSelectionExample";
 import SortExample from './pages/TableExamples/Sort/SortExample';
 import BasicToolbarExample from "./pages/TableExamples/Toolbar/BasicToolbar/BasicToolbarExample";
+import CustomToolbarExample from './pages/TableExamples/Toolbar/CustomToolbar/CustomToolbarExample';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '@aeros-ui/themes';
 import { Routes, Route } from 'react-router-dom';
 import Examples from './Examples';
-import Actions from './pages/TableExamples/Actions/Actions';
-import Selection from './pages/TableExamples/Selection/Selection';
-import Toolbar from './pages/TableExamples/Toolbar/Toolbar';
-import DetailsPanel from "./pages/TableExamples/DetailsPanel/DetailsPanel";
-import CustomToolbarExample from './pages/TableExamples/Toolbar/CustomToolbar/CustomToolbarExample';
+import TableOutlet from "./components/TableOutlet";
 
 
 function App() {
@@ -29,7 +26,7 @@ function App() {
         <Route path="/table-examples" element={<Examples/>}>
             <Route
               path="actions"
-              element={<Actions/>}
+              element={<TableOutlet/>}
             >
               <Route
                 path="add-row"
@@ -46,7 +43,7 @@ function App() {
             </Route>
             <Route
               path="details-panel"
-              element={<DetailsPanel/>}
+              element={<TableOutlet/>}
             >
               <Route
                 path="basic-panel"
@@ -75,7 +72,7 @@ function App() {
             />
             <Route
               path="selection"
-              element={<Selection/>}
+              element={<TableOutlet/>}
             >
               <Route
                 path="multiple-selection"
@@ -92,7 +89,7 @@ function App() {
             />
             <Route
               path="toolbar"
-              element={<Toolbar/>}
+              element={<TableOutlet/>}
             >
               <Route
                 path="basic-toolbar"
