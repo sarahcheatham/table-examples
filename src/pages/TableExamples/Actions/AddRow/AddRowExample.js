@@ -82,13 +82,6 @@ const AddRowExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-             {process.env.NODE_ENV !== 'production' ? (
-                <Grid container sx={{ m: '1em' }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null}
             <CodeContainer
                 title="AddRowExample.js"
                 codeString={Markdown}
@@ -96,44 +89,44 @@ const AddRowExample = () => {
                 handleToggleCode={() => handleToggleCode()}
             />
             {!showCode && (
-                <Paper sx={{ margin: '1em' }} elevation={4}>
-                <MaterialTable
-                    title="Add Row Example"
-                    columns={columns}
-                    data={data}
-                    icons={TableIcons}
-                    actions={[
-                        {
-                            icon: TableIcons.Add,
-                            tooltip: 'add row',
-                            isFreeAction: true,
-                            onClick: (event) => {
-                                const newRow = {
-                                    id: "uuid-" + Math.random() * 100000,
-                                    CODEDESCRIPTION: "",
-                                    USEXPOSURE: undefined,
-                                    TOTALEXPOSURE: undefined,
-                                    RATIO: undefined,
-                                    TOTALGROSS: undefined,
-                                    TONYTAX: undefined,
+                <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
+                    <MaterialTable
+                        title="Add Row Example"
+                        columns={columns}
+                        data={data}
+                        icons={TableIcons}
+                        actions={[
+                            {
+                                icon: TableIcons.Add,
+                                tooltip: 'add row',
+                                isFreeAction: true,
+                                onClick: (event) => {
+                                    const newRow = {
+                                        id: "uuid-" + Math.random() * 100000,
+                                        CODEDESCRIPTION: "",
+                                        USEXPOSURE: undefined,
+                                        TOTALEXPOSURE: undefined,
+                                        RATIO: undefined,
+                                        TOTALGROSS: undefined,
+                                        TONYTAX: undefined,
+                                    }
+                                    setData([...data, newRow])
                                 }
-                                setData([...data, newRow])
-                            }
-                        },
-                    ]}
-                    options={{
-                        headerStyle: { backgroundColor: theme.palette.grid.main.header, color: theme.palette.primary.contrastText },
-                        search: false,
-                        paging: false,
-                    }}
-                    components={{
-                        Container: props => {
-                            return (
-                                <Paper elevation={0} {...props}/>
-                            )
-                        },
-                    }}
-                /> 
+                            },
+                        ]}
+                        options={{
+                            headerStyle: { backgroundColor: theme.palette.grid.main.header, color: theme.palette.primary.contrastText },
+                            search: false,
+                            paging: false,
+                        }}
+                        components={{
+                            Container: props => {
+                                return (
+                                    <Paper elevation={0} {...props}/>
+                                )
+                            },
+                        }}
+                    /> 
                 </Paper>
             )}
         </ThemeProvider>

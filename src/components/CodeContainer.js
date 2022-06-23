@@ -53,7 +53,7 @@ const CodeContainer = props => {
         <div 
           style={{ 
             paddingTop: '1em',
-            paddingLeft: '1em',
+            paddingRight: '1em',
             // padding: '0.5em 1em', 
             marginBottom: props.showCode ? '2em' : 0,
             width: window.innerWidth - 250

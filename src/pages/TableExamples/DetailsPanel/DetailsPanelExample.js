@@ -145,7 +145,7 @@ const DetailsPanelExample = () => {
                 handleToggleCode={() => handleToggleCode()}
             />
             {!showCode && (
-                <Paper sx={{ margin: '1em', width: '100%' }} elevation={4}>
+                <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
                     <MaterialTable
                         title={
                             <>

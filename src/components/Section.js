@@ -9,7 +9,6 @@ const useStyles = makeStyles(theme => ({
         marginLeft: 225,
         paddingTop: theme.spacing(0),
         paddingBottom: theme.spacing(1),
-        // backgroundColor: theme.palette.background.paper,
         height: '100%',
         [theme.breakpoints.down('xl')]: {
             marginLeft: 200,
@@ -25,7 +24,6 @@ const useStyles = makeStyles(theme => ({
         marginLeft: 225,
         paddingTop: theme.spacing(0),
         paddingBottom: theme.spacing(1),
-        // backgroundColor: theme.palette.background.paper,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,

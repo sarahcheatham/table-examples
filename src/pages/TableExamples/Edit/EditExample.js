@@ -5,8 +5,6 @@ import { TableIcons } from '@aeros-ui/icons';
 import { CurrencyInput, TextInput, PercentageInput } from '@aeros-ui/components';
 import { Grid, Paper, Typography} from '@mui/material';
 import { ThemeProvider, useTheme } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import { Link } from 'react-router-dom';
 import CodeContainer from "../../../components/CodeContainer";
 import Markdown from './Markdown';
 
@@ -91,13 +89,6 @@ const EditExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-             {/* {process.env.NODE_ENV !== 'production' ? (
-                <Grid container sx={{ m: '1em' }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null} */}
             <CodeContainer
                 title="EditExample.js"
                 codeString={Markdown}
@@ -105,7 +96,7 @@ const EditExample = () => {
                 handleToggleCode={() => handleToggleCode()}
             />
             {!showCode && (
-                <Paper sx={{ margin: '1em', width: '100%' }} elevation={4}>
+                <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
                     <MaterialTable
                         title="Edit Example"
                         columns={columns}
