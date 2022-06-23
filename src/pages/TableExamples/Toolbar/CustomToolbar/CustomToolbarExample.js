@@ -14,7 +14,6 @@ import Markdown from './Markdown';
 const CustomToolbarExample = () => {
     const theme = useTheme()
     const [showCode, setShowCode] = useState(false);
-    const [selectedRow, setSelectedRow] = useState(null)
     const [data, setData] = useState(
         [
             {
@@ -48,9 +47,6 @@ const CustomToolbarExample = () => {
             type: 'numeric',
             render: rowData => (<MainTableCell>{rowData.SEQUENCENO}</MainTableCell>),
             width: '8%',
-            // cellStyle: {
-            //     minWidth: '100px'
-            // }
         },
         {
             title: "Items",

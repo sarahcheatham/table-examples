@@ -1,11 +1,11 @@
 const Markdown = `
-import { useState } from "react";
-import MaterialTable, { MTableToolbar } from "@material-table/core"; 
-import { TableContainer, Table, TableBody, Typography, Grid } from "@mui/material";  
-import { ThemeProvider, useTheme } from "@mui/material/styles";
-import { tableTheme } from "@aeros-ui/themes"; 
-import { NestedTableHeader, NestedTableRow, MainTableCell, NestedTableCell } from "@aeros-ui/tables"; 
-import { TableIcons } from "@aeros-ui/icons";
+import { useState } from 'react';
+import MaterialTable from "@material-table/core";  
+import { ThemeProvider, useTheme } from '@mui/material/styles';
+import { tableTheme } from '@aeros-ui/themes'; 
+import { NestedTableHeader, NestedTableRow, MainTableCell, NestedTableCell } from '@aeros-ui/tables'; 
+import { TableIcons } from '@aeros-ui/icons';
+import { TableContainer, Table, TableBody, Typography, Paper } from '@mui/material'; 
 
 const DetailsPanelExample = () => {
     const theme = useTheme()
@@ -17,31 +17,30 @@ const DetailsPanelExample = () => {
                 SEQUENCENO: 1,
                 ITEMS: [1],
                 INSTRUCTIONS: "HOPE ALL IS WELL. CAN YOU PLEASE CHANGE THE INSURED NAME ON PART A AFFIDAVIT AND NELP TO READ: 780 REALTY ASSOCIATES, LLC; BDP REALTY ASSOCIATES LLC THANKS, BETH",
-                DETAILS: 'HOPE ALL IS WELL.<BR/>CAN YOU PLEASE CHANGE THE INSURED NAME ON PART A AFFIDAVIT AND NELP TO READ: 780 REALTY ASSOCIATES, LLC; BDP REALTY ASSOCIATES LLC<BR/><BR/>THANKS,<BR/>BETH<BR/><BR/><div style="color:red;">YOU WILL BE ABLE TO "RE-OPEN" THIS PREVIOUSLY SUBMITTED BATCH TO MAKE NECESSARY CHANGES AND CORRECTIONS REQUESTED BY ELANY.</div><BR/>Please review the notes below and take the appropriate actions to successfully make the necessary changes to the item(s) in the batch via the Affidavit site [https://eefs.elany.org/eefs]',
+                DETAILS: 'HOPE ALL IS WELL.<BR/> CAN YOU PLEASE CHANGE THE INSURED NAME ON PART A AFFIDAVIT AND NELP TO READ: 780 REALTY ASSOCIATES, LLC; BDP REALTY ASSOCIATES LLC<BR/><BR/> THANKS,<BR/> BETH<BR/><BR/><div style="color:red;">YOU WILL BE ABLE TO "RE-OPEN" THIS PREVIOUSLY SUBMITTED BATCH TO MAKE NECESSARY CHANGES AND CORRECTIONS REQUESTED BY ELANY.</div>\nPlease review the notes below and take the appropriate actions to successfully make the necessary changes to the item(s) in the batch via the Affidavit site [https://eefs.elany.org/eefs]',
                 RECIPIENT: "JS@BROKER.COM",
                 EXAMINER: "BPFLUGER",
-                DATE: "01/25/2022@15:23:00",
-                REMINDER: "01/26/2022@07:00:00",
+                DATE: '01/25/2022@15:23:00',
+                REMINDER: '01/26/2022@07:00:00',
             },
             {
                 id: 1,
                 SEQUENCENO: 2,
-                ITEMS: [1],
+                ITEMS: [1, 2],
                 INSTRUCTIONS: "PLEASE UPDATE THE COVERAGE CODE FROM 2301 TO 5501",
                 DETAILS: 'PLEASE UPDATE THE COVERAGE CODE FROM 2301 TO 5501<BR/><BR/> THANKS,<BR/> BETH<BR/><BR/><div style="color:red;">YOU WILL BE ABLE TO "RE-OPEN" THIS PREVIOUSLY SUBMITTED BATCH TO MAKE NECESSARY CHANGES AND CORRECTIONS REQUESTED BY ELANY.</div><BR/>Please review the notes below and take the appropriate actions to successfully make the necessary changes to the item(s) in the batch via the Affidavit site [https://eefs.elany.org/eefs]',
                 RECIPIENT: "JS@BROKER.COM",
                 EXAMINER: "BPFLUGER",
-                DATE: "01/28/2022@15:23:00",
-                REMINDER: "01/29/2022@07:00:00",
+                DATE: '01/28/2022@15:23:00',
+                REMINDER: '01/29/2022@07:00:00',
             },
         ]
-    );
-
+    )
     const [columns, setColumns] = useState([
         {
-            title: "Seq No",
+            title: 'Seq No',
             field: "SEQUENCENO",
-            type: "numeric",
+            type: 'numeric',
             render: rowData => (<MainTableCell>{rowData.SEQUENCENO}</MainTableCell>),
             width: '100px',
             cellStyle: {
@@ -53,43 +52,45 @@ const DetailsPanelExample = () => {
             field: "ITEMS",
             type: "numeric",
             render: rowData => rowData.ITEMS.map((item, index) => (<MainTableCell key={\`item-\${index}\`} component="span">{item}{index === rowData.ITEMS.length -1 ? null : ', '}</MainTableCell>)),
-            width: "75px",
+            width: '75px',
         },
         {
             title: "Instructions",
             field: "INSTRUCTIONS",
             type: "string",
             render: rowData => (<MainTableCell noWrap>{rowData.INSTRUCTIONS}</MainTableCell>),
-            width: "350px",
-            cellStyle: { maxWidth: "350px" }
+            width: '350px',
+            cellStyle: {
+                maxWidth: '350px'
+            }
         },
         {
             title: "Recipient",
             field: "RECIPIENT",
             type: "string",
             render: rowData => (<MainTableCell>{rowData.RECIPIENT}</MainTableCell>),
-            width: "240px",
+            width: '240px',
         },
         {
             title: "Examiner",
             field: "EXAMINER",
             type: "string",
             render: rowData => (<MainTableCell>{rowData.EXAMINER}</MainTableCell>),
-            width: "150px",
+            width: '150px',
         },
         {
             title: "Date",
             field: "DATE",
             type: "date",
             render: rowData => (<MainTableCell>{rowData.DATE}</MainTableCell>),
-            width: "150px",
+            width: '150px',
         },
         {
             title: "Reminder",
             field: "REMINDER",
             type: "date",
             render: rowData => (<MainTableCell>{rowData.REMINDER}</MainTableCell>),
-            width: "150px"
+            width: '150px'
         },
     ]);
 
@@ -104,7 +105,7 @@ const DetailsPanelExample = () => {
             setSelectedRow(rowCopy)
             setData(dataCopy)
         }
-    };
+    }
 
     const closeRow = () => {
         const dataCopy = [...data];
@@ -115,9 +116,10 @@ const DetailsPanelExample = () => {
             }
             dataCopy[rowCopy.tableData.id] = rowCopy;
         }
+
         setData(dataCopy)
         setSelectedRow(null)
-    };
+    }
 
     const createDetailMarkup = item => {
         return { __html: item.DETAILS };
@@ -125,14 +127,9 @@ const DetailsPanelExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            <div style={{ margin: "1em" }}>
+            <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
                 <MaterialTable
-                    title={
-                        <>
-                            <Grid item><Typography variant="caption">Batch</Typography></Grid>
-                            <Grid item><Typography variant="h4" sx={{ fontWeight: 500 }}>4215011</Typography></Grid>
-                        </>
-                    }
+                    title="Details Panel Example"
                     icons={TableIcons}
                     columns={columns}
                     data={data}
@@ -146,9 +143,7 @@ const DetailsPanelExample = () => {
                                 />
                                 <TableBody>
                                     <NestedTableRow dense="dense">
-                                        <NestedTableCell>
-                                            <Typography variant="body2" dangerouslySetInnerHTML={createDetailMarkup(rowData)}/>
-                                        </NestedTableCell>
+                                        <NestedTableCell><Typography variant='body2' dangerouslySetInnerHTML={createDetailMarkup(rowData)}/></NestedTableCell>
                                     </NestedTableRow>
                                 </TableBody>
                             </Table>
@@ -156,34 +151,24 @@ const DetailsPanelExample = () => {
                     )}
                     options={{
                         headerStyle: { backgroundColor: theme.palette.grid.main.header },
-                        padding: "dense",
+                        padding: 'dense',
                         search: false,
                         showDetailPanelIcon: true,
-                        detailsPanelType: "single",
+                        detailsPanelType: 'single',
                         rowStyle: rowData => ({
                             backgroundColor: selectedRow !== null && selectedRow.tableData.id === rowData.tableData.id ? theme.palette.grid.main.active : undefined
                         }),
                     }}
                     onRowClick={(e, selectedRow, togglePanel) => {handleRowClick(selectedRow); togglePanel()}}
                     components={{
-                        Toolbar: props => (
-                            <Grid container sx={{ p: "0.25em" }} alignItems="center">
-                                <Grid item container xs={6} flexDirection="column" sx={{ pl: "0.25em" }}>
-                                    <MTableToolbar {...props}/>
-                                </Grid>
-                                <Grid item container xs={3} flexDirection="column" alignItems="center">
-                                    <Grid item><Typography variant="caption">Item Count</Typography></Grid>
-                                    <Grid item><Typography variant="h4" sx={{ fontWeight: 500 }}>2</Typography></Grid>
-                                </Grid>
-                                <Grid item container xs={3} flexDirection="column" alignItems="center">
-                                    <Grid item><Typography variant="caption">Status</Typography></Grid>
-                                    <Grid item><Typography variant="h4" color="error" sx={{ fontWeight: 500 }}>Action Required</Typography></Grid>
-                                </Grid>
-                            </Grid>
-                        )
+                        Container: props => {
+                            return (
+                                <Paper elevation={0} {...props}/>
+                            )
+                        }
                     }}
                 />
-            </div>
+            </Paper>
         </ThemeProvider>
     )
 }
