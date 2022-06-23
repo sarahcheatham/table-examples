@@ -26,7 +26,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Routes>
         <Route path="/table-examples" element={<Examples/>}>
-          <Route path="" element={<Home/>}/>
+          {/* <Route path="" element={<Home/>}/> */}
           <Route
             path="toolbar"
             element={<ToolbarExample/>}

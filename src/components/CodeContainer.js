@@ -39,16 +39,34 @@ const CodeContainer = props => {
     }
   }
 
+//   style={{
+//     width:
+//         this.state.background.width === null
+//             ? this.props.windowWidth - this.props.offsetLeft
+//             : this.state.background.width,
+//     height:
+//         this.state.background.height === null
+//             ? this.props.windowHeight
+//             : this.state.background.height,
+// }}
     return (
-        <Grid container sx={{ px: '1em', mb: props.showCode ? '2em' : 0 }}>
-          <Grid item container justifyContent="flex-end" sx={{ mb: 0 }}>
-              <Tooltip placement="bottom" title={props.showCode ? "hide source code" : "show source code"}>
-                <IconButton 
-                  onClick={props.handleToggleCode}
-                >
-                  <CodeIcon/>
-                </IconButton>
-              </Tooltip>
+        <div 
+          style={{ 
+            paddingTop: '1em',
+            paddingLeft: '1em',
+            // padding: '0.5em 1em', 
+            marginBottom: props.showCode ? '2em' : 0,
+            width: window.innerWidth - 250
+          }}
+        >
+            <Grid item container sx={{ mb: 0 }} justifyContent="flex-end">
+                <Tooltip placement="bottom" title={props.showCode ? "hide source code" : "show source code"}>
+                  <IconButton 
+                    onClick={props.handleToggleCode}
+                  >
+                    <CodeIcon/>
+                  </IconButton>
+                </Tooltip>
             </Grid>
             <Grid item container component={Paper} sx={{ px: '1em'}}>
                 <Collapse in={props.showCode}>
@@ -67,7 +85,7 @@ const CodeContainer = props => {
                   <CodeSnippet codeString={props.codeString}/>
                 </Collapse>
             </Grid>
-        </Grid>
+        </div>
     );
 }
 

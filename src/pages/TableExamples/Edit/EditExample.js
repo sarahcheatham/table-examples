@@ -91,13 +91,13 @@ const EditExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-             {process.env.NODE_ENV !== 'production' ? (
+             {/* {process.env.NODE_ENV !== 'production' ? (
                 <Grid container sx={{ m: '1em' }}>
                     <Grid item>
                         <Button component={Link} to="/table-examples">Back to Home</Button>
                     </Grid>
                 </Grid>
-            ): null}
+            ): null} */}
             <CodeContainer
                 title="EditExample.js"
                 codeString={Markdown}
@@ -105,105 +105,105 @@ const EditExample = () => {
                 handleToggleCode={() => handleToggleCode()}
             />
             {!showCode && (
-                <Paper sx={{ margin: '1em' }} elevation={4}>
-                <MaterialTable
-                    title="Unauthorized Companies providing Coverage"
-                    columns={columns}
-                    data={data}
-                    icons={TableIcons}
-                    editable={{
-                        onRowAdd: (newData) => {
-                            return new Promise((resolve, reject) => {
-                                setTimeout(() => {
-                                newData.id = "uuid-" + Math.random() * 10000000;
-                                setData([...data, newData]);
-                                resolve();
-                                }, 1000);
-                            });
-                        },
-                        onRowUpdate: (newData, oldData) => {
-                            return new Promise((resolve, reject) => {
-                                setTimeout(() => {
-                                handleUpdateRow(newData, oldData)
-                                resolve();
-                                }, 1000);
-                            });
-                        },
-                        onRowDelete: oldData => {
-                            return new Promise((resolve, reject) => {
-                                setTimeout(() => {
-                                    const dataDelete = [...data];
-                                    const index = oldData.tableData.id;
-                                    dataDelete.splice(index, 1);
-                                    setData([...dataDelete]);
-                                    
-                                    resolve()
-                                }, 1000);
-                            });
-                        },
-                        isDeleteHidden: rowData => rowData.tableData.index === 1  
-                    }}
-                    renderSummaryRow={({ column, data }) => {
-                        return (
-                            column.field === 'COMPANYCODE' ? {
-                                value: <Typography variant="subtitle2" align="right" sx={{ textTransform: 'none', pt: '1em' }}>Total:</Typography>,
-                            }
-                            : column.field === "TOTALACCEPTED"
-                            ? {
-                                value:
-                                <span> 
-                                    <PercentageInput
-                                        value={data.reduce((agg, row) => agg + Number(row.TOTALACCEPTED), 0)}
-                                        disabled
-                                        width="100%"
-                                    />
-                                </span>,
-                                style: { textAlign: 'right', fontSize: '1rem'}
-                            }
-                            : column.field === "TOTALPREMIUM"
-                            ? {
-                                value: <span>
-                                    <CurrencyInput
-                                        disabled
-                                        value={data.reduce((agg, row) => row.TOTALPREMIUM === undefined ? agg + 0 : agg + row.TOTALPREMIUM, 0).toFixed(2)}
-                                    />
-                                </span>,
-                                style: { textAlign: 'right', fontSize: '1rem'}
-                            }
-                            : undefined
-                        )
-                    }}
-                    options={{
-                        headerStyle: { backgroundColor: theme.palette.grid.main.header, color: theme.palette.primary.contrastText },
-                        search: false,
-                        paging: false,
-                        addRowPosition: 'first',
-                        actionsColumnIndex: -1,
-                    }}
-                    components={{
-                        Container: props => {
+                <Paper sx={{ margin: '1em', width: '100%' }} elevation={4}>
+                    <MaterialTable
+                        title="Edit Example"
+                        columns={columns}
+                        data={data}
+                        icons={TableIcons}
+                        editable={{
+                            onRowAdd: (newData) => {
+                                return new Promise((resolve, reject) => {
+                                    setTimeout(() => {
+                                    newData.id = "uuid-" + Math.random() * 10000000;
+                                    setData([...data, newData]);
+                                    resolve();
+                                    }, 1000);
+                                });
+                            },
+                            onRowUpdate: (newData, oldData) => {
+                                return new Promise((resolve, reject) => {
+                                    setTimeout(() => {
+                                    handleUpdateRow(newData, oldData)
+                                    resolve();
+                                    }, 1000);
+                                });
+                            },
+                            onRowDelete: oldData => {
+                                return new Promise((resolve, reject) => {
+                                    setTimeout(() => {
+                                        const dataDelete = [...data];
+                                        const index = oldData.tableData.id;
+                                        dataDelete.splice(index, 1);
+                                        setData([...dataDelete]);
+                                        
+                                        resolve()
+                                    }, 1000);
+                                });
+                            },
+                            isDeleteHidden: rowData => rowData.tableData.index === 1  
+                        }}
+                        renderSummaryRow={({ column, data }) => {
                             return (
-                                <Paper elevation={0} {...props}/>
+                                column.field === 'COMPANYCODE' ? {
+                                    value: <Typography variant="subtitle2" align="right" sx={{ textTransform: 'none', pt: '1em' }}>Total:</Typography>,
+                                }
+                                : column.field === "TOTALACCEPTED"
+                                ? {
+                                    value:
+                                    <span> 
+                                        <PercentageInput
+                                            value={data.reduce((agg, row) => agg + Number(row.TOTALACCEPTED), 0)}
+                                            disabled
+                                            width="100%"
+                                        />
+                                    </span>,
+                                    style: { textAlign: 'right', fontSize: '1rem'}
+                                }
+                                : column.field === "TOTALPREMIUM"
+                                ? {
+                                    value: <span>
+                                        <CurrencyInput
+                                            disabled
+                                            value={data.reduce((agg, row) => row.TOTALPREMIUM === undefined ? agg + 0 : agg + row.TOTALPREMIUM, 0).toFixed(2)}
+                                        />
+                                    </span>,
+                                    style: { textAlign: 'right', fontSize: '1rem'}
+                                }
+                                : undefined
                             )
-                        }
-                    }}
-                /> 
-                <Grid 
-                    item 
-                    container 
-                    justifyContent="flex-end" 
-                    alignItems="flex-end" 
-                    spacing={6} 
-                    sx={{ pr: '6em', py: '1em' }}
-                >
-                    <Grid item><Typography variant="subtitle2" align="right">Premium Allocated to New York:</Typography></Grid>
-                    <Grid item>
-                        <CurrencyInput
-                            disabled
-                            value={data.reduce((agg, row) => row.TOTALPREMIUM === undefined ? agg + 0 : agg + row.TOTALPREMIUM, 0).toFixed(2)}
-                        />
+                        }}
+                        options={{
+                            headerStyle: { backgroundColor: theme.palette.grid.main.header, color: theme.palette.primary.contrastText },
+                            search: false,
+                            paging: false,
+                            addRowPosition: 'first',
+                            actionsColumnIndex: -1,
+                        }}
+                        components={{
+                            Container: props => {
+                                return (
+                                    <Paper elevation={0} {...props}/>
+                                )
+                            }
+                        }}
+                    /> 
+                    <Grid 
+                        item 
+                        container 
+                        justifyContent="flex-end" 
+                        alignItems="flex-end" 
+                        spacing={6} 
+                        sx={{ pr: '6em', py: '1em' }}
+                    >
+                        <Grid item><Typography variant="subtitle2" align="right">Premium Allocated to New York:</Typography></Grid>
+                        <Grid item>
+                            <CurrencyInput
+                                disabled
+                                value={data.reduce((agg, row) => row.TOTALPREMIUM === undefined ? agg + 0 : agg + row.TOTALPREMIUM, 0).toFixed(2)}
+                            />
+                        </Grid>
                     </Grid>
-                </Grid>
                 </Paper>
             )}
         </ThemeProvider>

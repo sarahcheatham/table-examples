@@ -1,15 +1,36 @@
 import { useState } from 'react';
+import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListSubheader from '@mui/material/ListSubheader';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
-import { Outlet, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles(theme => ({
+    drawerPaper: {
+        width: 225,
+        backgroundColor: theme.palette.background.default,
+        [theme.breakpoints.down('xl')]: {
+            width: 200,
+        },
+        [theme.breakpoints.down('lg')]: {
+            width: 180,
+        },
+        [theme.breakpoints.down('md')]: {
+            width: 150,
+        },
+    },
+    drawer: {
+        flexShrink: 0,
+    },
+}))
 
 function Home() {
+    const classes = useStyles();
     const [actionsOpen, setActionsOpen] = useState(false);
     const [selectionOpen, setSelectionOpen] = useState(false);
 
@@ -21,12 +42,17 @@ function Home() {
         setSelectionOpen(!selectionOpen)
     }
     return (
-        <div>
+        <Drawer
+            className={classes.drawer}
+            variant='permanent'
+            anchor='left'
+            classes={{
+                paper: classes.drawerPaper,
+            }}
+        >
             <List
                 sx={{
-                    width: '100%',
                     height: '100vh',
-                    maxWidth: 300,
                     bgcolor: 'background.paper'
                 }}
                 disablePadding
@@ -124,18 +150,6 @@ function Home() {
                         </ListItemButton>
                     </List>
                 </Collapse>
-                {/* <ListItemButton
-                    component={Link}
-                    to="single-selection"
-                >
-                    <ListItemText primary="Single Selection"/>
-                </ListItemButton>
-                <ListItemButton
-                    component={Link}
-                    to="multiple-selection"
-                >
-                    <ListItemText primary="Multiple Selection"/>
-                </ListItemButton> */}
                 <ListItemButton
                     component={Link}
                     to="sort"
@@ -149,8 +163,7 @@ function Home() {
                     <ListItemText primary="Toolbar"/>
                 </ListItemButton>
             </List>
-            <Outlet/>
-        </div>
+        </Drawer>
   );
 }
 
