@@ -9,6 +9,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
+import { useLocation, useNavigate } from "react-router";
 
 const useStyles = makeStyles(theme => ({
     drawerPaper: {
@@ -29,8 +30,11 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-function Home() {
+function Navigation() {
     const classes = useStyles();
+    const { pathname } = useLocation();
+    console.log(pathname)
+    const navigate = useNavigate();
     const [actionsOpen, setActionsOpen] = useState(false);
     const [selectionOpen, setSelectionOpen] = useState(false);
 
@@ -70,6 +74,7 @@ function Home() {
                             sx={{ pl: 4 }}
                             component={Link}
                             to="actions/add-row"
+                            selected={pathname === '/table-examples/actions/add-row'}
                         >
                             <ListItemText primary="Add Row"/>
                         </ListItemButton>
@@ -77,6 +82,7 @@ function Home() {
                             sx={{ pl: 4 }}
                             component={Link}
                             to="actions/delete-row"
+                            selected={pathname === '/table-examples/actions/delete-row'}
                         >
                             <ListItemText primary="Delete Row"/>
                         </ListItemButton>
@@ -84,6 +90,7 @@ function Home() {
                             sx={{ pl: 4 }}
                             component={Link}
                             to="actions/popout-menu"
+                            selected={pathname === '/table-examples/actions/popout-menu'}
                         >
                             <ListItemText primary="Popout Menu"/>
                         </ListItemButton>
@@ -92,40 +99,45 @@ function Home() {
                 <ListItemButton
                     component={Link}
                     to="details-panel"
+                    selected={pathname === '/table-examples/details-panel'}
                 >
                     <ListItemText primary="Details Panel"/>
                 </ListItemButton>
                 <ListItemButton
                     component={Link}
                     to="edit"
+                    selected={pathname === '/table-examples/edit'}
                 >
                     <ListItemText primary="Edit"/>
                 </ListItemButton>
                 <ListItemButton
                     component={Link}
                     to="export"
+                    selected={pathname === '/table-examples/export'}
                 >
                     <ListItemText primary="Export"/>
                 </ListItemButton>
                 <ListItemButton
                     component={Link}
                     to="filter"
+                    selected={pathname === '/table-examples/filter'}
                 >
                     <ListItemText primary="Filter"/>
                 </ListItemButton>
                 <ListItemButton
                     component={Link}
                     to="nested-table"
+                    selected={pathname === '/table-examples/nested-table'}
                 >
                     <ListItemText primary="Nested Table"/>
                 </ListItemButton>
                 <ListItemButton
                     component={Link}
                     to="search"
+                    selected={pathname === '/table-examples/search'}
                 >
                     <ListItemText primary="Search"/>
                 </ListItemButton>
-
                 <ListItemButton
                     onClick={handleToggleSelection}
                 >
@@ -138,6 +150,7 @@ function Home() {
                             sx={{ pl: 4 }}
                             component={Link}
                             to="selection/single-selection"
+                            selected={pathname === '/table-examples/selection/single-selection'}
                         >
                             <ListItemText primary="Single Selection"/>
                         </ListItemButton>
@@ -145,6 +158,7 @@ function Home() {
                             sx={{ pl: 4 }}
                             component={Link}
                             to="selection/multiple-selection"
+                            selected={pathname === '/table-examples/selection/multiple-selection'}
                         >
                             <ListItemText primary="Multiple Selection"/>
                         </ListItemButton>
@@ -153,12 +167,14 @@ function Home() {
                 <ListItemButton
                     component={Link}
                     to="sort"
+                    selected={pathname === '/table-examples/sort'}
                 >
                     <ListItemText primary="Sort"/>
                 </ListItemButton>
                 <ListItemButton
                     component={Link}
                     to="toolbar"
+                    selected={pathname === '/table-examples/toolbar'}
                 >
                     <ListItemText primary="Toolbar"/>
                 </ListItemButton>
@@ -167,4 +183,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Navigation;

@@ -18,7 +18,6 @@ import { Routes, Route } from 'react-router-dom';
 import Examples from './Examples';
 import Actions from './pages/TableExamples/Actions/Actions';
 import Selection from './pages/TableExamples/Selection/Selection';
-import Home from './pages/Home/Home';
 
 
 function App() {
