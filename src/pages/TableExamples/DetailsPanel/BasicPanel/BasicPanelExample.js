@@ -1,14 +1,18 @@
-const Markdown = `
 import { useState } from 'react';
 import MaterialTable from "@material-table/core";  
 import { ThemeProvider, useTheme } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes'; 
 import { NestedTableHeader, NestedTableRow, MainTableCell, NestedTableCell } from '@aeros-ui/tables'; 
 import { TableIcons } from '@aeros-ui/icons';
-import { TableContainer, Table, TableBody, Typography, Paper } from '@mui/material'; 
+import { TableContainer, Table, TableBody, Typography } from '@mui/material'; 
+import Paper from '@mui/material/Paper';
+import CodeContainer from "../../../../components/CodeContainer";
+import Markdown from './Markdown';
 
-const DetailsPanelExample = () => {
+
+const BasicPanelExample = () => {
     const theme = useTheme()
+    const [showCode, setShowCode] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null)
     const [data, setData] = useState(
         [
@@ -51,7 +55,7 @@ const DetailsPanelExample = () => {
             title: "Items",
             field: "ITEMS",
             type: "numeric",
-            render: rowData => rowData.ITEMS.map((item, index) => (<MainTableCell key={\`item-\${index}\`} component="span">{item}{index === rowData.ITEMS.length -1 ? null : ', '}</MainTableCell>)),
+            render: rowData => rowData.ITEMS.map((item, index) => (<MainTableCell key={`item-${index}`} component="span">{item}{index === rowData.ITEMS.length -1 ? null : ', '}</MainTableCell>)),
             width: '75px',
         },
         {
@@ -94,6 +98,10 @@ const DetailsPanelExample = () => {
         },
     ]);
 
+    const handleToggleCode = () => {
+        setShowCode(!showCode)
+    };
+
     const handleRowClick = (row) => {
         if(selectedRow !== null && selectedRow.tableData.id === row.tableData.id){
             closeRow();
@@ -127,52 +135,58 @@ const DetailsPanelExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
-                <MaterialTable
-                    title="Details Panel Example"
-                    icons={TableIcons}
-                    columns={columns}
-                    data={data}
-                    detailPanel={({ rowData }) => (
-                        <TableContainer>
-                            <Table>
-                                <NestedTableHeader
-                                    tableHeader='Instruction Details'
-                                    colSpan={columns.length + 1}
-                                    dense='dense'
-                                />
-                                <TableBody>
-                                    <NestedTableRow dense="dense">
-                                        <NestedTableCell><Typography variant='body2' dangerouslySetInnerHTML={createDetailMarkup(rowData)}/></NestedTableCell>
-                                    </NestedTableRow>
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    )}
-                    options={{
-                        headerStyle: { backgroundColor: theme.palette.grid.main.header },
-                        padding: 'dense',
-                        search: false,
-                        showDetailPanelIcon: true,
-                        detailsPanelType: 'single',
-                        rowStyle: rowData => ({
-                            backgroundColor: selectedRow !== null && selectedRow.tableData.id === rowData.tableData.id ? theme.palette.grid.main.active : undefined
-                        }),
-                    }}
-                    onRowClick={(e, selectedRow, togglePanel) => {handleRowClick(selectedRow); togglePanel()}}
-                    components={{
-                        Container: props => {
-                            return (
-                                <Paper elevation={0} {...props}/>
-                            )
-                        }
-                    }}
-                />
-            </Paper>
+           <CodeContainer
+                title="BasicPanelExample.js"
+                codeString={Markdown}
+                showCode={showCode}
+                handleToggleCode={() => handleToggleCode()}
+            />
+            {!showCode && (
+                <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
+                    <MaterialTable
+                        title="Basic Details Panel Example"
+                        icons={TableIcons}
+                        columns={columns}
+                        data={data}
+                        detailPanel={({ rowData }) => (
+                            <TableContainer>
+                                <Table>
+                                    <NestedTableHeader
+                                        tableHeader='Instruction Details'
+                                        colSpan={columns.length + 1}
+                                        dense='dense'
+                                    />
+                                    <TableBody>
+                                        <NestedTableRow dense="dense">
+                                            <NestedTableCell><Typography variant='body2' dangerouslySetInnerHTML={createDetailMarkup(rowData)}/></NestedTableCell>
+                                        </NestedTableRow>
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        )}
+                        options={{
+                            headerStyle: { backgroundColor: theme.palette.grid.main.header },
+                            padding: 'dense',
+                            search: false,
+                            showDetailPanelIcon: true,
+                            detailsPanelType: 'single',
+                            rowStyle: rowData => ({
+                                backgroundColor: selectedRow !== null && selectedRow.tableData.id === rowData.tableData.id ? theme.palette.grid.main.active : undefined
+                            }),
+                        }}
+                        onRowClick={(e, selectedRow, togglePanel) => {handleRowClick(selectedRow); togglePanel()}}
+                        components={{
+                            Container: props => {
+                                return (
+                                    <Paper elevation={0} {...props}/>
+                                )
+                            }
+                        }}
+                    />
+                </Paper>
+            )}
         </ThemeProvider>
     )
 }
 
-export default DetailsPanelExample;`
-
-export default Markdown;
+export default BasicPanelExample;

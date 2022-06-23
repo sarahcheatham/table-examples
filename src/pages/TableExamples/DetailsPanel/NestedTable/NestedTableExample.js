@@ -5,14 +5,11 @@ import TableContainer from "@mui/material/TableContainer";
 import Table from "@mui/material/Table";   
 import TableBody from "@mui/material/TableBody"; 
 import Paper from '@mui/material/Paper';
-import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
 import { TableIcons } from "@aeros-ui/icons";
 import { NestedTableHeader, NestedColumnHeaders, NestedTableRow, MainTableCell, NestedTableCell } from "@aeros-ui/tables"; 
 import { ThemeProvider } from "@mui/material/styles";
 import { tableTheme } from "@aeros-ui/themes";
-import CodeContainer from "../../../components/CodeContainer";
+import CodeContainer from "../../../../components/CodeContainer";
 import Markdown from './Markdown';
 
 const NestedTableExample = () => {

@@ -36,6 +36,7 @@ function Navigation() {
     const [actionsOpen, setActionsOpen] = useState(false);
     const [selectionOpen, setSelectionOpen] = useState(false);
     const [toolbarOpen, setToolbarOpen] = useState(false);
+    const [detailsPanelOpen, setDetailPanelOpen] = useState(false);
 
     const handleToggleActions = () => {
         setActionsOpen(!actionsOpen)
@@ -47,6 +48,10 @@ function Navigation() {
 
     const handleToggleToolbar = () => {
         setToolbarOpen(!toolbarOpen)
+    }
+
+    const handleToggleDetails = () => {
+        setDetailPanelOpen(!detailsPanelOpen);
     }
     return (
         <Drawer
@@ -100,12 +105,38 @@ function Navigation() {
                     </List>
                 </Collapse>
                 <ListItemButton
+                    onClick={handleToggleDetails}
+                >
+                    <ListItemText primary="Details Panel"/>
+                    {detailsPanelOpen ? <ExpandLess/> : <ExpandMore/>}
+                </ListItemButton>
+                <Collapse in={detailsPanelOpen} timeout="auto" unmountOnExit>
+                    <List>
+                        <ListItemButton
+                            sx={{ pl: 4 }}
+                            component={Link}
+                            to="details-panel/basic-panel"
+                            selected={pathname === '/table-examples/details-panel/basic-panel'}
+                        >
+                            <ListItemText primary="Basic Panel"/>
+                        </ListItemButton>
+                        <ListItemButton
+                            sx={{ pl: 4 }}
+                            component={Link}
+                            to="details-panel/nested-table"
+                            selected={pathname === '/table-examples/details-panel/nested-table'}
+                        >
+                            <ListItemText primary="Nested Table Panel"/>
+                        </ListItemButton>
+                    </List>
+                </Collapse>
+                {/* <ListItemButton
                     component={Link}
                     to="details-panel"
                     selected={pathname === '/table-examples/details-panel'}
                 >
                     <ListItemText primary="Details Panel"/>
-                </ListItemButton>
+                </ListItemButton> */}
                 <ListItemButton
                     component={Link}
                     to="edit"
@@ -127,13 +158,13 @@ function Navigation() {
                 >
                     <ListItemText primary="Filter"/>
                 </ListItemButton>
-                <ListItemButton
+                {/* <ListItemButton
                     component={Link}
                     to="nested-table"
                     selected={pathname === '/table-examples/nested-table'}
                 >
                     <ListItemText primary="Nested Table"/>
-                </ListItemButton>
+                </ListItemButton> */}
                 <ListItemButton
                     component={Link}
                     to="search"

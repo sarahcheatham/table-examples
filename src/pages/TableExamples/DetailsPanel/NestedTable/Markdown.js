@@ -7,7 +7,7 @@ import { NestedTableHeader, NestedColumnHeaders, NestedTableRow, MainTableCell, 
 import { useTheme, ThemeProvider } from "@mui/material/styles"; 
 import { tableTheme } from "@aeros-ui/themes";
 
-const NestedTableExample = () => {
+const NestedTablePanelExample = () => {
     const theme = useTheme()
     const [selectedRow, setSelectedRow] = useState(null);
     const [selectedChildId, setSelectedChildId] = useState(null);
@@ -297,6 +297,6 @@ const NestedTableExample = () => {
     )
 }  
 
-export default NestedTableExample;`
+export default NestedTablePanelExample;`
 
 export default Markdown;
