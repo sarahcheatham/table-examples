@@ -100,13 +100,6 @@ const DeleteRowExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-             {process.env.NODE_ENV !== 'production' ? (
-                <Grid container sx={{ m: '1em' }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null}
             <CodeContainer
                 title="AddRowExample.js"
                 codeString={Markdown}
@@ -114,41 +107,41 @@ const DeleteRowExample = () => {
                 handleToggleCode={() => handleToggleCode()}
             />
             {!showCode && (
-                <Paper sx={{ margin: '1em' }} elevation={4}>
-                <MaterialTable
-                    title="Delete Row Example"
-                    columns={columns}
-                    data={data}
-                    icons={TableIcons}
-                    editable={{
-                        onRowDelete: oldData => {
-                            return new Promise((resolve, reject) => {
-                                setTimeout(() => {
-                                    const dataDelete = [...data];
-                                    const index = oldData.tableData.id;
-                                    dataDelete.splice(index, 1);
-                                    setData([...dataDelete]);
-                                    
-                                    resolve()
-                                }, 1000);
-                            });
-                        },
-                    }}
-                    options={{
-                        headerStyle: { backgroundColor: theme.palette.grid.main.header, color: theme.palette.primary.contrastText },
-                        search: false,
-                        paging: false,
-                        actionsColumnIndex: -1,
-                        actionsCellStyle: { paddingLeft: '1em' }
-                    }}
-                    components={{
-                        Container: props => {
-                            return (
-                                <Paper elevation={0} {...props}/>
-                            )
-                        },
-                    }}
-                /> 
+                <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
+                    <MaterialTable
+                        title="Delete Row Example"
+                        columns={columns}
+                        data={data}
+                        icons={TableIcons}
+                        editable={{
+                            onRowDelete: oldData => {
+                                return new Promise((resolve, reject) => {
+                                    setTimeout(() => {
+                                        const dataDelete = [...data];
+                                        const index = oldData.tableData.id;
+                                        dataDelete.splice(index, 1);
+                                        setData([...dataDelete]);
+                                        
+                                        resolve()
+                                    }, 1000);
+                                });
+                            },
+                        }}
+                        options={{
+                            headerStyle: { backgroundColor: theme.palette.grid.main.header, color: theme.palette.primary.contrastText },
+                            search: false,
+                            paging: false,
+                            actionsColumnIndex: -1,
+                            actionsCellStyle: { paddingLeft: '1em' }
+                        }}
+                        components={{
+                            Container: props => {
+                                return (
+                                    <Paper elevation={0} {...props}/>
+                                )
+                            },
+                        }}
+                    /> 
                 </Paper>
             )}
         </ThemeProvider>

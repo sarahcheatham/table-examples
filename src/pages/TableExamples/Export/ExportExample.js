@@ -3,7 +3,8 @@ import MaterialTable from "@material-table/core";
 import { ThemeProvider, useTheme } from "@mui/material/styles";
 import { tableTheme } from "@aeros-ui/themes"; 
 import { MainTableCell, TableToolbar } from "@aeros-ui/tables";
-import { ExportCsv, ExportPdf } from "@material-table/exporters";  
+import { ExportCsv, ExportPdf } from "@material-table/exporters"; 
+import Paper from '@mui/material/Paper'; 
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
@@ -173,13 +174,6 @@ const ExportExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            {process.env.NODE_ENV !== "production" ? (
-                <Grid container sx={{ m: "1em" }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null}
             <CodeContainer
                 title="ExportExample.js"
                 codeString={Markdown}
@@ -187,7 +181,7 @@ const ExportExample = () => {
                 handleToggleCode={() => handleToggleCode()}
             />
             {!showCode && (
-                <div style={{ margin: "1em" }}>
+                <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
                     <MaterialTable
                         title="Export Example"
                         columns={columns}
@@ -210,10 +204,15 @@ const ExportExample = () => {
                                 <TableToolbar
                                     {...props}
                                 />
-                            )
+                            ),
+                            Container: props => {
+                                return (
+                                    <Paper elevation={0} {...props}/>
+                                )
+                            }
                         }}
                     />
-                </div>
+                </Paper>
             )}
         </ThemeProvider>
     )

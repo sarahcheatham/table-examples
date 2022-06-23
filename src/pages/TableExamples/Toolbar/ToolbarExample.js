@@ -1,5 +1,6 @@
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
+import Paper from '@mui/material/Paper';
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import MaterialTable from "@material-table/core";  
@@ -114,13 +115,6 @@ const ToolbarExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-             {process.env.NODE_ENV !== "production" ? (
-                <Grid container sx={{ m: "1em" }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null}
             <CodeContainer
                 title="ToolbarExample.js"
                 codeString={Markdown}
@@ -128,7 +122,7 @@ const ToolbarExample = () => {
                 handleToggleCode={() => handleToggleCode()}
             />
             {!showCode && (
-                 <div style={{ margin: "1em" }}>
+                <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
                     <MaterialTable
                         title="Toolbar Example"
                         columns={columns}
@@ -158,10 +152,15 @@ const ToolbarExample = () => {
                                     onFilterClick={() => setFiltering(!showFilters)}
                                     onDensityClick={handleDensityClick}
                                 />
-                            )
+                            ),
+                            Container: props => {
+                                return (
+                                    <Paper elevation={0} {...props}/>
+                                )
+                            }
                         }}
                     />
-                </div>
+                </Paper>
             )}
         </ThemeProvider>
     )

@@ -1,5 +1,6 @@
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import MaterialTable from '@material-table/core';  
@@ -92,13 +93,6 @@ const MultipleSelectionExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-             {process.env.NODE_ENV !== 'production' ? (
-                <Grid container sx={{ m: '1em' }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null}
             <CodeContainer
                 title="MultipleSelectionExample.js"
                 codeString={Markdown}
@@ -106,9 +100,9 @@ const MultipleSelectionExample = () => {
                 handleToggleCode={() => handleToggleCode()}
             />
             {!showCode && (
-                <div style={{ margin: '1em' }}>
+                <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
                     <MaterialTable
-                        title={null}
+                        title="Multiple Selection Example"
                         icons={TableIcons}
                         columns={columns}
                         data={data}
@@ -121,14 +115,20 @@ const MultipleSelectionExample = () => {
                             search: false,
                             selection: true,
                             showTextRowsSelected: false,
-                            toolbar: false,
                             rowStyle: rowData => ({
                                 backgroundColor: rowData.tableData.hasOwnProperty('checked') && rowData.tableData.checked ? theme.palette.grid.main.active : undefined
                             }),
                         }}
                         onSelectionChange={(rows) => handleSelectedRows(rows)}
+                        components={{
+                            Container: props => {
+                                return (
+                                    <Paper elevation={0} {...props}/>
+                                )
+                            }
+                        }}
                     />
-                </div>
+                </Paper>
             )}
         </ThemeProvider>
     )

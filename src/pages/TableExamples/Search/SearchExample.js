@@ -5,6 +5,7 @@ import { tableTheme } from "@aeros-ui/themes";
 import { MainTableCell } from "@aeros-ui/tables";
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
+import Paper from '@mui/material/Paper';
 import { Link } from "react-router-dom";
 import CodeContainer from "../../../components/CodeContainer";
 import Markdown from "./Markdown";
@@ -164,13 +165,6 @@ const SearchExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            {process.env.NODE_ENV !== "production" ? (
-                <Grid container sx={{ m: "1em" }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null}
             <CodeContainer
                 title="SearchExample.js"
                 codeString={Markdown}
@@ -178,9 +172,9 @@ const SearchExample = () => {
                 handleToggleCode={() => handleToggleCode()}
             />
             {!showCode && (
-                <div style={{ margin: "1em" }}>
+                <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
                     <MaterialTable
-                        title="Batch Listing"
+                        title="Search Example"
                         columns={columns}
                         data={data}
                         options={{
@@ -191,8 +185,15 @@ const SearchExample = () => {
                             search: true,
                             searchFieldStyle: { marginRight: "1em" }
                         }}
+                        components={{
+                            Container: props => {
+                                return (
+                                    <Paper elevation={0} {...props}/>
+                                )
+                            }
+                        }}
                     />
-                </div>
+                </Paper>
             )}
         </ThemeProvider>
     )

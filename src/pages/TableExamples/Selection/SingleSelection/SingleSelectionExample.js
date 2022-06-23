@@ -1,6 +1,7 @@
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
+import Paper from '@mui/material/Paper';
 import { useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import MaterialTable from '@material-table/core';  
@@ -117,13 +118,6 @@ const SingleSelectionExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            {process.env.NODE_ENV !== 'production' ? (
-                <Grid container sx={{ m: '1em' }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null}
             <CodeContainer
                 title="SingleSelectionExample.js"
                 codeString={Markdown}
@@ -131,14 +125,13 @@ const SingleSelectionExample = () => {
                 handleToggleCode={() => handleToggleCode()}
             />
             {!showCode && (
-                <div style={{margin: '1em' }}>
+                <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
                     <MaterialTable
-                        title={null}
+                        title="Single Selection Example"
                         columns={columns}
                         data={data}
                         options={{
                             headerStyle: { backgroundColor: theme.palette.grid.main.header, paddingRight: '0.25em' },
-                            toolbar: false,
                             padding: "dense",
                             search: false,
                             rowStyle: rowData => ({
@@ -160,9 +153,14 @@ const SingleSelectionExample = () => {
                                     size="small"
                                 />
                             ),
+                            Container: props => {
+                                return (
+                                    <Paper elevation={0} {...props}/>
+                                )
+                            }
                         }}
                     />
-                </div>
+                </Paper>
             )}
         </ThemeProvider>
     )

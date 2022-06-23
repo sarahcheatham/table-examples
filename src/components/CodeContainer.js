@@ -10,56 +10,33 @@ import Collapse from '@mui/material/Collapse';
 import CodeSnippet from './CodeSnippet';
 
 const CodeContainer = props => {
-  // const [showCode, setShowCode] = useState(false);
-  const [copySuccess, setCopy] = useState(false);
+    const [copySuccess, setCopy] = useState(false);
 
-  // const handleToggleCode = () => {
-  //   setShowCode(!showCode)
-  // };
-
-  const copyToClipboard = str => {
-    const el = document.createElement("textarea") // Create a <textarea> element
-    el.value = str // Set its value to the string that you want copied
-    el.setAttribute("readonly", "") // Make it readonly to be tamper-proof
-    el.style.position = "absolute"
-    el.style.left = "-9999px" // Move outside the screen to make it invisible
-    document.body.appendChild(el) // Append the <textarea> element to the HTML document
-    const selected =
-      document.getSelection().rangeCount > 0 // Check if there is any content selected previously
-        ? document.getSelection().getRangeAt(0) // Store selection if found
-        : false // Mark as false to know no selection existed before
-    el.select() // Select the <textarea> content
-    document.execCommand("copy") // Copy - only works as a result of a user action (e.g. click events)
-    setCopy(true);
-    document.body.removeChild(el) // Remove the <textarea> element
-    if (selected) {
-      // If a selection existed before copying
-      document.getSelection().removeAllRanges() // Unselect everything on the HTML document
-      document.getSelection().addRange(selected) // Restore the original selection
+    const copyToClipboard = str => {
+        const el = document.createElement("textarea") // Create a <textarea> element
+        el.value = str // Set its value to the string that you want copied
+        el.setAttribute("readonly", "") // Make it readonly to be tamper-proof
+        el.style.position = "absolute"
+        el.style.left = "-9999px" // Move outside the screen to make it invisible
+        document.body.appendChild(el) // Append the <textarea> element to the HTML document
+        const selected =
+          document.getSelection().rangeCount > 0 // Check if there is any content selected previously
+            ? document.getSelection().getRangeAt(0) // Store selection if found
+            : false // Mark as false to know no selection existed before
+        el.select() // Select the <textarea> content
+        document.execCommand("copy") // Copy - only works as a result of a user action (e.g. click events)
+        setCopy(true);
+        document.body.removeChild(el) // Remove the <textarea> element
+        if (selected) {
+            // If a selection existed before copying
+            document.getSelection().removeAllRanges() // Unselect everything on the HTML document
+            document.getSelection().addRange(selected) // Restore the original selection
+        }
     }
-  }
 
-//   style={{
-//     width:
-//         this.state.background.width === null
-//             ? this.props.windowWidth - this.props.offsetLeft
-//             : this.state.background.width,
-//     height:
-//         this.state.background.height === null
-//             ? this.props.windowHeight
-//             : this.state.background.height,
-// }}
     return (
-        <div 
-          style={{ 
-            paddingTop: '1em',
-            paddingRight: '1em',
-            // padding: '0.5em 1em', 
-            marginBottom: props.showCode ? '2em' : 0,
-            width: window.innerWidth - 250
-          }}
-        >
-            <Grid item container sx={{ mb: 0 }} justifyContent="flex-end">
+          <Grid item container sx={{ mx: '2em', mt: '0.5em' }}>
+            <Grid item container sx={{ pb: '0.5em' }} justifyContent="flex-end">
                 <Tooltip placement="bottom" title={props.showCode ? "hide source code" : "show source code"}>
                   <IconButton 
                     onClick={props.handleToggleCode}
@@ -68,7 +45,7 @@ const CodeContainer = props => {
                   </IconButton>
                 </Tooltip>
             </Grid>
-            <Grid item container component={Paper} sx={{ px: '1em'}}>
+            <Grid item container component={Paper} sx={{ px: '2em'}}>
                 <Collapse in={props.showCode}>
                   <Grid item container columnGap={3} sx={{ pt: '1em' }} alignItems="center">
                     <Grid item>
@@ -85,7 +62,7 @@ const CodeContainer = props => {
                   <CodeSnippet codeString={props.codeString}/>
                 </Collapse>
             </Grid>
-        </div>
+          </Grid>
     );
 }
 

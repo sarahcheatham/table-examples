@@ -8,6 +8,7 @@ import { tableTheme } from '@aeros-ui/themes';
 import { useTheme } from '@mui/material/styles';  
 import Typography from "@mui/material/Typography";
 import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
 import Popover from '@mui/material/Popover';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -192,13 +193,6 @@ const PopoutMenuExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            {process.env.NODE_ENV !== 'production' ? (
-                <Grid container sx={{ m: '1em' }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null}
             <CodeContainer
                 title="ActionsExample.js"
                 codeString={Markdown}
@@ -206,22 +200,28 @@ const PopoutMenuExample = () => {
                 handleToggleCode={() => handleToggleCode()}
             />
             {!showCode && (
-                <div style={{margin: '1em' }}>
+                <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
                     <MaterialTable
-                        title={null}
+                        title="Popout Menu Example"
                         columns={columns}
                         data={data}
                         options={{
                             headerStyle: { backgroundColor: theme.palette.grid.main.header },
                             padding: 'dense',
                             search: false,
-                            toolbar: false,
                             rowStyle: rowData => ({
                                 backgroundColor: selectedRow !== null && selectedRow.tableData.id === rowData.tableData.id ? theme.palette.grid.main.active : undefined
                             }),
                         }}
+                        components={{
+                            Container: props => {
+                                return (
+                                    <Paper elevation={0} {...props}/>
+                                )
+                            }
+                        }}
                     />
-                </div>
+                </Paper>
             )}
         </ThemeProvider>
     )

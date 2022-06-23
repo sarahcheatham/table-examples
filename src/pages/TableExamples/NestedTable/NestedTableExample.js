@@ -4,6 +4,7 @@ import MaterialTable from "@material-table/core";
 import TableContainer from "@mui/material/TableContainer"; 
 import Table from "@mui/material/Table";   
 import TableBody from "@mui/material/TableBody"; 
+import Paper from '@mui/material/Paper';
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
@@ -241,13 +242,6 @@ const NestedTableExample = () => {
 
     return (
         <ThemeProvider theme={tableTheme}>
-            {process.env.NODE_ENV !== "production" ? (
-                <Grid container sx={{ m: "1em" }}>
-                    <Grid item>
-                        <Button component={Link} to="/table-examples">Back to Home</Button>
-                    </Grid>
-                </Grid>
-            ): null}
              <CodeContainer
                 title="NestedTableExample.js"
                 codeString={Markdown}
@@ -255,9 +249,9 @@ const NestedTableExample = () => {
                 handleToggleCode={() => handleToggleCode()}
             />
             {!showCode && (
-                <div style={{ margin: "1em" }}>
+                <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
                     <MaterialTable
-                        title="Affidavit Transactions"
+                        title="Nested Table Example"
                         columns={columns}
                         data={data}
                         icons={TableIcons}
@@ -310,8 +304,15 @@ const NestedTableExample = () => {
                             padding: "dense",
                             search: false,
                         }}
+                        components={{
+                            Container: props => {
+                                return (
+                                    <Paper elevation={0} {...props}/>
+                                )
+                            }
+                        }}
                     />
-                </div>
+                </Paper>
             )}
         </ThemeProvider>
     )
