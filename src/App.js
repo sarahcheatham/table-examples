@@ -11,13 +11,15 @@ import MultipleSelectionExample from "./pages/TableExamples/Selection/MultipleSe
 import SingleSelectionExample from "./pages/TableExamples/Selection/SingleSelection/SingleSelectionExample";
 // import SingleSelectionExample2 from "./pages/TableExamples/SingleSelectionExample2";
 import SortExample from './pages/TableExamples/Sort/SortExample';
-import ToolbarExample from "./pages/TableExamples/Toolbar/ToolbarExample";
+import BasicToolbarExample from "./pages/TableExamples/Toolbar/BasicToolbar/BasicToolbarExample";
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '@aeros-ui/themes';
 import { Routes, Route } from 'react-router-dom';
 import Examples from './Examples';
 import Actions from './pages/TableExamples/Actions/Actions';
 import Selection from './pages/TableExamples/Selection/Selection';
+import Toolbar from './pages/TableExamples/Toolbar/Toolbar';
+import CustomToolbarExample from './pages/TableExamples/Toolbar/CustomToolbar/CustomToolbarExample';
 
 
 function App() {
@@ -25,73 +27,77 @@ function App() {
     <ThemeProvider theme={theme}>
       <Routes>
         <Route path="/table-examples" element={<Examples/>}>
-          {/* <Route path="" element={<Home/>}/> */}
-          <Route
-            path="toolbar"
-            element={<ToolbarExample/>}
-          />
-          <Route
-            path="actions"
-            element={<Actions/>}
-          >
             <Route
-              path="add-row"
-              element={<AddRowExample/>}
+              path="actions"
+              element={<Actions/>}
+            >
+              <Route
+                path="add-row"
+                element={<AddRowExample/>}
+              />
+              <Route
+                path="delete-row"
+                element={<DeleteRowExample/>}
+              />
+              <Route
+                path="popout-menu"
+                element={<PopoutMenuExample/>}
+              />
+            </Route>
+            <Route
+              path="details-panel"
+              element={<DetailsPanelExample/>}
             />
             <Route
-              path="delete-row"
-              element={<DeleteRowExample/>}
+              path="edit"
+              element={<EditExample/>}
             />
             <Route
-              path="popout-menu"
-              element={<PopoutMenuExample/>}
-            />
-          </Route>
-          <Route
-            path="details-panel"
-            element={<DetailsPanelExample/>}
-          />
-          <Route
-            path="edit"
-            element={<EditExample/>}
-          />
-          <Route
-            path="export"
-            element={<ExportExample/>}
-          />
-          <Route
-            path="filter"
-            element={<FilterExample/>}
-          />
-          <Route
-            path="nested-table"
-            element={<NestedTableExample/>}
-          />
-          <Route
-            path="search"
-            element={<SearchExample/>}
-          />
-          <Route
-            path="selection"
-            element={<Selection/>}
-          >
-            <Route
-              path="multiple-selection"
-              element={<MultipleSelectionExample/>}
+              path="export"
+              element={<ExportExample/>}
             />
             <Route
-              path="single-selection"
-              element={<SingleSelectionExample/>}
+              path="filter"
+              element={<FilterExample/>}
             />
-          </Route>
-          {/* <Route
-            path="single-selection2"
-            element={<SingleSelectionExample2/>}
-          /> */}
-          <Route
-            path="sort"
-            element={<SortExample/>}
-          />
+            <Route
+              path="nested-table"
+              element={<NestedTableExample/>}
+            />
+            <Route
+              path="search"
+              element={<SearchExample/>}
+            />
+            <Route
+              path="selection"
+              element={<Selection/>}
+            >
+              <Route
+                path="multiple-selection"
+                element={<MultipleSelectionExample/>}
+              />
+              <Route
+                path="single-selection"
+                element={<SingleSelectionExample/>}
+              />
+            </Route>
+            <Route
+              path="sort"
+              element={<SortExample/>}
+            />
+            <Route
+              path="toolbar"
+              element={<Toolbar/>}
+            >
+              <Route
+                path="basic-toolbar"
+                element={<BasicToolbarExample/>}
+              />
+              <Route
+                path="custom-toolbar"
+                element={<CustomToolbarExample/>}
+              />
+            </Route>
           </Route>
       </Routes>
     </ThemeProvider>

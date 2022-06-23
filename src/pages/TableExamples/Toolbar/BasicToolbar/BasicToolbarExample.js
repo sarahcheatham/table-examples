@@ -1,17 +1,14 @@
-import Grid from "@mui/material/Grid";
-import Button from "@mui/material/Button";
 import Paper from '@mui/material/Paper';
-import { Link } from "react-router-dom";
 import { useState } from "react";
 import MaterialTable from "@material-table/core";  
 import { TableToolbar, TableFilterInput, MainTableCell } from "@aeros-ui/tables";
 import { ThemeProvider, useTheme } from "@mui/material/styles";
 import { tableTheme } from "@aeros-ui/themes"; 
 import { ExportCsv, ExportPdf } from "@material-table/exporters";  
-import CodeContainer from "../../../components/CodeContainer";
+import CodeContainer from "../../../../components/CodeContainer";
 import Markdown from './Markdown';
 
-const ToolbarExample = () => {
+const BasicToolbarExample = () => {
     const theme = useTheme()
     const [showCode, setShowCode] = useState(false);
     const [density, setDensity] = useState("dense");
@@ -124,7 +121,7 @@ const ToolbarExample = () => {
             {!showCode && (
                 <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
                     <MaterialTable
-                        title="Toolbar Example"
+                        title="Basic Toolbar Example"
                         columns={columns}
                         data={data}
                         options={{
@@ -166,4 +163,4 @@ const ToolbarExample = () => {
     )
 }
 
-export default ToolbarExample;
+export default BasicToolbarExample;

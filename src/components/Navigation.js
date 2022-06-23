@@ -9,7 +9,7 @@ import ExpandMore from '@mui/icons-material/ExpandMore';
 import Collapse from '@mui/material/Collapse';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@mui/styles';
-import { useLocation, useNavigate } from "react-router";
+import { useLocation } from "react-router";
 
 const useStyles = makeStyles(theme => ({
     drawerPaper: {
@@ -33,10 +33,9 @@ const useStyles = makeStyles(theme => ({
 function Navigation() {
     const classes = useStyles();
     const { pathname } = useLocation();
-    console.log(pathname)
-    const navigate = useNavigate();
     const [actionsOpen, setActionsOpen] = useState(false);
     const [selectionOpen, setSelectionOpen] = useState(false);
+    const [toolbarOpen, setToolbarOpen] = useState(false);
 
     const handleToggleActions = () => {
         setActionsOpen(!actionsOpen)
@@ -44,6 +43,10 @@ function Navigation() {
 
     const handleToggleSelection = () => {
         setSelectionOpen(!selectionOpen)
+    }
+
+    const handleToggleToolbar = () => {
+        setToolbarOpen(!toolbarOpen)
     }
     return (
         <Drawer
@@ -171,13 +174,39 @@ function Navigation() {
                 >
                     <ListItemText primary="Sort"/>
                 </ListItemButton>
-                <ListItemButton
+                {/* <ListItemButton
                     component={Link}
                     to="toolbar"
                     selected={pathname === '/table-examples/toolbar'}
                 >
                     <ListItemText primary="Toolbar"/>
+                </ListItemButton> */}
+                <ListItemButton
+                    onClick={handleToggleToolbar}
+                >
+                    <ListItemText primary="Toolbar"/>
+                    {toolbarOpen ? <ExpandLess/> : <ExpandMore/>}
                 </ListItemButton>
+                <Collapse in={toolbarOpen} timeout="auto" unmountOnExit>
+                    <List>
+                        <ListItemButton
+                            sx={{ pl: 4 }}
+                            component={Link}
+                            to="toolbar/basic-toolbar"
+                            selected={pathname === '/table-examples/toolbar/basic-toolbar'}
+                        >
+                            <ListItemText primary="Basic Toolbar"/>
+                        </ListItemButton>
+                        <ListItemButton
+                            sx={{ pl: 4 }}
+                            component={Link}
+                            to="toolbar/custom-toolbar"
+                            selected={pathname === '/table-examples/toolbar/custom-toolbar'}
+                        >
+                            <ListItemText primary="Custom Toolbar"/>
+                        </ListItemButton>
+                    </List>
+                </Collapse>
             </List>
         </Drawer>
   );

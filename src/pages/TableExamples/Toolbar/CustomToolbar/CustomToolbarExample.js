@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import MaterialTable from "@material-table/core";  
+import MaterialTable, { MTableToolbar } from "@material-table/core";  
 import { ThemeProvider, useTheme } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes'; 
-import { NestedTableHeader, NestedTableRow, MainTableCell, NestedTableCell } from '@aeros-ui/tables'; 
+import { MainTableCell } from '@aeros-ui/tables'; 
 import { TableIcons } from '@aeros-ui/icons';
-import { TableContainer, Table, TableBody, Typography } from '@mui/material'; 
+import { Typography } from '@mui/material'; 
+import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import CodeContainer from "../../../components/CodeContainer";
+import CodeContainer from "../../../../components/CodeContainer";
 import Markdown from './Markdown';
 
 
-const DetailsPanelExample = () => {
+const CustomToolbarExample = () => {
     const theme = useTheme()
     const [showCode, setShowCode] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null)
@@ -46,17 +47,17 @@ const DetailsPanelExample = () => {
             field: "SEQUENCENO",
             type: 'numeric',
             render: rowData => (<MainTableCell>{rowData.SEQUENCENO}</MainTableCell>),
-            width: '100px',
-            cellStyle: {
-                minWidth: '100px'
-            }
+            width: '8%',
+            // cellStyle: {
+            //     minWidth: '100px'
+            // }
         },
         {
             title: "Items",
             field: "ITEMS",
             type: "numeric",
             render: rowData => rowData.ITEMS.map((item, index) => (<MainTableCell key={`item-${index}`} component="span">{item}{index === rowData.ITEMS.length -1 ? null : ', '}</MainTableCell>)),
-            width: '75px',
+            width: '5%',
         },
         {
             title: "Instructions",
@@ -73,28 +74,28 @@ const DetailsPanelExample = () => {
             field: "RECIPIENT",
             type: "string",
             render: rowData => (<MainTableCell>{rowData.RECIPIENT}</MainTableCell>),
-            width: '240px',
+            width: '15%',
         },
         {
             title: "Examiner",
             field: "EXAMINER",
             type: "string",
             render: rowData => (<MainTableCell>{rowData.EXAMINER}</MainTableCell>),
-            width: '150px',
+            width: '10%',
         },
         {
             title: "Date",
             field: "DATE",
             type: "date",
             render: rowData => (<MainTableCell>{rowData.DATE}</MainTableCell>),
-            width: '150px',
+            width: '15%',
         },
         {
             title: "Reminder",
             field: "REMINDER",
             type: "date",
             render: rowData => (<MainTableCell>{rowData.REMINDER}</MainTableCell>),
-            width: '150px'
+            width: '15%'
         },
     ]);
 
@@ -102,41 +103,11 @@ const DetailsPanelExample = () => {
         setShowCode(!showCode)
     };
 
-    const handleRowClick = (row) => {
-        if(selectedRow !== null && selectedRow.tableData.id === row.tableData.id){
-            closeRow();
-        } else {
-            closeRow();
-            const rowCopy = {...row};
-            const dataCopy = [...data]
-            dataCopy[rowCopy.tableData.id] = rowCopy;
-            setSelectedRow(rowCopy)
-            setData(dataCopy)
-        }
-    }
-
-    const closeRow = () => {
-        const dataCopy = [...data];
-        if(selectedRow !== null){
-            const rowCopy = {...selectedRow};
-            if(rowCopy.tableData.showDetailPanel){
-                rowCopy.tableData.showDetailPanel = false;
-            }
-            dataCopy[rowCopy.tableData.id] = rowCopy;
-        }
-
-        setData(dataCopy)
-        setSelectedRow(null)
-    }
-
-    const createDetailMarkup = item => {
-        return { __html: item.DETAILS };
-    };
 
     return (
         <ThemeProvider theme={tableTheme}>
            <CodeContainer
-                title="DetailsPanelExample.js"
+                title="CustomToolbarExample.js"
                 codeString={Markdown}
                 showCode={showCode}
                 handleToggleCode={() => handleToggleCode()}
@@ -144,38 +115,48 @@ const DetailsPanelExample = () => {
             {!showCode && (
                 <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
                     <MaterialTable
-                        title="Details Panel Example"
+                        title={
+                            <>
+                                <Grid item>
+                                    <Typography variant='caption'>Batch</Typography>
+                                </Grid>
+                                <Grid item>
+                                    <Typography variant="h4" sx={{ fontWeight: 500 }}>4215011</Typography>
+                                </Grid>
+                            </>
+                        }
                         icons={TableIcons}
                         columns={columns}
                         data={data}
-                        detailPanel={({ rowData }) => (
-                            <TableContainer>
-                                <Table>
-                                    <NestedTableHeader
-                                        tableHeader='Instruction Details'
-                                        colSpan={columns.length + 1}
-                                        dense='dense'
-                                    />
-                                    <TableBody>
-                                        <NestedTableRow dense="dense">
-                                            <NestedTableCell><Typography variant='body2' dangerouslySetInnerHTML={createDetailMarkup(rowData)}/></NestedTableCell>
-                                        </NestedTableRow>
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        )}
                         options={{
                             headerStyle: { backgroundColor: theme.palette.grid.main.header },
                             padding: 'dense',
                             search: false,
-                            showDetailPanelIcon: true,
-                            detailsPanelType: 'single',
-                            rowStyle: rowData => ({
-                                backgroundColor: selectedRow !== null && selectedRow.tableData.id === rowData.tableData.id ? theme.palette.grid.main.active : undefined
-                            }),
                         }}
-                        onRowClick={(e, selectedRow, togglePanel) => {handleRowClick(selectedRow); togglePanel()}}
                         components={{
+                            Toolbar: props => (
+                                <Grid container sx={{ p: '0.25em' }} alignItems="center">
+                                    <Grid item container xs={6} flexDirection="column" sx={{ pl: '0.25em' }}>
+                                        <MTableToolbar {...props}/>
+                                    </Grid>
+                                    <Grid item container xs={3} flexDirection="column" alignItems="center">
+                                        <Grid item>
+                                            <Typography variant='caption'>Item Count</Typography>
+                                        </Grid>
+                                        <Grid item>
+                                            <Typography variant="h4" sx={{ fontWeight: 500 }}>2</Typography>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid item container xs={3} flexDirection="column" alignItems="center">
+                                        <Grid item>
+                                            <Typography variant='caption'>Status</Typography>
+                                        </Grid>
+                                        <Grid item>
+                                            <Typography variant="h4" color="error" sx={{ fontWeight: 500 }}>Action Required</Typography>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            ),
                             Container: props => {
                                 return (
                                     <Paper elevation={0} {...props}/>
@@ -189,4 +170,4 @@ const DetailsPanelExample = () => {
     )
 }
 
-export default DetailsPanelExample;
+export default CustomToolbarExample;
