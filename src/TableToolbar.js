@@ -41,6 +41,17 @@ const TableToolbar = props => {
                         </span>
                     </Grid>
                 ) : null}
+                {props.onFreeActionClick ? (
+                    <Grid item>
+                            <Tooltip title={props.freeActionTooltip}>
+                                <span>
+                                    <IconButton size="small" onClick={props.onFreeActionClick} disabled={props.freeActionDisabled}>
+                                        {props.freeActionIcon}
+                                    </IconButton>
+                                </span>
+                            </Tooltip>
+                    </Grid>
+                ) : null}
             </Grid>
         </Grid>
     )
