@@ -97,6 +97,14 @@ function Navigation() {
                         <ListItemButton
                             sx={{ pl: 4 }}
                             component={Link}
+                            to="actions/free-action"
+                            selected={pathname === '/table-examples/actions/free-action'}
+                        >
+                            <ListItemText primary="Free Action"/>
+                        </ListItemButton>
+                        <ListItemButton
+                            sx={{ pl: 4 }}
+                            component={Link}
                             to="actions/popout-menu"
                             selected={pathname === '/table-examples/actions/popout-menu'}
                         >

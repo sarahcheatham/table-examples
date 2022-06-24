@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
 import { useState } from 'react';
 import MaterialTable from '@material-table/core';  
 import { MainTableCell } from '@aeros-ui/tables';
@@ -45,7 +43,9 @@ const PopoutMenuExample = () => {
     const [anchorEl, setAnchorEl] = useState(null);
     const popoverOpen = Boolean(anchorEl);
     const id = popoverOpen ? 'menu-popover' : undefined;
-    const [selectedRow, setSelectedRow] = useState(null)
+    const [selectedRow, setSelectedRow] = useState(null);
+    const [yTarget, setYTarget] = useState(0)
+    const [xTarget, setXTarget] = useState(0)
     const [data, setData] = useState(
         [
             {
@@ -150,7 +150,8 @@ const PopoutMenuExample = () => {
                     <Popover
                         id={id}
                         open={popoverOpen}
-                        anchorEl={anchorEl}
+                        anchorReference='anchorPosition'
+                        anchorPosition={{ top: yTarget, left: xTarget }}
                         anchorOrigin={{
                             vertical: 'bottom',
                             horizontal: 'left'
@@ -178,6 +179,8 @@ const PopoutMenuExample = () => {
     ];
 
     const handleOpenPopover = (e, rowData) => {
+        setYTarget(e.pageY)
+        setXTarget(e.pageX)
         setAnchorEl(e.currentTarget);
         setSelectedRow(rowData);
     }
