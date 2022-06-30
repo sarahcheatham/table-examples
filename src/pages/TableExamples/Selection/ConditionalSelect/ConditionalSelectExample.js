@@ -1,51 +1,26 @@
 import { useState } from 'react';
 import MaterialTable from '@material-table/core';  
-import { MainTableCell } from '@aeros-ui/tables';
+import { 
+    MainTableCell, 
+    // FreeActionToolbar 
+} from '@aeros-ui/tables';
 import TableToolbar from '../../../../TableToolbar';
 import { ThemeProvider } from '@mui/material/styles';
 import { tableTheme } from '@aeros-ui/themes';  
 import { useTheme } from '@mui/material/styles';  
-import Typography from "@mui/material/Typography";
-import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import Popover from '@mui/material/Popover';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import IconButton from '@mui/material/IconButton';
-import Chip from '@mui/material/Chip';
-import PersonOff from '@mui/icons-material/PersonOff'
-import { Edit, AttachFile, Print, DeleteForever, Info, MoreVert } from "@mui/icons-material";
+import { Tooltip, Grid, Paper, IconButton } from '@mui/material';
+import { PersonOff, HowToReg } from '@mui/icons-material';
 import { ExportCsv, ExportPdf } from "@material-table/exporters";  
 import CodeContainer from "../../../../components/CodeContainer";
 import Markdown from './Markdown';
 
-const popoverList = [
-    {
-        name: 'Edit',
-        icon: <Edit fontSize="small"/>
-    },
-    {
-        name: 'Attach',
-        icon: <AttachFile fontSize="small"/>
-    },
-    {
-        name: "Print",
-        icon: <Print fontSize="small"/>
-    },
-    {
-        name: 'Delete',
-        icon: <DeleteForever fontSize="small"/>
-    }
-]
 
 const ConditionalSelectExample = () => {
     const theme = useTheme()
     const [showCode, setShowCode] = useState(false);
     const [density, setDensity] = useState("dense");
     const [showFilters, setFiltering] = useState(false);
-    const [selectedRows, setSelectedRows] = useState([]);
+    const [showSearch, setShowSearch] = useState(true)
     const [data, setData] = useState(
         [
             {
@@ -78,7 +53,7 @@ const ConditionalSelectExample = () => {
         ]
     )
 
-    const columns = [
+    const [columns, setColumns] = useState([
         {
             title: "User Id",
             field: "USERID",
@@ -115,7 +90,7 @@ const ConditionalSelectExample = () => {
             type: "string",
             render: rowData => (<MainTableCell>{rowData.STATE}</MainTableCell>),
         }
-    ];
+    ]);
 
 
     const handleToggleCode = () => {
@@ -126,15 +101,40 @@ const ConditionalSelectExample = () => {
         density === "normal" ? setDensity("dense") : setDensity("normal")
     };
 
-    const handleDisableUsers = selectedRows => {
-        console.log("SELECTED ROWS:", selectedRows)
-        alert("You want to disable " + selectedRows.length + " user(s)")
+    const handleDisableUsers = (selectedRows, data) => {
+        const filteredRows = selectedRows.filter(r => r.STATE !== 'DISABLED')
+        const dataCopy = [...data]
+        dataCopy.forEach((r, i) => {
+            if(r.STATE === "DISABLED"){
+                let rowCopy = {...r}
+                rowCopy.tableData.checked = false
+                dataCopy[rowCopy.tableData.id] = rowCopy
+            }
+        })
+        setData(dataCopy)
+
+        setTimeout(() => alert("You want to disable " + filteredRows.length + " user(s)"), 1000)
     }
 
-    const handleSelectedRows = (rows) => {
-        setSelectedRows(rows)
-    };
+    const handleEnableUsers = (selectedRows, data) => {
+        const filteredRows = selectedRows.filter(r => r.STATE !== 'ENABLED')
+        const dataCopy = [...data]
+        dataCopy.forEach((r, i) => {
+            if(r.STATE === "ENABLED"){
+                let rowCopy = {...r}
+                rowCopy.tableData.checked = false
+                dataCopy[rowCopy.tableData.id] = rowCopy
+            }
+        })
+        setData(dataCopy)
 
+        setTimeout(() => alert("You want to enable " + filteredRows.length + " user(s)"), 1000)
+    }
+
+    // const handleToggleSearch = (bool) => {
+    //     setShowSearch(bool)
+    // }
+    console.log(data)
     return (
         <ThemeProvider theme={tableTheme}>
             <CodeContainer
@@ -151,16 +151,20 @@ const ConditionalSelectExample = () => {
                         data={data}
                         options={{
                             headerStyle: { backgroundColor: theme.palette.grid.main.header },
-                            selectionProps: rowData => ({
-                                style: { paddingLeft: '1.25em' },
-                                disabled: rowData.STATE === 'DISABLED'
-                            }),
+                            selectionProps: rowData => {
+                                console.log(rowData)
+                                return (
+                                    {
+                                        style: { paddingLeft: '1.25em' },
+                                    }
+                                )
+                            },
                             selection: true,
                             showTextRowsSelected: false,
                             filtering: showFilters,
                             filterCellStyle: { padding: "0.5em" },
                             padding: density,
-                            search: true,
+                            search: showSearch,
                             columnsButton: true,
                             exportAllData: true,
                             exportMenu: [{
@@ -174,7 +178,6 @@ const ConditionalSelectExample = () => {
                                 backgroundColor: rowData.tableData.hasOwnProperty('checked') && rowData.tableData.checked ? theme.palette.grid.main.active : undefined
                             }),
                         }}
-                        onSelectionChange={(rows) => handleSelectedRows(rows)}
                         components={{
                             Container: props => {
                                 return (
@@ -184,27 +187,45 @@ const ConditionalSelectExample = () => {
                             Toolbar: props => {
                                 return (
                                     <TableToolbar
-                                    {...props}
+                                        {...props}
                                         showFilters={showFilters}
                                         onFilterClick={() => setFiltering(!showFilters)}
                                         onDensityClick={handleDensityClick}
-                                        freeActionDisabled={props.selectedRows.length === 0}
-                                        freeActionIcon={<PersonOff/>}
-                                        freeActionTooltip="Disable User(s)"
-                                        onFreeActionClick={(e) => handleDisableUsers(props.selectedRows)}
+                                        // handleToggleSearch={handleToggleSearch}
+                                        freeAction={
+                                            <>
+                                                <Grid item>
+                                                    <Tooltip title="Disable User(s)">
+                                                    <span>
+                                                        <IconButton 
+                                                            size="small" 
+                                                            onClick={(e) => handleDisableUsers(props.selectedRows, props.data)} 
+                                                            disabled={props.selectedRows.length === 0}
+                                                        >
+                                                            <PersonOff/>
+                                                        </IconButton>
+                                                    </span>
+                                                    </Tooltip>
+                                                </Grid>
+                                                <Grid item>
+                                                    <Tooltip title="Enable User(s)">
+                                                    <span>
+                                                        <IconButton 
+                                                            size="small" 
+                                                            onClick={(e) => handleEnableUsers(props.selectedRows, props.data)} 
+                                                            disabled={props.selectedRows.length === 0}
+                                                        >
+                                                            <HowToReg/>
+                                                        </IconButton>
+                                                    </span>
+                                                    </Tooltip>
+                                                </Grid>
+                                            </>
+                                        }
                                     />
                                 )
-                                
                             },
                         }}
-                        // actions={[
-                        //     {
-                        //         icon: PersonOff,
-                        //         tooltip: 'disable user(s)',
-                        //         isFreeAction: true,
-                        //         onClick: (e, rows) => handleDisableUsers(rows)
-                        //     }
-                        // ]}
                     />
                 </Paper>
             )}

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { MTableToolbar } from '@material-table/core';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -8,6 +9,14 @@ import ViewHeadline from '@mui/icons-material/ViewHeadline';
 import PropTypes from 'prop-types';
 
 const TableToolbar = props => {
+    console.log("PROPS:", props)
+    // useEffect(() => {
+    //     if(props.selectedRows.length !== 0){
+    //         props.handleToggleSearch(false)
+    //     } else {
+    //         props.handleToggleSearch(true)
+    //     }
+    // }, [props.selectedRows])
     return (
         <Grid container alignItems="center">
             {props.title !== null ? (
@@ -19,7 +28,7 @@ const TableToolbar = props => {
                 <Grid item>
                     <MTableToolbar {...props} disableGutters style={{ paddingRight: 0, paddingLeft: 0}} showTitle={false}/>
                 </Grid>
-                {props.onFilterClick ? (
+                {props.onFilterClick && props.selectedRows.length === 0 ? (
                      <Grid item>
                         <span>
                             <Tooltip title={props.showFilters ? "Hide Filters": "Show Filters"}>
@@ -30,7 +39,7 @@ const TableToolbar = props => {
                         </span>
                     </Grid>
                 ) : null}
-                {props.onDensityClick ? (
+                {props.onDensityClick && props.selectedRows.length === 0 ? (
                     <Grid item>
                         <span>
                             <Tooltip title="Toggle Density">
@@ -41,16 +50,8 @@ const TableToolbar = props => {
                         </span>
                     </Grid>
                 ) : null}
-                {props.onFreeActionClick ? (
-                    <Grid item>
-                            <Tooltip title={props.freeActionTooltip}>
-                                <span>
-                                    <IconButton size="small" onClick={props.onFreeActionClick} disabled={props.freeActionDisabled}>
-                                        {props.freeActionIcon}
-                                    </IconButton>
-                                </span>
-                            </Tooltip>
-                    </Grid>
+                {props.freeAction ? (
+                    props.freeAction
                 ) : null}
             </Grid>
         </Grid>
