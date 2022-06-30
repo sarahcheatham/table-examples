@@ -3,6 +3,7 @@ import DeleteRowExample from "./pages/TableExamples/Actions/DeleteRow/DeleteRowE
 import FreeActionExample from "./pages/TableExamples/Actions/FreeAction/FreeActionExample";
 import PopoutMenuExample from "./pages/TableExamples/Actions/PopoutMenu/PopoutMenuExample";
 import BasicPanelExample from './pages/TableExamples/DetailsPanel/BasicPanel/BasicPanelExample';
+import ConditionalSelectExample from './pages/TableExamples/Selection/ConditionalSelect/ConditionalSelectExample';
 import EditExample from "./pages/TableExamples/Edit/EditExample";
 import ExportExample from "./pages/TableExamples/Export/ExportExample";
 import FilterExample from "./pages/TableExamples/Filter/FilterExample";
@@ -79,6 +80,10 @@ function App() {
               path="selection"
               element={<TableOutlet/>}
             >
+              <Route
+                path="conditional-selection"
+                element={<ConditionalSelectExample/>}
+              />
               <Route
                 path="multiple-selection"
                 element={<MultipleSelectionExample/>}

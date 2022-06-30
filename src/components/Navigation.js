@@ -40,18 +40,30 @@ function Navigation() {
 
     const handleToggleActions = () => {
         setActionsOpen(!actionsOpen)
+        setDetailPanelOpen(false)
+        setSelectionOpen(false)
+        setToolbarOpen(false)
     }
 
     const handleToggleSelection = () => {
         setSelectionOpen(!selectionOpen)
+        setActionsOpen(false)
+        setToolbarOpen(false)
+        setDetailPanelOpen(false)
     }
 
     const handleToggleToolbar = () => {
         setToolbarOpen(!toolbarOpen)
+        setActionsOpen(false)
+        setSelectionOpen(false)
+        setDetailPanelOpen(false)
     }
 
     const handleToggleDetails = () => {
         setDetailPanelOpen(!detailsPanelOpen);
+        setActionsOpen(false)
+        setSelectionOpen(false)
+        setToolbarOpen(false)
     }
     return (
         <Drawer
@@ -138,13 +150,6 @@ function Navigation() {
                         </ListItemButton>
                     </List>
                 </Collapse>
-                {/* <ListItemButton
-                    component={Link}
-                    to="details-panel"
-                    selected={pathname === '/table-examples/details-panel'}
-                >
-                    <ListItemText primary="Details Panel"/>
-                </ListItemButton> */}
                 <ListItemButton
                     component={Link}
                     to="edit"
@@ -166,13 +171,6 @@ function Navigation() {
                 >
                     <ListItemText primary="Filter"/>
                 </ListItemButton>
-                {/* <ListItemButton
-                    component={Link}
-                    to="nested-table"
-                    selected={pathname === '/table-examples/nested-table'}
-                >
-                    <ListItemText primary="Nested Table"/>
-                </ListItemButton> */}
                 <ListItemButton
                     component={Link}
                     to="search"
@@ -188,6 +186,14 @@ function Navigation() {
                 </ListItemButton>
                 <Collapse in={selectionOpen} timeout="auto" unmountOnExit>
                     <List>
+                        <ListItemButton
+                            sx={{ pl: 4 }}
+                            component={Link}
+                            to="selection/conditional-selection"
+                            selected={pathname === '/table-examples/selection/conditional-selection'}
+                        >
+                            <ListItemText primary="Conditional Selection"/>
+                        </ListItemButton>
                         <ListItemButton
                             sx={{ pl: 4 }}
                             component={Link}
