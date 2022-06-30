@@ -37,12 +37,14 @@ function Navigation() {
     const [selectionOpen, setSelectionOpen] = useState(false);
     const [toolbarOpen, setToolbarOpen] = useState(false);
     const [detailsPanelOpen, setDetailPanelOpen] = useState(false);
+    const [searchOpen, setSearchOpen] = useState(false);
 
     const handleToggleActions = () => {
         setActionsOpen(!actionsOpen)
         setDetailPanelOpen(false)
         setSelectionOpen(false)
         setToolbarOpen(false)
+        setSearchOpen(false)
     }
 
     const handleToggleSelection = () => {
@@ -50,6 +52,7 @@ function Navigation() {
         setActionsOpen(false)
         setToolbarOpen(false)
         setDetailPanelOpen(false)
+        setSearchOpen(false)
     }
 
     const handleToggleToolbar = () => {
@@ -57,11 +60,21 @@ function Navigation() {
         setActionsOpen(false)
         setSelectionOpen(false)
         setDetailPanelOpen(false)
+        setSearchOpen(false)
     }
 
     const handleToggleDetails = () => {
         setDetailPanelOpen(!detailsPanelOpen);
         setActionsOpen(false)
+        setSelectionOpen(false)
+        setToolbarOpen(false)
+        setSearchOpen(false)
+    }
+
+    const handleToggleSearch = () => {
+        setSearchOpen(true)
+        setActionsOpen(false)
+        setDetailPanelOpen(false)
         setSelectionOpen(false)
         setToolbarOpen(false)
     }
@@ -171,13 +184,39 @@ function Navigation() {
                 >
                     <ListItemText primary="Filter"/>
                 </ListItemButton>
-                <ListItemButton
+                {/* <ListItemButton
                     component={Link}
                     to="search"
                     selected={pathname === '/table-examples/search'}
                 >
                     <ListItemText primary="Search"/>
+                </ListItemButton> */}
+                <ListItemButton
+                    onClick={handleToggleSearch}
+                >
+                    <ListItemText primary="Search"/>
+                    {searchOpen ? <ExpandLess/> : <ExpandMore/>}
                 </ListItemButton>
+                <Collapse in={searchOpen} timeout="auto" unmountOnExit>
+                    <List>
+                        <ListItemButton
+                            sx={{ pl: 4 }}
+                            component={Link}
+                            to="search/custom-search"
+                            selected={pathname === '/table-examples/search/custom-search'}
+                        >
+                            <ListItemText primary="Custom Search"/>
+                        </ListItemButton>
+                        <ListItemButton
+                            sx={{ pl: 4 }}
+                            component={Link}
+                            to="search/toggle-search"
+                            selected={pathname === '/table-examples/search/toggle-search'}
+                        >
+                            <ListItemText primary="Toggle Search"/>
+                        </ListItemButton>
+                    </List>
+                </Collapse>
                 <ListItemButton
                     onClick={handleToggleSelection}
                 >

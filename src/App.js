@@ -8,7 +8,8 @@ import EditExample from "./pages/TableExamples/Edit/EditExample";
 import ExportExample from "./pages/TableExamples/Export/ExportExample";
 import FilterExample from "./pages/TableExamples/Filter/FilterExample";
 import NestedTableExample from "./pages/TableExamples/DetailsPanel/NestedTable/NestedTableExample";
-import SearchExample from "./pages/TableExamples/Search/SearchExample";
+import CustomSearchExample from "./pages/TableExamples/Search/CustomSearch/CustomSearchExample";
+import ToggleSearchExample from "./pages/TableExamples/Search/ToggleSearch/ToggleSearchExample";
 import MultipleSelectionExample from "./pages/TableExamples/Selection/MultipleSelection/MultipleSelectionExample";
 import SingleSelectionExample from "./pages/TableExamples/Selection/SingleSelection/SingleSelectionExample";
 import SortExample from './pages/TableExamples/Sort/SortExample';
@@ -74,8 +75,18 @@ function App() {
             />
             <Route
               path="search"
-              element={<SearchExample/>}
-            />
+              element={<TableOutlet/>}
+            >
+              <Route
+                path="custom-search"
+                element={<CustomSearchExample/>}
+              />
+              <Route
+                path="toggle-search"
+                element={<ToggleSearchExample/>}
+              />
+
+            </Route>
             <Route
               path="selection"
               element={<TableOutlet/>}

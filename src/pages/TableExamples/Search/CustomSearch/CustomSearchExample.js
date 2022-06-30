@@ -7,10 +7,10 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Paper from '@mui/material/Paper';
 import { Link } from "react-router-dom";
-import CodeContainer from "../../../components/CodeContainer";
+import CodeContainer from "../../../../components/CodeContainer";
 import Markdown from "./Markdown";
 
-const SearchExample = () => {
+const CustomSearchExample = () => {
     const theme = useTheme();
     const [showCode, setShowCode] = useState(false);
     const [data, setData] = useState([
@@ -166,7 +166,7 @@ const SearchExample = () => {
     return (
         <ThemeProvider theme={tableTheme}>
             <CodeContainer
-                title="SearchExample.js"
+                title="CustomSearchExample.js"
                 codeString={Markdown}
                 showCode={showCode}
                 handleToggleCode={() => handleToggleCode()}
@@ -174,7 +174,7 @@ const SearchExample = () => {
             {!showCode && (
                 <Paper sx={{ my: '1em', mx: '2em', width: '100%' }} elevation={4}>
                     <MaterialTable
-                        title="Search Example"
+                        title="Custom Search Example"
                         columns={columns}
                         data={data}
                         options={{
@@ -199,4 +199,4 @@ const SearchExample = () => {
     )
 }
 
-export default SearchExample;
+export default CustomSearchExample;
