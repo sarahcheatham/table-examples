@@ -5,7 +5,7 @@
   "dependencies": {
     "@aeros-ui/components": "^0.1.21",
     "@aeros-ui/icons": "^0.1.5",
-    "@aeros-ui/tables": "^0.1.15",
+    "@aeros-ui/tables": "^0.1.16",
     "@aeros-ui/themes": "^0.1.16",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",

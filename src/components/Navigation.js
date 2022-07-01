@@ -72,7 +72,7 @@ function Navigation() {
     }
 
     const handleToggleSearch = () => {
-        setSearchOpen(true)
+        setSearchOpen(!searchOpen)
         setActionsOpen(false)
         setDetailPanelOpen(false)
         setSelectionOpen(false)
@@ -184,13 +184,6 @@ function Navigation() {
                 >
                     <ListItemText primary="Filter"/>
                 </ListItemButton>
-                {/* <ListItemButton
-                    component={Link}
-                    to="search"
-                    selected={pathname === '/table-examples/search'}
-                >
-                    <ListItemText primary="Search"/>
-                </ListItemButton> */}
                 <ListItemButton
                     onClick={handleToggleSearch}
                 >
@@ -258,13 +251,6 @@ function Navigation() {
                 >
                     <ListItemText primary="Sort"/>
                 </ListItemButton>
-                {/* <ListItemButton
-                    component={Link}
-                    to="toolbar"
-                    selected={pathname === '/table-examples/toolbar'}
-                >
-                    <ListItemText primary="Toolbar"/>
-                </ListItemButton> */}
                 <ListItemButton
                     onClick={handleToggleToolbar}
                 >

@@ -21,10 +21,10 @@
     "@babel/polyfill" "^7.12.1"
     react-scripts "5.0.0"
 
-"@aeros-ui/tables@^0.1.15":
-  version "0.1.15"
-  resolved "https://registry.yarnpkg.com/@aeros-ui/tables/-/tables-0.1.15.tgz#43420979bfbebdcaaf431e9c5d79a60014c9130f"
-  integrity sha512-I1/LL6E5ywOhE8eWiRSzZlwVseoElPo6bAMEbss3s+EIAi49cF4hRAgcbs6iqlEELv6cmS4mCGsQm8k2puBeeQ==
+"@aeros-ui/tables@^0.1.16":
+  version "0.1.16"
+  resolved "https://registry.yarnpkg.com/@aeros-ui/tables/-/tables-0.1.16.tgz#c50f2be4f6472c7b64ebd161a3eb967b488c4a9b"
+  integrity sha512-nhEh97DnckTHX3uy7zF+WdtfogNYjWNLaD3Z4o+YZNBQTmhiIg9YzwqGswbwTD7xvjoiyd/PLEW96AlKSoxH8A==
   dependencies:
     "@babel/polyfill" "^7.12.1"
     prop-types "^15.8.1"

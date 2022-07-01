@@ -9,7 +9,7 @@ import ViewHeadline from '@mui/icons-material/ViewHeadline';
 import PropTypes from 'prop-types';
 
 const TableToolbar = props => {
-    console.log("PROPS:", props)
+    // console.log("PROPS:", props)
     // useEffect(() => {
     //     if(props.selectedRows.length !== 0){
     //         props.handleToggleSearch(false)
