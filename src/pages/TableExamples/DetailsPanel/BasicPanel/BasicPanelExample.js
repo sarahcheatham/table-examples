@@ -14,58 +14,52 @@ const BasicPanelExample = () => {
     const theme = useTheme()
     const [showCode, setShowCode] = useState(false);
     const [selectedRow, setSelectedRow] = useState(null)
-    const [data, setData] = useState(
-        [
-            {
-                id: 0,
-                SEQUENCENO: 1,
-                ITEMS: [1],
-                INSTRUCTIONS: "HOPE ALL IS WELL. CAN YOU PLEASE CHANGE THE INSURED NAME ON PART A AFFIDAVIT AND NELP TO READ: 780 REALTY ASSOCIATES, LLC; BDP REALTY ASSOCIATES LLC THANKS, BETH",
-                DETAILS: 'HOPE ALL IS WELL.<BR/> CAN YOU PLEASE CHANGE THE INSURED NAME ON PART A AFFIDAVIT AND NELP TO READ: 780 REALTY ASSOCIATES, LLC; BDP REALTY ASSOCIATES LLC<BR/><BR/> THANKS,<BR/> BETH<BR/><BR/><div style="color:red;">YOU WILL BE ABLE TO "RE-OPEN" THIS PREVIOUSLY SUBMITTED BATCH TO MAKE NECESSARY CHANGES AND CORRECTIONS REQUESTED BY ELANY.</div>\nPlease review the notes below and take the appropriate actions to successfully make the necessary changes to the item(s) in the batch via the Affidavit site [https://eefs.elany.org/eefs]',
-                RECIPIENT: "JS@BROKER.COM",
-                EXAMINER: "BPFLUGER",
-                DATE: '01/25/2022@15:23:00',
-                REMINDER: '01/26/2022@07:00:00',
-            },
-            {
-                id: 1,
-                SEQUENCENO: 2,
-                ITEMS: [1, 2],
-                INSTRUCTIONS: "PLEASE UPDATE THE COVERAGE CODE FROM 2301 TO 5501",
-                DETAILS: 'PLEASE UPDATE THE COVERAGE CODE FROM 2301 TO 5501<BR/><BR/> THANKS,<BR/> BETH<BR/><BR/><div style="color:red;">YOU WILL BE ABLE TO "RE-OPEN" THIS PREVIOUSLY SUBMITTED BATCH TO MAKE NECESSARY CHANGES AND CORRECTIONS REQUESTED BY ELANY.</div><BR/>Please review the notes below and take the appropriate actions to successfully make the necessary changes to the item(s) in the batch via the Affidavit site [https://eefs.elany.org/eefs]',
-                RECIPIENT: "JS@BROKER.COM",
-                EXAMINER: "BPFLUGER",
-                DATE: '01/28/2022@15:23:00',
-                REMINDER: '01/29/2022@07:00:00',
-            },
-        ]
-    )
+    const [data, setData] = useState([
+        {
+            EXAMINER: "RSIDEV",
+            INSTRUCTIONS: "Dear SARAH CHEATHAM,\n\nDuring the review of Batch 6100169 SEC001 you submitted to ELANY on 07/13/2022, some questions have arisen and possible adjustments might be required in order to successfully process the items and get them returned to you.\n<div style=\"color:red;\">YOU WILL BE ABLE TO \"RE-OPEN\" THIS PREVIOUSLY SUBMITTED BATCH TO MAKE NECESSARY CHANGES AND CORRECTIONS REQUESTED BY ELANY.</div>\nPlease review the notes below and take the appropriate actions to successfully make the necessary changes to the item(s) in the batch via the Affidavit site [https://eefsapp2-ssu.elany.org:8444/eefs]\n\nItems:\n 3: Policy: BGP0000365-A / Affidavit: 2564596 / TransType: D / Amount: 13280.00\n\nPlease update the Name of Insured to Dolores Vogliano on the Part A.\n\nPlease update Item 5 to have coverage code 5051 Cyber Liability \n\nRegards,",
+            LASTUPDATEDATE: "07/15/2022 11:44:50",
+            RECIPIENT: "S.CHEATHAM@RSITEX.COM",
+            REMINDERDATE: null,
+            SEQNO: 2,
+            SUBJECT: "BATCH NO: 6100169 SEC001 SUBMITTED TO ELANY ON 07/13/2022",
+            UPDITEMS: "3,5",
+            id: "01500302-0907-11ed-b14a-0242c0a82002"
+        },
+        {
+            EXAMINER: "RSIDEV",
+            INSTRUCTIONS: "Dear SARAH CHEATHAM,\n\nDuring the review of Batch 6100169 SEC001 you submitted to ELANY on 07/13/2022, some questions have arisen and possible adjustments might be required in order to successfully process the items and get them returned to you.\n<div style=\"color:red;\">YOU WILL BE ABLE TO \"RE-OPEN\" THIS PREVIOUSLY SUBMITTED BATCH TO MAKE NECESSARY CHANGES AND CORRECTIONS REQUESTED BY ELANY.</div>\nPlease review the notes below and take the appropriate actions to successfully make the necessary changes to the item(s) in the batch via the Affidavit site [https://eefsapp2-ssu.elany.org:8444/eefs]\n\nItems:\n 3: Policy: BGP0000365-A / Affidavit: 2564596 / TransType: D / Amount: 13280.00\n\nPlease update the Name of Insured to Dolores Vogliano on the Part A.\n\nRegards,",
+            LASTUPDATEDATE: "07/15/2022 11:39:56",
+            RECIPIENT: "S.CHEATHAM@RSITEX.COM",
+            REMINDERDATE: null,
+            SEQNO: 1,
+            SUBJECT: "BATCH NO: 6100169 SEC001 SUBMITTED TO ELANY ON 07/13/2022",
+            UPDITEMS: "3",
+            id: "01501cd4-0907-11ed-b14a-0242c0a82002"
+        }
+    ])
     const [columns, setColumns] = useState([
         {
             title: 'Seq No',
-            field: "SEQUENCENO",
+            field: "SEQNO",
             type: 'numeric',
-            render: rowData => (<MainTableCell>{rowData.SEQUENCENO}</MainTableCell>),
-            width: '100px',
-            cellStyle: {
-                minWidth: '100px'
-            }
+            render: rowData => (<MainTableCell>{rowData.SEQNO}</MainTableCell>),
+            width: '125px'
         },
         {
             title: "Items",
-            field: "ITEMS",
+            field: "UPDITEMS",
             type: "numeric",
-            render: rowData => rowData.ITEMS.map((item, index) => (<MainTableCell key={`item-${index}`} component="span">{item}{index === rowData.ITEMS.length -1 ? null : ', '}</MainTableCell>)),
-            width: '75px',
+            render: rowData => (<MainTableCell>{rowData.UPDITEMS}</MainTableCell>),
         },
         {
-            title: "Instructions",
-            field: "INSTRUCTIONS",
+            title: "Subject",
+            field: "SUBJECT",
             type: "string",
-            render: rowData => (<MainTableCell noWrap>{rowData.INSTRUCTIONS}</MainTableCell>),
+            render: rowData => (<MainTableCell noWrap>{rowData.SUBJECT}</MainTableCell>),
             width: '350px',
             cellStyle: {
-                maxWidth: '350px'
+                maxWidth: '300px'
             }
         },
         {
@@ -80,21 +74,20 @@ const BasicPanelExample = () => {
             field: "EXAMINER",
             type: "string",
             render: rowData => (<MainTableCell>{rowData.EXAMINER}</MainTableCell>),
-            width: '150px',
         },
         {
             title: "Date",
-            field: "DATE",
+            field: "LASTUPDATEDATE",
             type: "date",
-            render: rowData => (<MainTableCell>{rowData.DATE}</MainTableCell>),
-            width: '150px',
+            render: rowData => (<MainTableCell>{rowData.LASTUPDATEDATE}</MainTableCell>),
+            width: '200px',
         },
         {
             title: "Reminder",
-            field: "REMINDER",
+            field: "REMINDERDATE",
             type: "date",
-            render: rowData => (<MainTableCell>{rowData.REMINDER}</MainTableCell>),
-            width: '150px'
+            render: rowData => (<MainTableCell>{rowData.REMINDERDATE}</MainTableCell>),
+            width: '200px'
         },
     ]);
 
@@ -130,7 +123,9 @@ const BasicPanelExample = () => {
     }
 
     const createDetailMarkup = item => {
-        return { __html: item.DETAILS };
+        console.log("INSTRUCTIONS:", item.INSTRUCTIONS)
+        const details = item.INSTRUCTIONS.replaceAll("\n", "<br/>")
+        return { __html: details };
     };
 
     return (
@@ -158,7 +153,7 @@ const BasicPanelExample = () => {
                                     />
                                     <TableBody>
                                         <NestedTableRow dense="dense">
-                                            <NestedTableCell><Typography variant='body2' dangerouslySetInnerHTML={createDetailMarkup(rowData)}/></NestedTableCell>
+                                            <NestedTableCell><Typography variant='body2' sx={{ textTransform: 'none' }} dangerouslySetInnerHTML={createDetailMarkup(rowData)}/></NestedTableCell>
                                         </NestedTableRow>
                                     </TableBody>
                                 </Table>
